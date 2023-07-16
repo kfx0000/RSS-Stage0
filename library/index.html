@@ -12,6 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./img/ico/favicon-16x16.png">
     <link rel="manifest" href="./img/ico/site.webmanifest">
     <link rel="stylesheet" href="style.css">
+    <script type="application/javascript" src="index.js"></script>
     <title>Brooklyn Public Library</title>
 </head>
 <body>
@@ -29,19 +30,19 @@
                     <li class="nav-list-item"><a href="#card">Library Card</a></li>
                 </ul>
                 <div class="icon-profile">
-                    <a href="#">
+                    <button class="icon-butt">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M28 14C28 21.732 21.732 28 14 28C6.26801 28 0 21.732 0 14C0 6.26801 6.26801 0 14 0C21.732 0 28 6.26801 28 14ZM18.6667 7.77778C18.6667 10.3551 16.5774 12.4444 14.0001 12.4444C11.4227 12.4444 9.33339 10.3551 9.33339 7.77778C9.33339 5.20045 11.4227 3.11111 14.0001 3.11111C16.5774 3.11111 18.6667 5.20045 18.6667 7.77778ZM19.4998 16.2781C20.9584 17.7367 21.7778 19.715 21.7778 21.7778H14L6.22225 21.7778C6.22225 19.715 7.0417 17.7367 8.50031 16.2781C9.95893 14.8194 11.9372 14 14 14C16.0628 14 18.0411 14.8194 19.4998 16.2781Z" fill="white"/>
                         </svg>
-                    </a>
+                    </button>
                 </div>
             </nav>
         </header>
         <main class="main">
             <section class="welcome">
                 <div class="welcome-overlay"></div>
-                <div class="welcome-textbox">
-                    <h2 class="welcome-text">Welcome&nbsp;<br>to the Brooklyn<br> Library</h2>
+                <div class="welcome-bg">
+                    <h2 class="welcome-text"><span class="w1">Welcome</span>to the Brooklyn<span class="w2">Library</span></h2>
                 </div>
             </section>
             <section class="about">
@@ -53,12 +54,16 @@
                     <div class="about-carousel-item about-item-2"></div>
                     <div class="about-carousel-item about-item-3"></div>
                 </div>
-                <div class="carousel-pagination">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="68" height="16" viewBox="0 0 68 16" fill="none">
-                        <rect width="16" height="16" rx="8" fill="#BB945F"/>
-                        <rect x="26" width="16" height="16" rx="8" fill="#0C0C0E"/>
-                        <rect x="52" width="16" height="16" rx="8" fill="#0C0C0E"/>
-                    </svg>
+                <div class="about-carousel-pagination">
+                    <button class="about-button">
+                        <span class="about-circle about-circle-selected"></span>
+                    </button>
+                    <button class="about-button">
+                        <span class="about-circle"></span>
+                    </button>
+                    <button class="about-button">
+                        <span class="about-circle"></span>
+                    </button>
                 </div>
             </section>
             <section class="favorites">
@@ -66,21 +71,29 @@
                 <div class="sect-line"></div>
                 <div class="fav-txt">Pick favorites of season</div>
                 <div class="fav-seasons">
-                    <div class="fav-radio">
-                        <input id="fav-radio-1" type="radio" name="fav-radiobutton" value="1" checked>
-                        <label class="fav-radio-label1" for="fav-radio-1">Winter</label>
+                    <div class="fav-radio" id="fr1">
+                        <label class="fav-radio-label" for="fav-radio-1">
+                            <input id="fav-radio-1" class="fav-radio-input" type="radio" name="fav-radiobutton" value="1" checked>
+                            <span class="fav-radio-txt">Winter</span>
+                        </label>
                     </div>
-                    <div class="fav-radio">
-                        <input id="fav-radio-2" type="radio" name="fav-radiobutton" value="2">
-                        <label class="fav-radio-label2" for="fav-radio-2">Spring</label>
+                    <div class="fav-radio" id="fr2">
+                        <label class="fav-radio-label" for="fav-radio-2">
+                            <input id="fav-radio-2" class="fav-radio-input" type="radio" name="fav-radiobutton" value="2">
+                            <span class="fav-radio-txt">Spring</span>
+                        </label>
                     </div>
-                    <div class="fav-radio">
-                        <input id="fav-radio-3" type="radio" name="fav-radiobutton" value="3">
-                        <label class="fav-radio-label3" for="fav-radio-3">Summer</label>
+                    <div class="fav-radio" id="fr3">
+                        <label class="fav-radio-label" for="fav-radio-3">
+                            <input id="fav-radio-3" class="fav-radio-input" type="radio" name="fav-radiobutton" value="3">
+                            <span class="fav-radio-txt">Summer</span>
+                        </label>
                     </div>
-                    <div class="fav-radio">
-                        <input id="fav-radio-4" type="radio" name="fav-radiobutton" value="4">
-                        <label class="fav-radio-label4" for="fav-radio-4">Autumn</label>
+                    <div class="fav-radio" id="fr4">
+                        <label class="fav-radio-label" for="fav-radio-4">
+                            <input id="fav-radio-4" class="fav-radio-input" type="radio" name="fav-radiobutton" value="4">
+                            <span class="fav-radio-txt">Autumn</span>
+                        </label>
                     </div>
                 </div>
                 <div class="fav-container">
@@ -128,7 +141,7 @@
                             <div class="fav-description">
                                 A timely and revelatory new<br>biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button fav-button-own" disabled>Own</button>
                             <div class="fav-img" id="book4"></div>
                         </div>
                     </article>
@@ -140,7 +153,7 @@
                             <div class="fav-description">
                                 Powerful novel that takes you back to a nostalgic time, exploring both the beauty and danger and loss of innocence that is youth.
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book5"></div>
                         </div>
                     </article>
@@ -152,7 +165,7 @@
                             <div class="fav-description">
                                 This memoir about the author's relationship with gun violence feels both expansive and intimate, resulting in a lyrical indictment of the way things are.
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book6"></div>
                         </div>
                     </article>
@@ -164,7 +177,7 @@
                             <div class="fav-description">
                                 A sardonic view of Silicon Valley culture, a meditation on race, and a journal of displacement and belonging, all in one form-defying package of spare prose.
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book7"></div>
                         </div>
                     </article>
@@ -176,7 +189,7 @@
                             <div class="fav-description">
                                 A fascinating story of a teenage girl who marries a man twice her age with the promise to bring her to America. Her marriage is an opportunity for her family to eventually immigrate. For fans of Isabel Allende and Julia Alvarez.
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book8"></div>
                         </div>
                     </article>
@@ -186,9 +199,9 @@
                             <div class="fav-staff-line"></div>
                             <div class="fav-desc">Crude: A Memoir<div class="fav-desc-2nd">By Pablo Fajardo &amp; Sophie Tardy-Joubert</div></div>
                             <div class="fav-description">
-                                Drawing and color by Damien Roudeau | This book illustrates the struggles of a group of indigenous Ecuadoreans as they try to sue the ChevronTexaco company for damage their oil fields did to the Amazon and her people
+                                Drawing and color by Damien Roudeau | This book illustrates the struggles of a group of indigenous Ecuadoreans as they try to sue the ChevronTexaco company for damage their oil fields did to the Amazon and her people<br>
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book9"></div>
                         </div>
                     </article>
@@ -198,9 +211,9 @@
                             <div class="fav-staff-line"></div>
                             <div class="fav-desc">Let My People Go Surfing<div class="fav-desc-2nd">By Yvon Chouinard</div></div>
                             <div class="fav-description">
-                                Chouinard—climber, businessman, environmentalist—shares tales of courage and persistence from his experience of founding and leading Patagonia, Inc. Full title: Let My People Go Surfing: The Education of a Reluctant Businessman, Including 10 More Years of Business Unusual.
+                                Chouinard—climber, businessman, environmentalist—shares tales of courage and persistence from his experience of founding and leading Patagonia, Inc. Full title: Let My<br>People Go Surfing: The Education of a Reluctant Businessman, Including 10 More Years of Business Unusual.
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book10"></div>
                         </div>
                     </article>
@@ -212,7 +225,7 @@
                             <div class="fav-description">
                                 This collection of bold and scathingly beautiful feminist poems imagines what comes after our current age of environmental destruction, racism, sexism, and divisive politics.
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book11"></div>
                         </div>
                     </article>
@@ -224,7 +237,7 @@
                             <div class="fav-description">
                                 An epic saga of seven generations of one family encompasses the tumultuous history of Hawaii as a Hawaiian woman gathers her four granddaughters together in an erotic tale of villains and dreamers, queens and revolutionaries, lepers and healers.
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book12"></div>
                         </div>
                     </article>
@@ -234,9 +247,9 @@
                             <div class="fav-staff-line"></div>
                             <div class="fav-desc">Casual Conversation<div class="fav-desc-2nd">By Renia White</div></div>
                             <div class="fav-description">
-                                White's impressive debut collection takes readers through and beyond the concepts of conversation and the casual - both what we say to each other and what we don't, examining the possibilities around how we construct and communicate identity.
+                                White's impressive debut collection takes readers through and beyond<br>the concepts of conversation and the casual - both what we say to each other and what we don't, examining the possibilities around how we construct and communicate identity.
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book13"></div>
                         </div>
                     </article>
@@ -248,7 +261,7 @@
                             <div class="fav-description">
                                 The harrowing story of an ordinary American and a principled Naval officer who, horrified by the burning of Smyrna, led an extraordinary rescue effort that saved a quarter of a million refugees from the Armenian Genocide
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book14"></div>
                         </div>
                     </article>
@@ -260,7 +273,7 @@
                             <div class="fav-description">
                                 With the fall rolling around, one can't help but think of baseball's postseason coming up! And what better way to prepare for it than reading the biography of one of the game's all-time greatest performers, the Man of Steal, Rickey Henderson?
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book15"></div>
                         </div>
                     </article>
@@ -272,7 +285,7 @@
                             <div class="fav-description">
                                 Exes Tegan and Sara find themselves chained together by hairballs of codependency. A father and child experience the shared trauma of giving birth to gods from their wounds.
                             </div>
-                            <button class="fav-button own" disabled>Own</button>
+                            <button class="fav-button" disabled>Buy</button>
                             <div class="fav-img" id="book16"></div>
                         </div>
                     </article>
@@ -284,40 +297,40 @@
                     <div class="sect-line"></div>
                 </div>
                 <div class="coffee-text">
-                    In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation. You can get a favorite book and read in coffee shop. our barista to cook you best coffee, and also you can try desserts from bakery.
+                    <span class="coffee-text-fix">In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation.</span> You can get a favorite book and read in coffee shop. our barista to cook you best coffee, and also you can try desserts from bakery.
                 </div>
                 <div class="coffee-menu">
                     <div class="coffee-menu-left">
                         <div class="coffee-menu-head">
                             Coffee & Tea
                         </div>
-                        <div class="coffee-menu-item">
-                            <div class="coffee-menu-item-name">Cold Brew Coffee</div>
+                        <div class="coffee-menu-item-left">
+                            <div class="coffee-menu-item-name-left">Cold Brew Coffee</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$3</div>
                         </div>
-                        <div class="coffee-menu-item">
-                            <div class="coffee-menu-item-name">French Press Pot</div>
+                        <div class="coffee-menu-item-left">
+                            <div class="coffee-menu-item-name-left">French Press Pot</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$5</div>
                         </div>
-                        <div class="coffee-menu-item">
-                            <div class="coffee-menu-item-name">Espresso</div>
+                        <div class="coffee-menu-item-left">
+                            <div class="coffee-menu-item-name-left">Espresso</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$2</div>
                         </div>
-                        <div class="coffee-menu-item">
-                            <div class="coffee-menu-item-name">Cappuccino</div>
+                        <div class="coffee-menu-item-left">
+                            <div class="coffee-menu-item-name-left">Cappuccino</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$4</div>
                         </div>
-                        <div class="coffee-menu-item">
-                            <div class="coffee-menu-item-name">Hot tea</div>
+                        <div class="coffee-menu-item-left">
+                            <div class="coffee-menu-item-name-left">Hot tea</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$2</div>
                         </div>
-                        <div class="coffee-menu-item">
-                            <div class="coffee-menu-item-name">Cold tea</div>
+                        <div class="coffee-menu-item-left">
+                            <div class="coffee-menu-item-name-left">Cold tea</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$2</div>
                         </div>
@@ -327,32 +340,32 @@
                             Desserts & Cakes
                         </div>
                         <div class="coffee-menu-item-right">
-                            <div class="coffee-menu-item-name-r">Forest Gateau</div>
+                            <div class="coffee-menu-item-name-right">Forest Gateau</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$16</div>
                         </div>
                         <div class="coffee-menu-item-right">
-                            <div class="coffee-menu-item-name-r">Blue Moon</div>
+                            <div class="coffee-menu-item-name-right">Blue Moon</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$16</div>
                         </div>
                         <div class="coffee-menu-item-right">
-                            <div class="coffee-menu-item-name-r">Truffle Cake</div>
+                            <div class="coffee-menu-item-name-right">Truffle Cake</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$15</div>
                         </div>
                         <div class="coffee-menu-item-right">
-                            <div class="coffee-menu-item-name-r">Chocolate Cake</div>
+                            <div class="coffee-menu-item-name-right">Chocolate Cake</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$18</div>
                         </div>
                         <div class="coffee-menu-item-right">
-                            <div class="coffee-menu-item-name-r">Poet’s Dream Cake</div>
+                            <div class="coffee-menu-item-name-right">Poet’s Dream Cake</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$16</div>
                         </div>
                         <div class="coffee-menu-item-right">
-                            <div class="coffee-menu-item-name-r">Pineapple Cake</div>
+                            <div class="coffee-menu-item-name-right">Pineapple Cake</div>
                             <div class="coffee-menu-item-line"></div>
                             <div class="coffee-menu-item-price">$14</div>
                         </div>
@@ -365,16 +378,16 @@
                     <div class="sect-line"></div>
                 </div>
                 <div class="contacts-info">
-                    <div class="text-info">
-                        <div class="for-all-txt">For all Library inquiries:</div>
-                        <div class="phone-info">
-                            <div class="phone-line">Please call <a href="tel:(617)730-2370">(617) 730-2370</a></div>
-                            <div class="phone-line">For TTY service, please call <a href="tel:(617)730-2370">(617) 730-2370</a></div>
-                            <div class="phone-line">Putterham Library: <a href="tel:(617)730-2385">(617) 730-2385</a></div>
+                    <div class="contacts-text-info">
+                        <div class="contacts-txt">For all Library inquiries:</div>
+                        <div class="contacts-phone-info">
+                            <div class="contacts-phone-line">Please call <a href="tel:(617)730-2370">(617) 730-2370</a></div>
+                            <div class="contacts-phone-line">For TTY service, please call <a href="tel:(617)730-2370">(617) 730-2370</a></div>
+                            <div class="contacts-phone-line">Putterham Library: <a href="tel:(617)730-2385">(617) 730-2385</a></div>
                         </div>
-                        <div class="senior-contact">
-                            <div class="for-all-txt">Senior Staff</div>
-                            <div class="phone-line">Library Director: <a class="for-all-txt" href="mailto:AmandaHirst@gmail.com">Amanda Hirst</a></div>
+                        <div class="contacts-senior">
+                            <div class="contacts-txt">Senior Staff</div>
+                            <div class="contacts-phone-line" id="cont-senior">Library Director: <a class="contacts-txt" href="mailto:AmandaHirst@gmail.com">Amanda Hirst</a></div>
                         </div>
                     </div>
                     <div class="contacts-map"></div>
@@ -384,25 +397,25 @@
                 <h2 class="sect-caption" id="card">Digital Library Cards</h2>
                 <div class="sect-line"></div>
                 <div class="card-container">
-                    <div class="find-card">
-                        <div class="find-card-capt">Find your Library card</div>
+                    <div class="card-find">
+                        <div class="card-find-capt">Find your Library card</div>
                         <div class="card-body">
                             <div class="card-bg">
-                                <div class="gold-bg">
+                                <div class="card-gold-bg">
                                     <div class="card-text">Brooklyn Public Library</div>
-                                    <input class="card-input" type="text" placeholder="Reader's name" pattern="^[a-zA-Z0-9-]+$" required>
-                                    <input class="card-input" type="text" placeholder="Card number" pattern="^[a-zA-Z0-9-]+$" required>
+                                    <input class="card-input" type="text" placeholder="Reader's name" pattern="^[a-zA-Z-]+$" required>
+                                    <input class="card-input" type="text" placeholder="Card number" pattern="^[0-9]+$" required>
                                 </div>
-                                <button class="find-card-button">Check the card</button>
+                                <button class="card-find-button">Check the card</button>
                             </div>
                         </div>
                     </div>
-                    <div class="get-card">
-                        <div class="get-card-capt">Get a reader card</div>
-                        <div class="get-card-text">You will be able to see a reader card after logging into account or you can register a new account</div>
-                        <div class="get-card-buttons">
-                            <button class="get-card-button">Sign Up</button>
-                            <button class="get-card-button">Log in</button>
+                    <div class="card-get">
+                        <div class="card-get-capt">Get a reader card</div>
+                        <div class="card-get-text">You will be able to see a reader card after logging into account or you can register a new account</div>
+                        <div class="card-get-buttons">
+                            <button class="card-get-button">Sign Up</button>
+                            <button class="card-get-button">Log in</button>
                         </div>
                     </div>
                 </div>
