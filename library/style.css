@@ -1,6 +1,12 @@
-* {
+*,
+*:before,
+*:after {
     margin: 0;
+    padding: 0;
+    border: 0;
     box-sizing: border-box;
+    font-style: normal;
+    font-weight: 400;
 }
 
 html {
@@ -8,7 +14,6 @@ html {
 }
 
 body {
-    display: flex;
     min-height: 100vh;
     background-color: #0C0C0E;
 }
@@ -37,6 +42,9 @@ a::after {
 a:hover::after {
     width: 100%;
 }
+path {
+    transition: fill 0.6s ease;
+}
 
 
 .container {
@@ -44,72 +52,63 @@ a:hover::after {
     flex-direction: column;
     justify-content: space-between;
     max-width: 1440px;
-    width: 100%;
     margin: 0 auto;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
     height: 90px;
+    padding: 20px;
 }
-
 .library-name {
     color: #FFFFFF;
     font-family: Forum;
     font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 50px;
     letter-spacing: 0.6px;
-    padding: 20px;
 }
-
 .nav {
     display: flex;
     align-items:center;
+    gap: 40px;
 }
-
 .nav-list {
     display: flex;
     justify-content: space-between;
     gap: 30px;
-    padding: 21px;
+    padding-top: 4px; /* animation aligning compensation */
     list-style: none;
+    width: 584px;
 }
-
 .nav-list-item {
     color: #FFFFFF;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 50px;
 }
-
 .icon-profile {
-    display: flex;
-    align-items: center;
     width: 28px;
     height: 28px;
-    margin: 20px;
+}
+.icon-butt {
+    background-color:#0C0C0E;
+    cursor: pointer;
+}
+.icon-butt:hover path {
+    fill: #BB945F;
 }
 
 
 .main {
-    background: #FFF;
+    background: #FFFFFF;
 }
 
 .welcome {
     position: relative;
     height: 600px;
-    background-image: url(./img/85c1859f825ed82614b2036bc8be037f.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/85c1859f825ed82614b2036bc8be037f.jpg) center/cover no-repeat;
 }
-
 .welcome-overlay {
     position: absolute;
     top: 0;
@@ -117,10 +116,9 @@ a:hover::after {
     width: 100%;
     background: linear-gradient(180deg, #0C0C0E 0%, #0C0C0E 0.01%, rgba(18, 18, 21, 0.10) 100%);
 }
-
-.welcome-textbox {
+.welcome-bg {
     display: inline-block;
-    position: relative;
+    position: relative; /* for proper z-index */
     width: 600px;
     height: 220px;
     padding: 35px 40px;
@@ -129,64 +127,61 @@ a:hover::after {
 }
 .welcome-text {
     width: 520px;
-    /* padding: 0 100px; */
     color: #FFF;
     text-align: center;
     font-family: Forum;
     font-size: 40px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 50px;
     letter-spacing: 3px;
     text-transform: uppercase;
+}
+.w1 {
+    display: block;
+    padding-right: 10px;
+}
+.w2 {
+    display: block;
+    padding-left: 4px;
 }
 
 .sect-caption {
     color: #0C0C0E;
     font-family: Forum;
     font-size: 40px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: capitalize;
     padding: 20px;
+    padding-right: 18px;
     text-align: center;
 }
-
 .sect-line {
     margin: 0 auto;
     width: 50px;
     height: 1px;
     background: #0C0C0E;
-    align-self:center;
 }
 
 .about {
     height: 837px;
     background: #FFFFFF;
 }
-
 .about-txt {
     color: #000;
     text-align: center;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 40px;
     padding-top: 40px;
 }
-
 .about-carousel {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     height: 600px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
-
 .about-list {
     display: flex;
     justify-content: space-between;
@@ -194,121 +189,130 @@ a:hover::after {
     padding: 0;
     list-style: none;
 }
-
 .about-carousel-item {
     width: 450px;
     height: 560px;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
 }
-
 .about-item-1 {
-    background-image: url(./img/1459510570aa70d18a3fd5aee482ac8e.jpg);
+    background: url(./img/1459510570aa70d18a3fd5aee482ac8e.jpg) center/cover no-repeat;
 }
 .about-item-2 {
-    background-image: url(./img/22429b820e3a6a1688b10cc8afa6004b.jpg);
+    background: url(./img/22429b820e3a6a1688b10cc8afa6004b.jpg) center/cover no-repeat;
 }
 .about-item-3 {
-    background-image: url(./img/318907e88667422c35cddf3725f5e687.jpg);
+    background: url(./img/318907e88667422c35cddf3725f5e687.jpg) center/cover no-repeat;
 }
-
-.carousel-pagination {
+.about-carousel-pagination {
+    display: flex;
+    justify-content: center;
     width: 68px;
-    height: 16px;
+    padding-bottom: 40px;
     margin: 0 auto;
-    margin-bottom: 40px;
+}
+.about-button {
+    width: 26px;
+    height: 26px;
+    background-color: #FFF;
+    cursor: pointer;
+    padding: 5px;
+}
+.about-circle {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-color: #0C0C0E;
+    border-radius: 50%;
+}
+.about-circle-selected {
+    background-color: #BB945F;
 }
 
 .favorites {
     height: 1439px;
     background: #FFFFFF;
 }
-
 .fav-txt {
     color: #000;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
     font-weight: 700;
     line-height: normal;
-    padding: 40px 20px;
+    padding: 40px 20px 35px 20px;
 }
 .fav-seasons {
     display: flex;
-    justify-content: space-between;
-    gap: 75px;
-    /* gap: 90px; */
-    margin-left: 20px;
-    width: 710px;
-    /* width: 700px; */
+    align-items: center;
+    gap: 77px; /* radio padding +5px compensation*/
+    margin-left: 15px;
+    height: 34px;
 }
 .fav-radio {
     color: #000;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: normal;
-    width: 120px;
 }
-.fav-radio input[type=radio]:checked + label {
-    font-weight: bold;
+.fav-radio-input:checked + span {
+    font-weight: 700;
 }
-.fav-radio-label1 {
-    margin-left: 14px;
+.fav-radio-label {
+    padding: 5px 0 5px 5px;
+    cursor: pointer;
 }
-.fav-radio-label2 {
-    margin-left: 12px;
-}
-.fav-radio-label3 {
-    margin-left: 4px;
-}
-.fav-radio-label4 {
-    margin-left: 14px;
-}
-input[type="radio"] {
+.fav-radio-input {
     position: relative;
     appearance: none;
-    font: inherit;
-    color: currentColor;
     width: 17px;
     height: 17px;
-    border: 3px solid #000;
+    border: 2px solid #000;
     border-radius: 50%;
+    cursor: pointer;
     transform: translateY(3px);
-    /* display: grid; */
-    /* place-content: center; */
 }
-input[type="radio"]::before {
+.fav-radio-input::before {
     position: absolute;
-    top: 2.5px;
-    left: 2.5px;
+    top: 3px;
+    left: 3px;
     content: "";
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
     box-shadow: inset 1em 1em #000;
 }
-input[type="radio"]:checked::before {
+.fav-radio-input:checked::before {
     transform: scale(1);
 }
-
+.fav-radio-txt {
+    padding-left: 15px;
+    padding-right: 5px;
+}
 .fav-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 40px;
-    padding: 40px 20px
+    padding: 35px 20px
 }
+#fr1 {
+    width: 115px;
+}
+#fr2 {
+    width: 113px;
+}
+#fr3 {
+    width: 130px;
+}
+#fr4 {
+    width: 126px;
+}
+
+
 .fav-book {
     position: relative;
     width: 590px;
     height: 555px;
-    flex-shrink: 0;
-    /* border: 1px solid red; */
 }
 .bg-description {
     position: absolute;
@@ -324,8 +328,6 @@ input[type="radio"]:checked::before {
     color: #000;
     font-family: Forum;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: capitalize;
@@ -333,42 +335,39 @@ input[type="radio"]:checked::before {
 .fav-staff-line {
     width: 60px;
     height: 1px;
-    margin-top: 13px;
+    margin-top: 13px;  /* border+width compensation */
     margin-left: 19px;
     background: #BB945F;
 }
 .fav-desc {
-    padding: 20px 19px;
+    padding: 20px 19px;   /* border compensation */
     color: #000;
     font-family: Inter;
     font-size: 15px;
-    font-style: normal;
     font-weight: 700;
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 .fav-desc-2nd {
-    text-transform: none;
+    font-weight: 700;
+    text-transform: none;  /* don't upperacse */
 }
 .fav-description {
     color: #000;
     font-family: Inter;
     font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: capitalize;
     width: 380px;
     height: 320px;
-    padding-left: 19px;
+    padding-left: 19px;  /* border compensation */
 }
 .fav-button {
     display: flex;
     width: 75px;
     height: 30px;
-    padding: 10px 0px;
     margin-left: 20px;
     margin-top: 15px;
     justify-content: center;
@@ -377,10 +376,8 @@ input[type="radio"]:checked::before {
     border: 1px solid #0C0C0E;
     background-color: #FFFFFF;
     color: #0C0C0E;
-    text-align: center;
     font-family: Inter;
     font-size: 10px;
-    font-style: normal;
     font-weight: 700;
     line-height: normal;
     letter-spacing: 1px;
@@ -391,122 +388,71 @@ input[type="radio"]:checked::before {
     border: 1px solid #BB945F;
     background: #BB945F;
 }
-
-.own {
+.fav-button-own {
     border: 1px solid #BB945F;
     color: #BB945F;
     cursor: auto;
 }
-.own:hover {
+.fav-button-own:hover {
     border: 1px solid #BB945F;
     background-color: #FFFFFF;
 }
 
-
 .fav-img {
     position: relative;
-    top: -284px;
-    left: 390px;
+    top: -285px;
+    left: 389px;   /* border compensation */
     width: 200px;
     height: 300px;
 }
 #book1 {
-    background: url(./img/tbe.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/tbe.jpg) center/cover no-repeat;
 }
 #book2 {
-    background: url(./img/har.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/har.jpg) center/cover no-repeat;
 }
 #book3 {
-    background: url(./img/dante.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/dante.jpg) center/cover no-repeat;
 }
 #book4 {
-    background: url(./img/queen.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/queen.jpg) center/cover no-repeat;
 }
 #book5 {
-    background: url(./img/king.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/king.jpg) center/cover no-repeat;
 }
 #book6 {
-    background: url(./img/carry.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/carry.jpg) center/cover no-repeat;
 }
 #book7 {
-    background: url(./img/days.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/days.jpg) center/cover no-repeat;
 }
 #book8 {
-    background: url(./img/gruz.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/gruz.jpg) center/cover no-repeat;
 }
 #book9 {
-    background: url(./img/crude.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/crude.jpg) center/cover no-repeat;
 }
 #book10 {
-    background: url(./img/letmy.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/letmy.jpg) center/cover no-repeat;
 }
 #book11 {
-    background: url(./img/octopus.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/octopus.jpg) center/cover no-repeat;
 }
 #book12 {
-    background: url(./img/shark.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/shark.jpg) center/cover no-repeat;
 }
 #book13 {
-    background: url(./img/casual.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/casual.jpg) center/cover no-repeat;
 }
 #book14 {
-    background: url(./img/greatfire.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/greatfire.jpg) center/cover no-repeat;
 }
 #book15 {
-    background: url(./img/rickey.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/rickey.jpg) center/cover no-repeat;
 }
 #book16 {
-    background: url(./img/slug.jpg);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/slug.jpg) center/cover no-repeat;
 }
-
 .disbl {
     display: none;
 }
@@ -516,17 +462,16 @@ input[type="radio"]:checked::before {
     width: 1440px;
     padding: 20px 20px 40px 20px;
     flex-direction: column;
-    align-items: center;
     gap: 40px;
     background: #FFFFFF;
 }
 #coffee {
     padding: 0;
+    padding-left: 2px; /* ??? */
 }
 .coffee-caption {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 20px;
 }
 .coffee-text {
@@ -534,22 +479,23 @@ input[type="radio"]:checked::before {
     text-align: center;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 40px;
     letter-spacing: 2px;
+    padding-left: 2px; /* ??? */
+}
+.coffee-text-fix {
+    padding-right: 7px; /* ??? */
 }
 .coffee-menu {
     display: flex;
     flex-direction: row;
+    /* gap: 480px; */
     justify-content: space-between;
-    gap: 480px;
 }
 .coffee-menu-left {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
     gap: 40px;
 }
 .coffee-menu-right {
@@ -564,15 +510,12 @@ input[type="radio"]:checked::before {
     color: #BB945F;
     font-family: Forum;
     font-size: 40px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: capitalize;
 }
-.coffee-menu-item {
+.coffee-menu-item-left {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 60px;
     white-space: nowrap;
@@ -581,42 +524,29 @@ input[type="radio"]:checked::before {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 60px;
+    gap: 59px;
+    /* gap: 60px; */
     width: 100%;
     white-space: nowrap;
 }
-
-.coffee-menu-item-name {
+.coffee-menu-item-name-left {
     color: #000;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: capitalize;
-
-    display: flex;
     width: 196px;
-    flex-direction: column;
-    justify-content: center;
 }
-.coffee-menu-item-name-r {
+.coffee-menu-item-name-right {
     color: #000;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: capitalize;
-
-    display: flex;
-    width: 196px;
-    /* flex-direction: column; */
-    justify-content: flex-end;
+    text-align: right;
 }
-
 .coffee-menu-item-line {
     width: 100px;
     height: 1px;
@@ -626,8 +556,6 @@ input[type="radio"]:checked::before {
     color: #000;
     font-family: Forum;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: capitalize;
@@ -643,62 +571,55 @@ input[type="radio"]:checked::before {
     background: #FFFFFF;
 }
 #contacts {
-    padding: 20px 0 0 0;
+    padding: 20px 0 0 2px;  /* ??? */
 }
 .contacts-info {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
     gap: 201px;
 }
 .contacts-map {
     width: 696px;
     height: 414px;
-    background: url(./img/map.png);
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position-y: center;
+    background: url(./img/map.png) center/cover no-repeat;
 }
-.text-info {
+.contacts-text-info {
     width: 503px;
     height: 380px;
 }
-.for-all-txt {
+.contacts-txt {
     color: #000;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
     font-weight: 700;
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: capitalize;
 }
-.phone-info {
+.contacts-phone-info {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    width: 503px;
     height: 160px;
     margin: 40px 0;
 }
-.phone-line {
+.contacts-phone-line {
     color: #000;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 40px;
     letter-spacing: 2px;
     text-transform: capitalize;
     white-space: nowrap;
 }
-.senior-contact {
+.contacts-senior {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 351px;
-    height: 100px;
 }
+#cont-senior {
+    padding-left: 1px;
+}
+
 
 .card {
     height: 614px;
@@ -709,78 +630,65 @@ input[type="radio"]:checked::before {
     justify-content: space-between;
     padding: 40px 20px;
 }
-.find-card {
+.card-find {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     gap: 30px;
-    width: 600px;
-    height: 453px;
 }
-.find-card-capt {
+.card-find-capt {
     color: #000;
     font-family: Inter;
     font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
     line-height: normal;
     letter-spacing: 0.6px;
     text-align: center;
 }
 .card-body {
     display: flex;
-    width: 600px;
-    height: 387px;
-    padding-bottom: 0px;
-    justify-content: center;
     align-items: flex-end;
+    height: 387px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .card-bg {
     display: flex;
     flex-direction: column;
-    gap: 19px;
+    gap: 20px;
     padding: 18px;
     width: 600px;
     height: 386px;
     border: 3px solid #BB945F;
     background: #FFF;
 }
-.gold-bg {
+.card-gold-bg {
     padding: 20px;
     width: 560px;
     height: 272px;
     background: #BB945F;
 }
-.find-card-button {
+.card-find-button {
     width: 242px;
-    height: 44px;
+    height: 42px; /* border compensation */
     align-self: center;
     border-radius: 2px;
     border: 1px solid #0C0C0E;
     background-color: #FFFFFF;
     color: #0C0C0E;
-    text-align: center;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
     font-weight: 700;
     line-height: normal;
     letter-spacing: 1px;
     cursor: pointer;
     transition: background-color 0.6s;
 }
-.find-card-button:hover {
+.card-find-button:hover {
     border: 1px solid #BB945F;
     background: #BB945F;
 }
-
 .card-text {
     color: #000;
     font-family: Forum;
     font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
     margin-bottom: 20px;
     line-height: 50px;
     letter-spacing: 0.6px;
@@ -797,66 +705,52 @@ input[type="radio"]:checked::before {
     color: #8E8E8E;
     font-family: Forum;
     font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 50px;
     letter-spacing: 0.6px;
 }
-
-.get-card {
+.card-get {
     display: flex;
     flex-direction: column;
     align-items:flex-end;
     gap: 35px;
     width: 456px;
-    height: 253px;
 }
-.get-card-capt {
+.card-get-capt {
     color: #000;
     font-family: Forum;
     font-size: 30px;
-    font-style: normal;
-    font-weight: 400;
     line-height: normal;
     letter-spacing: 0.6px;
 }
-.get-card-text {
+.card-get-text {
     color: #000;
     text-align: right;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 40px;
     letter-spacing: 0.4px;
 }
-.get-card-buttons {
+.card-get-buttons {
     display: flex;
 }
-.get-card-button {
-    display: flex;
+.card-get-button {
     width: 75px;
     height: 30px;
-    padding: 10px 0px;
+    padding: 9px 0px;
     margin-left: 20px;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
     border-radius: 2px;
     border: 1px solid #0C0C0E;
     background-color: #FFFFFF;
     color: #0C0C0E;
-    text-align: center;
     font-family: Inter;
     font-size: 10px;
-    font-style: normal;
     font-weight: 700;
     line-height: normal;
     letter-spacing: 1px;
     cursor: pointer;
     transition: background-color 0.6s;
 }
-.get-card-button:hover {
+.card-get-button:hover {
     border: 1px solid #BB945F;
     background: #BB945F;
 }
@@ -870,40 +764,28 @@ input[type="radio"]:checked::before {
     width: 1400px;
     height: 90px;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
     gap: 10px;
-    flex-shrink: 0;
 }
 .footer-addr {
     display: flex;
     width: 1400px;
     height: 40px;
-    justify-content: center;
     align-items: flex-start;
     gap: 1022px;
-    flex-shrink: 0;
 }
 .footer-text-left {
     color: #FFF;
     font-family: Inter;
     font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 20px;
     display: flex;
     width: 229px;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
 }
 .footer-text-right {
     color: #FFF;
     text-align: right;
     font-family: Inter;
     font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 20px;
 }
 .footer-social {
@@ -911,41 +793,39 @@ input[type="radio"]:checked::before {
     justify-content: center;
     align-items: center;
     gap: 1147px;
-    width: 100%;
 }
 .footer-social-media {
     display: flex;
     width: 102px;
     height: 24px;
-    justify-content: flex-end;
-    align-items: flex-start;
     gap: 15px;
 }
 .social-media-item {
     width: 24px;
     height: 24px;
-    flex-shrink: 0;
 }
+.social-media-item:hover path {
+    fill: #BB945F;
+}
+
 .footer-line {
     width: 1400px;
     height: 1px;
     background: #FFF;
-    margin: 30px 0 42px 0;
+    margin: 29px 0 45px 0;  /* ??? */
     /* margin: 30px 0 44px 0; */
 }
 .footer-rss {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 1400px;
     height: 22px;
-    flex-shrink: 0;
 }
 .footer-rss-text {
     color: #FFF;
     font-family: Inter;
     font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
     letter-spacing: 2px;
 }
 #rss-center {
