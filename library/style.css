@@ -51,6 +51,7 @@ path {
 .container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     max-width: 1440px;
     margin: 0 auto;
@@ -61,6 +62,7 @@ path {
     justify-content: space-between;
     height: 90px;
     padding: 20px;
+    width: 100%;
 }
 .library-name {
     color: #FFFFFF;
