@@ -16,6 +16,7 @@ html {
 body {
     min-height: 100vh;
     background-color: #0C0C0E;
+    overflow-x: hidden;
 }
 
 a {
@@ -228,6 +229,8 @@ path {
 }
 
 .favorites {
+    display: flex;
+    flex-direction: column;
     height: 1439px;
     background: #FFFFFF;
 }
@@ -252,9 +255,6 @@ path {
     font-size: 20px;
     line-height: normal;
 }
-.fav-radio-input:checked + span {
-    font-weight: 700;
-}
 .fav-radio-label {
     padding: 5px 0 5px 5px;
     cursor: pointer;
@@ -271,15 +271,18 @@ path {
 }
 .fav-radio-input::before {
     position: absolute;
-    top: 3px;
-    left: 3px;
+    top: 4px;
+    left: 4px;
     content: "";
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
     box-shadow: inset 1em 1em #000;
+}
+.fav-radio-input:checked + span {
+    font-weight: 700;
 }
 .fav-radio-input:checked::before {
     transform: scale(1);
