@@ -44,7 +44,7 @@ a:hover::after {
     width: 100%;
 }
 path {
-    transition: fill 0.6s ease;
+    transition: 0.6s ease;
 }
 
 
@@ -60,8 +60,14 @@ path {
 .header {
     display: flex;
     justify-content: space-between;
+    gap: 40px;
     height: 90px;
     padding: 20px;
+    width: 100%;
+}
+.header-nav {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
 }
 .library-name {
@@ -91,15 +97,18 @@ path {
     line-height: 50px;
 }
 .icon-profile {
+    margin-top: 11px;
     width: 28px;
     height: 28px;
 }
 .icon-butt {
+    height: 100%;
     background-color:#0C0C0E;
     cursor: pointer;
 }
 .icon-butt:hover path {
     fill: #BB945F;
+    /* transform: scale(0.9); */
 }
 
 
@@ -264,12 +273,13 @@ path {
 .fav-radio-input {
     position: relative;
     appearance: none;
+    top: 3px;
     width: 17px;
     height: 17px;
     border: 2px solid #000;
     border-radius: 50%;
     cursor: pointer;
-    transform: translateY(3px);
+    /* transform: translateY(3px); */
 }
 .fav-radio-input::before {
     position: absolute;
@@ -279,15 +289,17 @@ path {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    transform: scale(0);
-    transition: 120ms transform ease-in-out;
+    opacity: 0;
+    /* transform: scale(0); */
+    /* transition: 120ms transform ease-in-out; */ /*animation*/
     box-shadow: inset 1em 1em #000;
 }
 .fav-radio-input:checked + span {
     font-weight: 700;
 }
 .fav-radio-input:checked::before {
-    transform: scale(1);
+    /* transform: scale(1); */
+    opacity: 1;
 }
 .fav-radio-txt {
     padding-left: 15px;
@@ -300,6 +312,7 @@ path {
     gap: 40px;
     padding: 35px 20px
 }
+/* Strange workaround. I know :) */
 #fr1 {
     width: 115px;
 }
@@ -651,7 +664,7 @@ path {
 .card-body {
     display: flex;
     align-items: flex-end;
-    height: 387px;
+    height: 386px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .card-bg {
@@ -673,6 +686,7 @@ path {
 .card-find-button {
     width: 242px;
     height: 42px; /* border compensation */
+    margin: 1px;
     align-self: center;
     border-radius: 2px;
     border: 1px solid #0C0C0E;
@@ -812,6 +826,10 @@ path {
 .social-media-item:hover path {
     fill: #BB945F;
 }
+.social-media-item:hover a::after {
+    width: 0%;
+}
+
 
 .footer-line {
     width: 1400px;
