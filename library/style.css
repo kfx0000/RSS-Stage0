@@ -14,9 +14,10 @@ html {
 }
 
 body {
-    min-height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
     background-color: #0C0C0E;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 a {
@@ -46,16 +47,18 @@ a:hover::after {
 path {
     transition: 0.6s ease;
 }
+line {
+    transition: 0.6s ease;
+}
 
-
-.container {
+/* .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     max-width: 1440px;
     margin: 0 auto;
-}
+} */
 
 .header {
     display: flex;
@@ -109,6 +112,12 @@ path {
 .icon-butt:hover path {
     fill: #BB945F;
     /* transform: scale(0.9); */
+}
+.icon-butt:hover line {
+    stroke: #BB945F;
+}
+.icon-burger {
+    display: none;
 }
 
 
@@ -173,6 +182,9 @@ path {
     height: 1px;
     background: #0C0C0E;
 }
+.sect-br {
+    display: none;
+}
 
 .about {
     height: 837px;
@@ -227,6 +239,9 @@ path {
     background-color: #FFF;
     cursor: pointer;
     padding: 5px;
+}
+.about-button-add {
+    display: none;
 }
 .about-circle {
     display: block;
@@ -477,7 +492,7 @@ path {
 
 .coffee {
     display: flex;
-    width: 1440px;
+    /* width: 1440px; */
     padding: 20px 20px 40px 20px;
     flex-direction: column;
     gap: 40px;
@@ -507,7 +522,6 @@ path {
 .coffee-menu {
     display: flex;
     flex-direction: row;
-    /* gap: 480px; */
     justify-content: space-between;
 }
 .coffee-menu-left {
@@ -581,7 +595,7 @@ path {
 
 .contacts {
     display: flex;
-    width: 1440px;
+    /* width: 1440px; */
     padding: 0 20px 40px 20px;
     flex-direction: column;
     align-items: center;
@@ -593,7 +607,8 @@ path {
 }
 .contacts-info {
     display: flex;
-    gap: 201px;
+    justify-content: space-between;
+    width: 100%;
 }
 .contacts-map {
     width: 696px;
@@ -780,17 +795,16 @@ path {
 }
 .footer-contacts {
     display: flex;
-    width: 1400px;
+    max-width: 1400px;
     height: 90px;
     flex-direction: column;
     gap: 10px;
 }
 .footer-addr {
     display: flex;
-    width: 1400px;
+    justify-content: space-between;
+    max-width: 1400px;
     height: 40px;
-    align-items: flex-start;
-    gap: 1022px;
 }
 .footer-text-left {
     color: #FFF;
@@ -809,15 +823,15 @@ path {
 }
 .footer-social {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 1147px;
 }
 .footer-social-media {
     display: flex;
     width: 102px;
     height: 24px;
     gap: 15px;
+    padding-left: 1px;
 }
 .social-media-item {
     width: 24px;
@@ -832,7 +846,7 @@ path {
 
 
 .footer-line {
-    width: 1400px;
+    max-width: 1400px;
     height: 1px;
     background: #FFF;
     margin: 29px 0 45px 0;  /* ??? */
@@ -842,7 +856,7 @@ path {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 1400px;
+    max-width: 1400px;
     height: 22px;
 }
 .footer-rss-text {
@@ -853,4 +867,129 @@ path {
 }
 #rss-center {
     padding-left: 130px;
+}
+
+@media (max-width: 1260px) {
+    .nav-list {
+        display: none;
+    }
+    .icon-burger {
+        display: block;
+        padding-top: 2px;
+    }
+    .sect-br {
+        display: block;
+    }
+    .about {
+        height: auto;
+    }
+    .about-carousel {
+        margin-bottom: 0;
+        justify-content: center;
+    }
+    .about-carousel-pagination {
+        padding-bottom: 35px;
+    }
+    .about-item-1 {
+        position: relative;
+    }
+    .about-item-1::before {
+        background-image: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="14" height="23" viewBox="0 0 14 23" fill="none"><path d="M0.93934 10.4393C0.353553 11.0251 0.353553 11.9749 0.93934 12.5607L10.4853 22.1066C11.0711 22.6924 12.0208 22.6924 12.6066 22.1066C13.1924 21.5208 13.1924 20.5711 12.6066 19.9853L4.12132 11.5L12.6066 3.01472C13.1924 2.42893 13.1924 1.47919 12.6066 0.893398C12.0208 0.307611 11.0711 0.307611 10.4853 0.893398L0.93934 10.4393ZM3 10H2L2 13H3V10Z" fill="black"/></svg>');
+        width: 14px;
+        height: 23px;
+        position: absolute;
+        content: "";
+        left: -61px;
+        top: 51.55%;
+    }
+    .about-item-1::after {
+        background-image: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="14" height="23" viewBox="0 0 14 23" fill="none"><path d="M13.0607 12.5607C13.6464 11.9749 13.6464 11.0251 13.0607 10.4393L3.51472 0.893398C2.92893 0.307611 1.97919 0.307611 1.3934 0.893398C0.807611 1.47919 0.807611 2.42893 1.3934 3.01472L9.87868 11.5L1.3934 19.9853C0.807611 20.5711 0.807611 21.5208 1.3934 22.1066C1.97919 22.6924 2.92893 22.6924 3.51472 22.1066L13.0607 12.5607ZM11 13H12V10H11V13Z" fill="black"/></svg>');
+        width: 14px;
+        height: 23px;
+        position: absolute;
+        content: "";
+        left: 497px;
+        top: 51.55%;
+    }
+    .about-item-2 {
+        display: none;
+    }
+    .about-item-3 {
+        display: none;
+    }
+    .about-button-add {
+        display: block;
+    }
+    .favorites {
+        height: 2625px;
+    }
+    .fav-container {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    .coffee {
+        padding-top: 24px;
+    }
+    .coffee-text-fix {
+        padding-right: 5px;
+    }
+    .coffee-text-nbsp {
+        white-space: nowrap;
+    }
+    .coffee-menu {
+        flex-direction: column;
+    }
+    .coffee-menu-right {
+        align-self: flex-end;
+        padding-top: 40px;
+    }
+    .contacts-info {
+        flex-direction: column;
+        gap: 100px;
+    }
+    .contacts {
+        padding: 0 19px 40px 21px;
+    }
+    .contacts-map {
+        align-self: center;
+    }
+    .card {
+        height: 856px;
+    }
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    .card-get {
+        align-items: center;
+        width: 600px;
+    }
+    .card-get-text {
+        padding-top: 6px;
+        text-align: center;
+    }
+    .card-get-buttons {
+        padding-top: 5px;
+        padding-right: 18px;
+    }
+    .footer-contacts {
+        margin-left: -2px;
+    }
+    .footer-line {
+        margin-top: 30px;
+    }
+    #rss-center {
+        padding-left: 75px;
+    }
+}
+
+@media (max-width: 767px) {
+    .coffee-text-nbsp {
+        white-space: wrap;
+    }
+    .contacts-map {
+        width: 100%;
+    }
 }
