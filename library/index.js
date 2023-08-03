@@ -89,3 +89,27 @@ console.log('\t   если при ширине страницы в 768рх па�
 console.log('\t - при нажатии на бургер-иконку плавно появляется адаптивное меню +4');
 console.log('\t - при нажатии на крестик, или на область вне меню, адаптивное меню плавно скрывается, уезжая за экран +4');
 console.log('\t - ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям при нажатии, а само адаптивное меню при этом плавно скрывается +4');
+
+
+// Don't look here! For future use!
+
+// const profile = document.querySelector(".icon-profile");
+// const loginForm = document.querySelector(".login");
+// const regForm = document.querySelector(".register");
+// const loginClose = document.querySelector(".login-cross");
+
+// profile.addEventListener("click", () => {loginForm.classList.toggle("login-open"); regForm.classList.toggle("login-open");});
+// loginClose.addEventListener("click", () => {loginForm.classList.remove("login-open"); regForm.classList.remove("login-open");});
+// document.addEventListener("click", (event) => {
+//     if((event.target.classList.length !== 0) && (!(event.target.closest(".login")))) {
+//         loginForm.classList.remove("login-open");
+//     }
+//     else if(event.target.classList.contains("login-register")) {
+//         loginForm.classList.toggle("login-open");
+//         regForm.classList.toggle("login-open");
+//     }
+//     else if((event.target.classList.length !== 0) && (!(event.target.closest(".register")))) {
+//         regForm.classList.remove("login-open");
+//     }
+// }
+// );
