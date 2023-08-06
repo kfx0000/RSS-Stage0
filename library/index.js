@@ -55,14 +55,16 @@
 
 const burger = document.querySelector(".icon-burger");
 const nav = document.querySelector(".nav-list");
+const profile = document.querySelector(".icon-profile");
 
 burger.addEventListener("click", () => {
         burger.classList.toggle("icon-burger-open");
         nav.classList.toggle("nav-list-open");
+        profile.classList.toggle("icon-profile-open");  // make UBOGO
     }
 );
 document.addEventListener("click", (event) => {
-    if((!(event.target.classList.contains("nav-list"))) && !(event.target.classList.contains("icon-burger"))) {
+    if((!(event.target.classList.contains("nav-list"))) && !(event.target.classList.contains("icon-burger")) && !(event.target.classList.contains("icon-profile"))) {
             burger.classList.remove("icon-burger-open");
             nav.classList.remove("nav-list-open");
         }
@@ -88,7 +90,8 @@ console.log('3. На ширине экрана 768рх реализовано а
 console.log('\t   если при ширине страницы в 768рх панель навигации не скрыта, а бургер-иконка не появилась (при этом учитывайте "Особенности проверки адаптивности в DevTools"), то ставим 0 за данный пункт, и дальше его не проверяем. Иначе:');
 console.log('\t - при нажатии на бургер-иконку плавно появляется адаптивное меню +4');
 console.log('\t - при нажатии на крестик, или на область вне меню, адаптивное меню плавно скрывается, уезжая за экран +4');
-console.log('\t - ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям при нажатии, а само адаптивное меню при этом плавно скрывается +4');
+console.log('\t - ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям при нажатии, а само адаптивное меню при этом плавно скрывается +2');
+console.log('\t - размеры открытого бургер-меню соответствуют макету, так же открытое бургер-меню проверяется на PixelPerfect +2');
 
 
 // Don't look here! For future use!

@@ -8,6 +8,9 @@
     font-style: normal;
     font-weight: 400;
 }
+*:focus-visible {
+    outline: 0;
+}
 
 html {
     scroll-behavior: smooth;
@@ -44,11 +47,11 @@ a::after {
 a:hover::after {
     width: 100%;
 }
-path {
-    transition: 0.6s ease;
+svg {
+    transition: 0.6s ease-in-out;
 }
-line {
-    transition: 0.6s ease;
+svg:hover {
+    transform: scale(1.3);
 }
 
 .container {
@@ -66,6 +69,7 @@ line {
 .header-nav {
     display: flex;
     justify-content: space-between;
+    margin-right: 68px;
     width: 100%;
 }
 .library-name {
@@ -95,21 +99,23 @@ line {
     line-height: 50px;
 }
 .icon-profile {
-    margin-top: 11px;
+    position: absolute;
+    right: 1.4%;
+    top: 31px;
     width: 28px;
     height: 28px;
+    background: url('./img/profile.svg') center/cover no-repeat;
+}
+.icon-profile:hover {
+    transform: scale(1.3);
 }
 .icon-butt {
     background-color:#0C0C0E;
     cursor: pointer;
-    transition: 0.4s ease-in-out;
+    transition: 0.6s ease-in-out;
     -webkit-tap-highlight-color: transparent;
 }
-.icon-butt:hover {
-    transform: scale(1.3);
-    transition: 0.6s ease-in-out;
-}
-.burger {
+.icon-burger {
     display: none;
 }
 
@@ -328,7 +334,7 @@ line {
 }
 .about-item-2 {
     background: url(./img/22429b820e3a6a1688b10cc8afa6004b.jpg) center/cover no-repeat;
-    margin: 0 6px 0 6px;
+    margin: 0 6px;
 }
 .about-item-3 {
     background: url(./img/318907e88667422c35cddf3725f5e687.jpg) center/cover no-repeat;
@@ -336,7 +342,7 @@ line {
 .about-carousel-pagination {
     display: flex;
     justify-content: center;
-    width: 68px;
+    width: 100%;
     padding-bottom: 40px;
     margin: 0 auto;
 }
@@ -346,6 +352,8 @@ line {
     background-color: #FFF;
     cursor: pointer;
     padding: 5px;
+    transition: 0.6s;
+    border-radius: 50%;
     -webkit-tap-highlight-color: transparent;
 }
 .about-button-add {
@@ -357,8 +365,15 @@ line {
     height: 16px;
     background-color: #0C0C0E;
     border-radius: 50%;
+    transition: 0.6s;
 }
 .about-circle-selected {
+    background-color: #BB945F;
+}
+.about-button:hover {
+    background-color: #0C0C0E;
+}
+.about-button:has(.about-circle-selected):hover {
     background-color: #BB945F;
 }
 
@@ -952,8 +967,6 @@ line {
 .social-media-item:hover a::after {
     width: 0%;
 }
-
-
 .footer-line {
     max-width: 1400px;
     height: 1px;
@@ -978,58 +991,55 @@ line {
     padding-left: 130px;
     text-align: center;
 }
-
+/*
+    Media-querry from 1280px to 768px
+*/
 @media (max-width: 1280px) {
     .nav-list {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         position: absolute;
-        height: 480px;
+        height: 570px;
         width: 332px;
-        top: 90px;
+        top: 0;
         right: -332px;
         z-index: 10;
-        /* opacity: 0;
-        visibility: hidden; */
-        padding-top: 12px;      /*???*/
-        /* background-color: #0C0C0E; */
+        padding-top: 102px;      /*??? - must be 100px */
         background-color: #000;
         transition: 0.6s ease-in-out;
     }
+    .nav-list-item {
+        line-height: 46px;      /*??? - must be 50px */
+    }
     .nav-list-open {
-        /* opacity: 1;
-        visibility: visible; */
-        right: 0;
+        transform: translateX(-332px);
         transition: 0.6s ease-in-out;
     }
-    .nav-list-item {
-        line-height: 46px;      /*???*/
-    }
-    .icon-butt:hover {
-        transform: scale(1.0);
-    }
-    .icon-butt:active {
-        transform: scale(1.5);
-    }
-    .burger {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-top: -2px;
-        width: 57px;
-    }
     .icon-burger {
-        width: 100%;
+        display: block;
+        position: absolute;
+        z-index: 11;
+        width: 45px;
         height: 22px;
-        background-image: url('./img/burger.svg');
-        background-repeat: no-repeat;
+        top: 33px;
+        right: 20px;
+        background: url('./img/burger.svg') no-repeat;
     }
     .icon-burger-open {
         height: 34px;
-        margin-left: 4px;
-        background-image: url('./img/cross.svg');
-        background-repeat: no-repeat;
+        width: 34px;
+        top: 28px;
+        margin-right: 6px;
+        background: url('./img/cross.svg') no-repeat;
+    }
+    .icon-profile {
+        right: 105px;
+        z-index: 11;
+    }
+    /* make UBOGO */
+    .icon-profile-open {
+        right: 92px;
     }
 
     .sect-br {
@@ -1142,7 +1152,9 @@ line {
         padding-left: 75px;
     }
 }
-
+/*
+    Media-querry from 767px to 639px at least
+*/
 @media (max-width: 767px) {
     .fav-seasons {
         justify-content: space-between;
