@@ -17,8 +17,6 @@ html {
 }
 
 body {
-    max-width: 1440px;
-    margin: 0 auto;
     background-color: #0C0C0E;
 }
 
@@ -55,6 +53,8 @@ svg:hover {
 }
 
 .container {
+    max-width: 1440px;
+    margin: 0 auto;
     overflow: hidden;
 }
 .header {
@@ -64,7 +64,7 @@ svg:hover {
     gap: 40px;
     height: 90px;
     padding: 20px;
-    width: 100%;
+    max-width: 100%;
 }
 .header-nav {
     display: flex;
@@ -329,15 +329,25 @@ svg:hover {
     width: 100%;
     height: 560px;
 }
+.about-carousel-item:nth-child(even) {
+    margin: 0 6px;
+}
 .about-item-1 {
     background: url(./img/1459510570aa70d18a3fd5aee482ac8e.jpg) center/cover no-repeat;
 }
 .about-item-2 {
     background: url(./img/22429b820e3a6a1688b10cc8afa6004b.jpg) center/cover no-repeat;
-    margin: 0 6px;
 }
 .about-item-3 {
     background: url(./img/318907e88667422c35cddf3725f5e687.jpg) center/cover no-repeat;
+}
+.about-item-4 {
+    display: none;
+    background: url(./img/44d1c33d434658cfc7c521ddf1c6ce96.jpg) center/cover no-repeat;
+}
+.about-item-5 {
+    display: none;
+    background: url(./img/5ea6b0b2b010ccfa19dfea1509de86de.jpg) center/cover no-repeat;
 }
 .about-carousel-pagination {
     display: flex;
@@ -418,7 +428,6 @@ svg:hover {
     border: 2px solid #000;
     border-radius: 50%;
     cursor: pointer;
-    /* transform: translateY(3px); */
 }
 .fav-radio-input::before {
     position: absolute;
@@ -429,15 +438,15 @@ svg:hover {
     height: 6px;
     border-radius: 50%;
     opacity: 0;
-    /* transform: scale(0); */
-    /* transition: 120ms transform ease-in-out; */ /*animation*/
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
     box-shadow: inset 1em 1em #000;
 }
 .fav-radio-input:checked + span {
     font-weight: 700;
 }
 .fav-radio-input:checked::before {
-    /* transform: scale(1); */
+    transform: scale(1);
     opacity: 1;
 }
 .fav-radio-txt {
@@ -1000,21 +1009,27 @@ svg:hover {
         align-items: center;
         justify-content: flex-start;
         position: absolute;
-        height: 570px;
+        /* height: 570px; */
+        height: 480px;
         width: 332px;
-        top: 0;
+        top: 90px;
         right: -332px;
         z-index: 10;
-        padding-top: 102px;      /*??? - must be 100px */
-        background-color: #000;
+        padding-top: 12px;      /*??? - must be 100px */
+        background-color: #0C0C0E;
         transition: 0.6s ease-in-out;
     }
     .nav-list-item {
+        /* width: 100%;      */     /*  for full-width links   */
+        text-align: center;
         line-height: 46px;      /*??? - must be 50px */
     }
     .nav-list-open {
         transform: translateX(-332px);
         transition: 0.6s ease-in-out;
+    }
+    .nav-list-item a {
+        display: block;
     }
     .icon-burger {
         display: block;
@@ -1027,6 +1042,7 @@ svg:hover {
         background: url('./img/burger.svg') no-repeat;
     }
     .icon-burger-open {
+        position: absolute;
         height: 34px;
         width: 34px;
         top: 28px;
@@ -1037,9 +1053,9 @@ svg:hover {
         right: 105px;
         z-index: 11;
     }
-    /* make UBOGO */
-    .icon-profile-open {
-        right: 92px;
+
+    .icon-profile:hover {
+        transform: scale(1);
     }
 
     .sect-br {
@@ -1049,7 +1065,7 @@ svg:hover {
         height: auto;
     }
     .about-carousel {
-        margin-bottom: 0;
+        margin-bottom: 0; /* !!! margin !!! */
         justify-content: center;
     }
     .about-carousel-pagination {
@@ -1063,6 +1079,7 @@ svg:hover {
         width: 24px;
         height: 25px;
         position: absolute;
+        cursor: pointer;
         content: "";
         left: -82px;
         top: 51.4%;
@@ -1072,8 +1089,9 @@ svg:hover {
         width: 24px;
         height: 25px;
         position: absolute;
+        cursor: pointer;
         content: "";
-        left: 508px;
+        right: -82px;
         top: 51.4%;
     }
     .about-item-2 {
@@ -1086,7 +1104,7 @@ svg:hover {
         display: block;
     }
     .favorites {
-        height: 2625px;
+        min-height: 2625px;
     }
     .fav-container {
         flex-direction: column;
@@ -1123,7 +1141,7 @@ svg:hover {
         align-self: center;
     }
     .card {
-        height: 856px;
+        min-height: 856px;
     }
     .card-container {
         flex-direction: column;
@@ -1164,6 +1182,6 @@ svg:hover {
         white-space: normal;
     }
     .contacts-map {
-        width: 100%;
+        max-width: 100%;
     }
 }
