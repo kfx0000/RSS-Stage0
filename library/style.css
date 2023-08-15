@@ -57,6 +57,7 @@ svg:hover {
     margin: 0 auto;
     overflow: hidden;
 }
+
 .header {
     position: relative;
     display: flex;
@@ -100,40 +101,96 @@ svg:hover {
 }
 .icon-profile {
     position: absolute;
-    right: 1.4%;
     top: 31px;
+    right: 20px;
     width: 28px;
     height: 28px;
     background: url('./img/profile.svg') center/cover no-repeat;
 }
 .icon-profile:hover {
     transform: scale(1.3);
+    transition: 0.6s ease-in-out;
 }
 .icon-butt {
     background-color:#0C0C0E;
     cursor: pointer;
-    transition: 0.6s ease-in-out;
     -webkit-tap-highlight-color: transparent;
 }
 .icon-burger {
     display: none;
 }
 
-.login {
+.dropmenu {
     display: none;
     position: absolute;
+    top: 31px;
+    right: 20px;
+    width: 80px;
+    height: 115px;
+    background-color: #FFF;
+    z-index: 12;
+}
+.dropmenu__head {
+    text-align: center;
+    margin-top: 5px;
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 20px;
+}
+.dropmenu__head::after {
+    display: block;
+    margin: 5px auto 4px auto;
+    content: '';
+    border-bottom: 1px solid #BB945F;
+    width: 40px;
+    height: 1px;
+}
+.dropmenu__line {
+    margin: 0 auto;
+    padding-top: 10px;
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+}
+.dropmenu__line:hover {
+    color: #BB945F;
+    transition: 0.4s ease-in-out;
+}
+.dropmenu-open {
+    display: block;
+}
+
+.login {
+    display: none;
+    margin: 0 auto;
+    position: fixed;
     flex-direction: column;
     padding: 20px 25px;
     background-color: #FFF;
     width: 250px;
     height: 262px;
-    right: 1%;
-    top: 90%;
-    z-index: 11;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
 }
-.register {
-    width: 250px;
-    height: 382px;
+.login-container {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 19;
+}
+.login-container-visible {
+    display: block;
 }
 .login-open {
     display: flex;
@@ -150,7 +207,7 @@ svg:hover {
     background: url('./img/close.svg') center/cover no-repeat;
 }
 .login-cross:hover {
-    transform: scale(1.3);
+    transform: scale(1.6);
     transition: 0.6s ease-in-out;
 }
 .login-capt {
@@ -200,6 +257,7 @@ svg:hover {
     margin-top: 10px;
     margin-bottom: 10px;
     transition: background-color 0.6s;
+    cursor: pointer;
 }
 .login-button:hover {
     border: 1px solid #BB945F;
@@ -380,12 +438,12 @@ svg:hover {
 .about-circle-selected {
     background-color: #BB945F;
 }
-.about-button:hover {
+/* .about-button:hover {
     background-color: #0C0C0E;
 }
 .about-button:has(.about-circle-selected):hover {
     background-color: #BB945F;
-}
+} */
 
 .favorites {
     display: flex;
@@ -1042,6 +1100,7 @@ svg:hover {
         top: 33px;
         right: 20px;
         background: url('./img/burger.svg') no-repeat;
+        transition: 0.6s ease-in-out;
     }
     .icon-burger-open {
         position: absolute;
@@ -1050,14 +1109,17 @@ svg:hover {
         top: 28px;
         margin-right: 6px;
         background: url('./img/cross.svg') no-repeat;
+        transition: 0.6s ease-in-out;
     }
     .icon-profile {
         right: 105px;
         z-index: 11;
     }
-
     .icon-profile:hover {
         transform: scale(1);
+    }
+    .dropmenu {
+        right: 105px;
     }
 
     .sect-br {

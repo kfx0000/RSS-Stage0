@@ -53,74 +53,130 @@
 // console.log("\tинтерактивность элементов согласно макету. Интерактивность включает в себя не только изменение внешнего вида курсора, например, при помощи свойства cursor: pointer, но и другие визуальные эффекты, например, изменение цвета фона или цвета шрифта. Если в макете указаны стили при наведении и клике, для элемента указываем эти стили. Если в макете стили не указаны, реализуете их по своему усмотрению, руководствуясь общим стилем макета +2.");
 // console.log("\tобязательное требование к интерактивности: плавное изменение внешнего вида элемента при наведении и клике не влияет на соседние элементы +2.");
 
+
+
+// console.log('1. Вёрстка соответствует макету. Ширина экрана 768px +26');
+// console.log('\t - блок <header> +2');
+// console.log('\t - секция Welcome +2');
+// console.log('\t - секция `About` +4. Обратите внимание на появление новых элементов в виде стрелок и переход на 5 точек вместо 3х.');
+// console.log('\t - ! Не нужно менять расстояние от картинки до точек, нужно оставить 40px. Оценку не снижаем, если сделано по макету (25px).');
+// console.log('\t - !!!ВНИМАНИЕ!!! - В работе сделано по макету, специально для тех, кто не читает обновление ТЗ! Чтобы не менялось расстояние, достаточно в style.css закомментировать строку, помеченную комментарием /* !!! margin !!! */');
+// console.log('\t - секция Favorites +2');
+// console.log('\t - ! Сделать кнопку own, вместо buy для последней книги. Здесь важно будет соблюсти условие, что, какие кнопки находились в состояние "own" на Desktop, те же кнопки в том же состоянии будут и на Tablet. Если условие соблюдено: +2');
+// console.log('\t - секция CoffeShop +4');
+// console.log('\t - ! Оценка снижаться не будет, если при наложении текста, не будет совпадать расположение букв, расстояние между символами, начало и конец строки, а так же орфография. Будут оцениваться межстрочный интервал, шрифт и центрирование блока с текстом по общим правилам.');
+// console.log('\t - секция Contacts +4');
+// console.log('\t - секция LibraryCard +4');
+// console.log('\t - блок <footer> + 2');
+// console.log('2. Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12');
+// console.log('\t - нет полосы прокрутки при ширине страницы от 1440рх до 640рх +4.');
+// console.log('\t - элементы не выходят за пределы окна браузера при ширине страницы от 1440рх до 640рх +4.');
+// console.log('\t - элементы не наезжают друг на друга при ширине страницы от 1440рх до 640рх +4. Например, меню в хедере должно преобразоваться в бургер-меню до того, как элементы начнут наезжать друг на друга.');
+// console.log('\t   все что будет происходить на ширине свыше 1440px - не оценивается. Поэтому можно либо растягивать на весь экран, либо оставить центральной колонкой.');
+// console.log('3. На ширине экрана 768рх реализовано адаптивное меню +12 (Рекомендуется сделать появление бургер-меню на ширине 1024px, НО НЕ ОБЯЗАТЕЛЬНО! Здесь сделано на ширине 1280px):');
+// console.log('\t   если при ширине страницы в 768рх панель навигации не скрыта, а бургер-иконка не появилась (при этом учитывайте "Особенности проверки адаптивности в DevTools"), то ставим 0 за данный пункт, и дальше его не проверяем. Иначе:');
+// console.log('\t - ! Версия Tablet, отступ иконки юзера от правого края - 105px. Такое же расстояние надо сделать и у открытого меню (сейчас там 92px). Сам крест желательно отцентрировать по поцентральной позиции бургер-иконки. Чтобы при переходе из одного состояния в другое ничего не прыгало. Само меню нужно прижать к правому краю целиком. Если иконка юзера не прыгает (не меняет позиции при открытии меню), независимо от величины отступа: +2');
+// console.log('\t - ! Цвет выпавшего меню должен совпадать с цветом полоски навигации. Оценка снижаться не будет, если сделано по первому макету (#000000)');
+// console.log('\t - при нажатии на бургер-иконку плавно появляется адаптивное меню +4');
+// console.log('\t - при нажатии на крестик, или на область вне меню, адаптивное меню плавно скрывается, уезжая за экран +2');
+// console.log('\t - ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям при нажатии, а само адаптивное меню при этом плавно скрывается +2');
+// console.log('\t - размеры открытого бургер-меню соответствуют макету, так же открытое бургер-меню проверяется на PixelPerfect +2');
+// console.log('Итоговая оценка 50/50');
+
+
 const burger = document.querySelector(".icon-burger");
 const nav = document.querySelector(".nav-list");
 const profile = document.querySelector(".icon-profile");
+const dropMenu = document.querySelector(".dropmenu");
+const dropMenuLine1 = document.querySelector("#dropmenu__line1");
+const dropMenuLine2 = document.querySelector("#dropmenu__line2");
+const loginForm = document.querySelector(".login");
+const loginContainer = document.querySelector(".login-container");
+const loginClose = document.querySelector(".login-cross");
+const loginReg = document.querySelector(".login-register");
+const loginCard = document.querySelector("#card-log-in");
+const regCard = document.querySelector("#card-sign-up");
+const favButtons = document.querySelectorAll(".fav-button");
 
+let isLogging = true;
+
+// Common function to open Login modal form
+function userEvent() {
+    loginContainer.classList.add("login-container-visible");
+    loginForm.classList.add("login-open");
+}
+
+// Log In event
+function loginEvent() {
+    isLogging = true;
+    loginForm.style.height = "262px"
+    document.querySelector(".login-capt").textContent = "login";
+    document.querySelectorAll(".reg").forEach((x) => x.style.display = "none");
+    document.querySelectorAll(".logging").forEach((x) => x.style.display = "block");
+    document.querySelector(".login-button").textContent = "Log In";
+    document.querySelector(".login-bottom-text").textContent = "Don’t have an account?";
+    document.querySelector(".login-register").textContent = "Register";
+    userEvent();
+}
+
+// Sign Up (register) event
+function registerEvent() {
+    isLogging = false;
+    loginForm.style.height = "382px"
+    document.querySelector(".login-capt").textContent = "register";
+    document.querySelectorAll(".reg").forEach((x) => x.style.display = "block");
+    document.querySelectorAll(".logging").forEach((x) => x.style.display = "none");
+    document.querySelector(".login-button").textContent = "Sign Up";
+    document.querySelector(".login-bottom-text").textContent = "Already have an account?";
+    document.querySelector(".login-register").textContent = "Login";
+    userEvent();
+}
+
+// Listener to open dropdown menu on User button click
+profile.addEventListener("click", () => {dropMenu.classList.add("dropmenu-open");});
+
+// Listeners to open Login modal
+dropMenuLine1.addEventListener("click", loginEvent);                // On 1st line of dropdown menu
+dropMenuLine2.addEventListener("click", registerEvent);             // On 2st line of dropdown menu
+loginCard.addEventListener("click", loginEvent);                    // On Get card Log In button
+regCard.addEventListener("click", registerEvent);                   // On Get card Sign Up button
+favButtons.forEach((x) => x.addEventListener("click", loginEvent)); // On every button in Favorites
+
+// Close Login modal on Cross click
+loginClose.addEventListener("click", () => {
+    loginContainer.classList.remove("login-container-visible");
+    loginForm.classList.remove("login-open");
+});
+
+// Login / register click
+loginReg.addEventListener("click", () => {
+    if(isLogging) registerEvent(); else loginEvent();
+});
+
+
+// Listener to open burger menu in mobile version
 burger.addEventListener("click", () => {
-        burger.classList.toggle("icon-burger-open");
-        nav.classList.toggle("nav-list-open");
-        profile.classList.toggle("icon-profile-open");  // make UBOGO
-    }
-);
+        burger.classList.toggle("icon-burger-open");    // Show cross instead burger in mobile ver
+        nav.classList.toggle("nav-list-open");          // Show menu in mobile ver
+});
+
+//Document events Listener
 document.addEventListener("click", (event) => {
-    if((!(event.target.classList.contains("nav-list"))) &&(!(event.target.classList.contains("nav-list-item"))) && !(event.target.classList.contains("icon-burger"))) {
-            burger.classList.remove("icon-burger-open");
-            nav.classList.remove("nav-list-open");
-            profile.classList.remove("icon-profile-open");
-        }
+    if ((!(event.target.classList.contains("nav-list"))) &&         // Except .nav-list
+        (!(event.target.classList.contains("nav-list-item"))) &&    // Except .nav-list-item (container for links)
+        (!(event.target.classList.contains("icon-burger")))) {      // Except icon burger (cross)
+            burger.classList.remove("icon-burger-open");            // change icon from cross to burger
+            nav.classList.remove("nav-list-open");                  // close menu
     }
+
+    if ((!(event.target.classList.contains("icon-profile"))) &&     // Except icon profile
+        (!(event.target.classList.contains("dropmenu"))) &&         // Except click inside dropdown menu
+        (!(event.target.classList.contains("dropmenu__head"))))     // Except click on header of dropdown menu
+            dropMenu.classList.remove("dropmenu-open");             // close dropdown menu
+
+    if (event.target.classList.contains("login-container")) {       // Close Login modal on click to faded container
+        loginContainer.classList.remove("login-container-visible");
+        loginForm.classList.remove("login-open");
+    }
+}
 );
-// && !(event.target.classList.contains("icon-profile"))
-console.log('1. Вёрстка соответствует макету. Ширина экрана 768px +26');
-console.log('\t - блок <header> +2');
-console.log('\t - секция Welcome +2');
-console.log('\t - секция `About` +4. Обратите внимание на появление новых элементов в виде стрелок и переход на 5 точек вместо 3х.');
-console.log('\t - ! Не нужно менять расстояние от картинки до точек, нужно оставить 40px. Оценку не снижаем, если сделано по макету (25px).');
-console.log('\t - !!!ВНИМАНИЕ!!! - В работе сделано по макету, специально для тех, кто не читает обновление ТЗ! Чтобы не менялось расстояние, достаточно в style.css закомментировать строку, помеченную комментарием /* !!! margin !!! */');
-console.log('\t - секция Favorites +2');
-console.log('\t - ! Сделать кнопку own, вместо buy для последней книги. Здесь важно будет соблюсти условие, что, какие кнопки находились в состояние "own" на Desktop, те же кнопки в том же состоянии будут и на Tablet. Если условие соблюдено: +2');
-console.log('\t - секция CoffeShop +4');
-console.log('\t - ! Оценка снижаться не будет, если при наложении текста, не будет совпадать расположение букв, расстояние между символами, начало и конец строки, а так же орфография. Будут оцениваться межстрочный интервал, шрифт и центрирование блока с текстом по общим правилам.');
-console.log('\t - секция Contacts +4');
-console.log('\t - секция LibraryCard +4');
-console.log('\t - блок <footer> + 2');
-console.log('2. Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12');
-console.log('\t - нет полосы прокрутки при ширине страницы от 1440рх до 640рх +4.');
-console.log('\t - элементы не выходят за пределы окна браузера при ширине страницы от 1440рх до 640рх +4.');
-console.log('\t - элементы не наезжают друг на друга при ширине страницы от 1440рх до 640рх +4. Например, меню в хедере должно преобразоваться в бургер-меню до того, как элементы начнут наезжать друг на друга.');
-console.log('\t   все что будет происходить на ширине свыше 1440px - не оценивается. Поэтому можно либо растягивать на весь экран, либо оставить центральной колонкой.');
-console.log('3. На ширине экрана 768рх реализовано адаптивное меню +12 (Рекомендуется сделать появление бургер-меню на ширине 1024px, НО НЕ ОБЯЗАТЕЛЬНО! Здесь сделано на ширине 1280px):');
-console.log('\t   если при ширине страницы в 768рх панель навигации не скрыта, а бургер-иконка не появилась (при этом учитывайте "Особенности проверки адаптивности в DevTools"), то ставим 0 за данный пункт, и дальше его не проверяем. Иначе:');
-console.log('\t - ! Версия Tablet, отступ иконки юзера от правого края - 105px. Такое же расстояние надо сделать и у открытого меню (сейчас там 92px). Сам крест желательно отцентрировать по поцентральной позиции бургер-иконки. Чтобы при переходе из одного состояния в другое ничего не прыгало. Само меню нужно прижать к правому краю целиком. Если иконка юзера не прыгает (не меняет позиции при открытии меню), независимо от величины отступа: +2');
-console.log('\t - ! Цвет выпавшего меню должен совпадать с цветом полоски навигации. Оценка снижаться не будет, если сделано по первому макету (#000000)');
-console.log('\t - при нажатии на бургер-иконку плавно появляется адаптивное меню +4');
-console.log('\t - при нажатии на крестик, или на область вне меню, адаптивное меню плавно скрывается, уезжая за экран +2');
-console.log('\t - ссылки в адаптивном меню работают, обеспечивая плавную прокрутку по якорям при нажатии, а само адаптивное меню при этом плавно скрывается +2');
-console.log('\t - размеры открытого бургер-меню соответствуют макету, так же открытое бургер-меню проверяется на PixelPerfect +2');
-console.log('Итоговая оценка 50/50');
-
-
-
-// Don't look here! For future use!
-
-// const profile = document.querySelector(".icon-profile");
-// const loginForm = document.querySelector(".login");
-// const regForm = document.querySelector(".register");
-// const loginClose = document.querySelector(".login-cross");
-
-// profile.addEventListener("click", () => {loginForm.classList.toggle("login-open"); regForm.classList.toggle("login-open");});
-// loginClose.addEventListener("click", () => {loginForm.classList.remove("login-open"); regForm.classList.remove("login-open");});
-// document.addEventListener("click", (event) => {
-//     if((event.target.classList.length !== 0) && (!(event.target.closest(".login")))) {
-//         loginForm.classList.remove("login-open");
-//     }
-//     else if(event.target.classList.contains("login-register")) {
-//         loginForm.classList.toggle("login-open");
-//         regForm.classList.toggle("login-open");
-//     }
-//     else if((event.target.classList.length !== 0) && (!(event.target.closest(".register")))) {
-//         regForm.classList.remove("login-open");
-//     }
-// }
-// );
