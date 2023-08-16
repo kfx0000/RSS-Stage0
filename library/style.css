@@ -107,10 +107,10 @@ svg:hover {
     height: 28px;
     background: url('./img/profile.svg') center/cover no-repeat;
 }
-.icon-profile:hover {
-    transform: scale(1.3);
+/* .icon-profile:hover {
+    transform: scale(0.9);
     transition: 0.6s ease-in-out;
-}
+} */
 .icon-butt {
     background-color:#0C0C0E;
     cursor: pointer;
@@ -123,7 +123,7 @@ svg:hover {
 .dropmenu {
     display: none;
     position: absolute;
-    top: 31px;
+    top: 59px;
     right: 20px;
     width: 80px;
     height: 115px;
@@ -366,14 +366,51 @@ svg:hover {
     font-size: 20px;
     line-height: 40px;
     padding-top: 40px;
+    margin-bottom: 20px;
+}
+/* for fucking arrows only! */
+.about-carousel-wrapper {
+    position: relative;
+    max-width: 1440px;
+}
+/*  */
+.about-carousel-arrow {
+    display: none;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: 300px;
+    transform: translateY(-50%) rotate(45deg);
+    cursor: pointer;
+}
+.about-carousel-arrow:hover {
+    border-color: #BB945F;
+    transform: translateY(-50%) rotate(45deg) scale(1.2);
+    transition: 0.6s ease-in-out;
+}
+.about-carousel-prev {
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    left: 87px;
+}
+.about-carousel-next {
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    right: 87px;
+}
+.about-carousel-container {
+    display: flex;
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 1400px;
+    max-height: 560px;
 }
 .about-carousel {
+    position: relative;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    height: 600px;
-    margin-bottom: 15px;
+    gap: 25px;
+    transition: 0.6s ease-in-out;
+    left: 0;
 }
 .about-list {
     display: flex;
@@ -384,35 +421,13 @@ svg:hover {
 }
 .about-carousel-item {
     max-width: 450px;
-    width: 100%;
-    height: 560px;
-}
-.about-carousel-item:nth-child(even) {
-    margin: 0 6px;
-}
-.about-item-1 {
-    background: url(./img/1459510570aa70d18a3fd5aee482ac8e.jpg) center/cover no-repeat;
-}
-.about-item-2 {
-    background: url(./img/22429b820e3a6a1688b10cc8afa6004b.jpg) center/cover no-repeat;
-}
-.about-item-3 {
-    background: url(./img/318907e88667422c35cddf3725f5e687.jpg) center/cover no-repeat;
-}
-.about-item-4 {
-    display: none;
-    background: url(./img/44d1c33d434658cfc7c521ddf1c6ce96.jpg) center/cover no-repeat;
-}
-.about-item-5 {
-    display: none;
-    background: url(./img/5ea6b0b2b010ccfa19dfea1509de86de.jpg) center/cover no-repeat;
 }
 .about-carousel-pagination {
     display: flex;
     justify-content: center;
     width: 100%;
     padding-bottom: 40px;
-    margin: 0 auto;
+    margin-top: 35px;
 }
 .about-button {
     width: 26px;
@@ -424,7 +439,10 @@ svg:hover {
     border-radius: 50%;
     -webkit-tap-highlight-color: transparent;
 }
-.about-button-add {
+.about-button-add-1 {
+    display: none;
+}
+.about-button-add-2 {
     display: none;
 }
 .about-circle {
@@ -438,12 +456,18 @@ svg:hover {
 .about-circle-selected {
     background-color: #BB945F;
 }
-/* .about-button:hover {
-    background-color: #0C0C0E;
-}
 .about-button:has(.about-circle-selected):hover {
-    background-color: #BB945F;
-} */
+    cursor: auto;
+}
+ .about-circle:hover {
+    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5),
+        -1px -1px 1px 2px rgba(0, 0, 0, 0.5),
+        1px -1px 1px 2px rgba(0, 0, 0, 0.5),
+        -1px 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+.about-circle-selected:hover {
+    box-shadow: none;
+}
 
 .favorites {
     display: flex;
@@ -1061,6 +1085,14 @@ svg:hover {
 /*
     Media-querry from 1280px to 768px
 */
+@media (max-width: 1420px) {
+    .about-carousel-container {
+        max-width: 925px;
+    }
+    .about-button-add-1 {
+        display: block;
+    }
+}
 @media (max-width: 1280px) {
     .nav-list {
         flex-direction: column;
@@ -1128,43 +1160,20 @@ svg:hover {
     .about {
         height: auto;
     }
-    .about-carousel {
+    .about-carousel-container {
+        max-width: 450px;
+    }.about-carousel {
         margin-bottom: 0; /* !!! margin !!! */
         justify-content: center;
     }
+    .about-carousel-arrow {
+        display: block;
+    }
     .about-carousel-pagination {
         padding-bottom: 35px;
+        margin-top: 20px;
     }
-    .about-item-1 {
-        position: relative;
-    }
-    .about-item-1::before {
-        background-image: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none"><path d="M15 7.5L9 12.5L15 17.5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-        width: 24px;
-        height: 25px;
-        position: absolute;
-        cursor: pointer;
-        content: "";
-        left: -82px;
-        top: 51.4%;
-    }
-    .about-item-1::after {
-        background-image: url('data:image/svg+xml, <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none"><path d="M9 17.5L15 12.5L9 7.5" stroke="black" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-        width: 24px;
-        height: 25px;
-        position: absolute;
-        cursor: pointer;
-        content: "";
-        right: -82px;
-        top: 51.4%;
-    }
-    .about-item-2 {
-        display: none;
-    }
-    .about-item-3 {
-        display: none;
-    }
-    .about-button-add {
+    .about-button-add-2 {
         display: block;
     }
     .favorites {

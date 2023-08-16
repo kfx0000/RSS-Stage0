@@ -97,6 +97,7 @@ const loginReg = document.querySelector(".login-register");
 const loginCard = document.querySelector("#card-log-in");
 const regCard = document.querySelector("#card-sign-up");
 const favButtons = document.querySelectorAll(".fav-button");
+const carousel = document.querySelector(".about-carousel");
 
 let isLogging = true;
 
@@ -133,7 +134,7 @@ function registerEvent() {
 }
 
 // Listener to open dropdown menu on User button click
-profile.addEventListener("click", () => {dropMenu.classList.add("dropmenu-open");});
+profile.addEventListener("click", () => {dropMenu.classList.toggle("dropmenu-open");});
 
 // Listeners to open Login modal
 dropMenuLine1.addEventListener("click", loginEvent);                // On 1st line of dropdown menu
@@ -178,5 +179,27 @@ document.addEventListener("click", (event) => {
         loginContainer.classList.remove("login-container-visible");
         loginForm.classList.remove("login-open");
     }
+    if (event.target.classList.contains("circle-1")) {
+        document.querySelectorAll(".about-circle").forEach((x) => x.classList.remove("about-circle-selected"));
+        document.querySelector(".circle-1").classList.add("about-circle-selected");
+        carousel.style.left = "0";
+    } else if (event.target.classList.contains("circle-2")) {
+        document.querySelectorAll(".about-circle").forEach((x) => x.classList.remove("about-circle-selected"));
+        document.querySelector(".circle-2").classList.add("about-circle-selected");
+        carousel.style.left = "-475px";
+    } else if (event.target.classList.contains("circle-3")) {
+        document.querySelectorAll(".about-circle").forEach((x) => x.classList.remove("about-circle-selected"));
+        document.querySelector(".circle-3").classList.add("about-circle-selected");
+        carousel.style.left = "-950px";
+    } else if (event.target.classList.contains("circle-4")) {
+        document.querySelectorAll(".about-circle").forEach((x) => x.classList.remove("about-circle-selected"));
+        document.querySelector(".circle-4").classList.add("about-circle-selected");
+        carousel.style.left = "-1425px";
+    } else if (event.target.classList.contains("circle-5")) {
+        document.querySelectorAll(".about-circle").forEach((x) => x.classList.remove("about-circle-selected"));
+        document.querySelector(".circle-5").classList.add("about-circle-selected");
+        carousel.style.left = "-1900px";
+    }
+    console.log(event.target.classList);
 }
 );
