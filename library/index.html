@@ -25,33 +25,40 @@
                 <div class="login-capt">
                     login
                 </div>
-                <label for="login-email-input" class="logging login-label">
-                    E-mail or readers card
-                    <input type="text" name="login-email" id="login-email-input" class="logging login-input">
-                </label>
-                <label for="login-pass-input" class="logging login-label">
-                    Password
-                    <input type="password" name="login-pass" id="login-pass-input" class="logging login-input">
-                </label>
+                <form action="javascript:void(0);">
 
-                <label for="reg-fstname-input" class="reg login-label">
-                    First name
-                    <input type="text" name="reg-fstname" id="reg-fstname-input" class="reg login-input">
-                </label>
-                <label for="reg-lstname-input" class="reg login-label">
-                    Last name
-                    <input type="text" name="reg-lstname" id="reg-lstname-input" class="reg login-input">
-                </label>
-                <label for="reg-email-input" class="reg login-label">
-                    E-mail
-                    <input type="text" name="reg-email" id="reg-email-input" class="reg login-input">
-                </label>
-                <label for="reg-pass-input" class="reg login-label">
-                    Password
-                    <input type="password" name="reg-pass" id="reg-pass-input" class="reg login-input">
-                </label>
+                    <label for="reg-fstname-input" class="reg login-label">
+                        First name
+                        <input type="text" name="reg-fstname" id="reg-fstname-input" class="reg login-input" required>
+                    </label>
+                    <label for="reg-lstname-input" class="reg login-label">
+                        Last name
+                        <input type="text" name="reg-lstname" id="reg-lstname-input" class="reg login-input" required>
+                    </label>
 
-                <button class="login-button">Log In</button>
+                    <label for="reg-email-input" class="reg login-label">
+                        E-mail
+                        <input type="email" name="reg-email" id="reg-email-input" class="reg login-input" required>
+                    </label>
+                    <label for="reg-pass-input" class="reg login-label">
+                        Password
+                        <input type="password" name="reg-pass" id="reg-pass-input" class="reg login-input" minlength="8"
+                            required>
+                    </label>
+
+                    <label for="login-email-input" class="logging login-label">
+                        E-mail or readers card
+                        <input type="text" name="login-email" id="login-email-input" class="logging login-input"
+                            required>
+                    </label>
+                    <label for="login-pass-input" class="logging login-label">
+                        Password
+                        <input type="password" name="login-pass" id="login-pass-input" class="logging login-input"
+                            minlength="8" required>
+                    </label>
+
+                    <button class="login-button">Log In</button>
+                </form>
                 <div class="login-bottom">
                     <span class="login-bottom-text">Don’t have an account?</span>
                     <span class="login-register">Register</span>
@@ -72,7 +79,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="icon-profile icon-butt"></div>
+            <div class="icon-profile icon-butt" title=""></div>
             <div class="icon-burger icon-butt"></div>
 
             <div class="dropmenu">
@@ -544,12 +551,12 @@
                 <div class="card-container">
                     <div class="card-find">
                         <div class="card-find-capt">Find your Library card</div>
-                        <form action="" class="card-body">
+                        <form action="javascript:void(0);" class="card-body">
                             <div class="card-bg">
                                 <div class="card-gold-bg">
                                     <div class="card-text">Brooklyn Public Library</div>
                                     <input class="card-input" type="text" name="name" placeholder="Reader's name"
-                                        pattern="^[a-zA-Z-]+$" required>
+                                        pattern="^[a-zA-Z]+$" required>
                                     <input class="card-input" type="text" name="number" placeholder="Card number"
                                         pattern="^[0-9]+$" required>
                                 </div>

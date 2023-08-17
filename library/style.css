@@ -55,7 +55,7 @@ svg:hover {
 .container {
     max-width: 1440px;
     margin: 0 auto;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .header {
@@ -182,15 +182,21 @@ svg:hover {
     z-index: 20;
 }
 .login-container {
-    display: none;
+    display: block;
     position: fixed;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.75);
-    z-index: 19;
+    visibility: hidden;
+    z-index: -1;
+    transition: 0.4s ease-in-out;
+    opacity: 0;
 }
 .login-container-visible {
     display: block;
+    visibility: visible;
+    opacity: 1;
+    z-index: 19;
 }
 .login-open {
     display: flex;
@@ -481,14 +487,17 @@ svg:hover {
     font-size: 20px;
     font-weight: 700;
     line-height: normal;
-    padding: 40px 20px 35px 20px;
+    padding: 40px 20px 0 20px;
 }
 .fav-seasons {
     display: flex;
     align-items: center;
     gap: 77px; /* radio padding +5px compensation*/
-    margin-left: 15px;
+    margin: 0 15px;
+    padding: 52px 0;
     height: 34px;
+    z-index: 13;
+    background-color: #FFF;
 }
 .fav-radio {
     color: #000;
@@ -540,7 +549,7 @@ svg:hover {
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 40px;
-    padding: 35px 20px
+    padding: 0 20px 35px 20px;
 }
 /* Strange workaround. I know :) */
 #fr1 {
@@ -1098,7 +1107,7 @@ svg:hover {
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        position: absolute;
+        position: fixed;
         height: 570px;
         /* height: 480px; */
         width: 332px;
@@ -1183,6 +1192,10 @@ svg:hover {
         flex-direction: column;
         flex-wrap: nowrap;
         align-items: center;
+    }
+    .fav-seasons {
+        position: sticky;
+        top: 0;
     }
     .coffee {
         padding-top: 24px;

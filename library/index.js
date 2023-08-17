@@ -100,6 +100,7 @@ const favButtons = document.querySelectorAll(".fav-button");
 const carousel = document.querySelector(".about-carousel");
 
 let isLogging = true;
+let carouselCurrent = 1;
 
 // Common function to open Login modal form
 function userEvent() {
@@ -134,7 +135,7 @@ function registerEvent() {
 }
 
 // Listener to open dropdown menu on User button click
-profile.addEventListener("click", () => {dropMenu.classList.toggle("dropmenu-open");});
+profile.addEventListener("click", () => { dropMenu.classList.toggle("dropmenu-open"); });
 
 // Listeners to open Login modal
 dropMenuLine1.addEventListener("click", loginEvent);                // On 1st line of dropdown menu
@@ -151,14 +152,14 @@ loginClose.addEventListener("click", () => {
 
 // Login / register click
 loginReg.addEventListener("click", () => {
-    if(isLogging) registerEvent(); else loginEvent();
+    if (isLogging) registerEvent(); else loginEvent();
 });
 
 
 // Listener to open burger menu in mobile version
 burger.addEventListener("click", () => {
-        burger.classList.toggle("icon-burger-open");    // Show cross instead burger in mobile ver
-        nav.classList.toggle("nav-list-open");          // Show menu in mobile ver
+    burger.classList.toggle("icon-burger-open");    // Show cross instead burger in mobile ver
+    nav.classList.toggle("nav-list-open");          // Show menu in mobile ver
 });
 
 //Document events Listener
@@ -166,14 +167,14 @@ document.addEventListener("click", (event) => {
     if ((!(event.target.classList.contains("nav-list"))) &&         // Except .nav-list
         (!(event.target.classList.contains("nav-list-item"))) &&    // Except .nav-list-item (container for links)
         (!(event.target.classList.contains("icon-burger")))) {      // Except icon burger (cross)
-            burger.classList.remove("icon-burger-open");            // change icon from cross to burger
-            nav.classList.remove("nav-list-open");                  // close menu
+        burger.classList.remove("icon-burger-open");            // change icon from cross to burger
+        nav.classList.remove("nav-list-open");                  // close menu
     }
 
     if ((!(event.target.classList.contains("icon-profile"))) &&     // Except icon profile
         (!(event.target.classList.contains("dropmenu"))) &&         // Except click inside dropdown menu
         (!(event.target.classList.contains("dropmenu__head"))))     // Except click on header of dropdown menu
-            dropMenu.classList.remove("dropmenu-open");             // close dropdown menu
+        dropMenu.classList.remove("dropmenu-open");             // close dropdown menu
 
     if (event.target.classList.contains("login-container")) {       // Close Login modal on click to faded container
         loginContainer.classList.remove("login-container-visible");
