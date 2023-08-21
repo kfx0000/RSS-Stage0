@@ -586,6 +586,9 @@ svg:hover {
     position: relative;
     width: 590px;
     height: 555px;
+    opacity: 1;
+    visibility: visible;
+    transition: 0.25s ease-in-out;
 }
 .bg-description {
     position: absolute;
@@ -729,6 +732,11 @@ svg:hover {
 }
 .disbl {
     display: none;
+}
+.fbhide {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.25s ease-in-out;
 }
 
 .coffee {

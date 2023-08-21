@@ -162,6 +162,12 @@ function aboutCarouselResize() {
 }
 window.onresize = aboutCarouselResize;
 
+function favBookList(item) {
+    document.querySelectorAll(".fav-book").forEach((x) => x.classList.add("fbhide"));
+    setTimeout(()=>document.querySelectorAll(".fav-book").forEach((x) => x.classList.add("disbl")), 250);
+    setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("disbl")), 250);
+    setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("fbhide")), 500);
+}
 // Listener to open dropdown menu on User button click
 profile.addEventListener("click", () => { dropMenu.classList.toggle("dropmenu-open"); });
 
@@ -220,6 +226,15 @@ document.addEventListener("click", (event) => {
         aboutCarouselRotate(5);
     } else if (event.target.classList.contains("about-carousel-next")) aboutCarouselShiftRight();
     else if (event.target.classList.contains("about-carousel-prev")) aboutCarouselShiftLeft();
+    if (event.target.classList.contains("favr-1")) {
+        favBookList(1);
+    } else if (event.target.classList.contains("favr-2")) {
+        favBookList(2);
+    } else if (event.target.classList.contains("favr-3")) {
+        favBookList(3);
+    } else if (event.target.classList.contains("favr-4")) {
+        favBookList(4);
+    }
     console.log(event.target.classList);
 }
 );
