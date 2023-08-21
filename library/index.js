@@ -92,15 +92,20 @@ const dropMenuLine1 = document.querySelector("#dropmenu__line1");
 const dropMenuLine2 = document.querySelector("#dropmenu__line2");
 const loginForm = document.querySelector(".login");
 const loginContainer = document.querySelector(".login-container");
+const profileForm = document.querySelector(".profile");
+const profileContainer = document.querySelector(".profile-container");
 const loginClose = document.querySelector(".login-cross");
+const profileClose = document.querySelector(".profile-cross");
 const loginReg = document.querySelector(".login-register");
 const loginCard = document.querySelector("#card-log-in");
 const regCard = document.querySelector("#card-sign-up");
 const favButtons = document.querySelectorAll(".fav-button");
 const carousel = document.querySelector(".about-carousel");
 
-let isLogging = true;
+let isLogging = false;
+let isLogged = false;
 let carouselCurrent = 1;
+let userObj = {};
 
 // Common function to open Login modal form
 function userEvent() {
@@ -109,31 +114,128 @@ function userEvent() {
 }
 
 // Log In event
-function loginEvent() {
-    isLogging = true;
-    loginForm.style.height = "262px"
-    document.querySelector(".login-capt").textContent = "login";
-    document.querySelectorAll(".reg").forEach((x) => x.style.display = "none");
-    document.querySelectorAll(".logging").forEach((x) => x.style.display = "block");
-    document.querySelector(".login-mail").innerHTML = "E-mail or readers card <input type='text' name='login-email' id='login-email-input' class='login-input' required>";
-    document.querySelector(".login-button").textContent = "Log In";
-    document.querySelector(".login-bottom-text").textContent = "Don’t have an account?";
-    document.querySelector(".login-register").textContent = "Register";
-    userEvent();
+function firstLineEvent() {
+    if(isLogged) {
+        profileContainer.classList.add("login-container-visible");
+        profileForm.classList.add("login-open");
+    } else {
+        isLogging = true;
+        loginForm.style.height = "262px"
+        document.querySelector(".login-capt").textContent = "login";
+        document.querySelectorAll(".login-input").forEach((x) => x.value = "");
+        document.querySelectorAll(".reg").forEach((x) => x.style.display = "none");
+        document.querySelector("#reg-fstname-input").required = false;
+        document.querySelector("#reg-lstname-input").required = false;
+        document.querySelectorAll(".logging").forEach((x) => x.style.display = "block");
+        document.querySelector(".login-mail").innerHTML = "E-mail or readers card <input type='text' name='login-email' id='login-email-input' class='login-input' required>";
+        document.querySelector(".login-button").textContent = "Log In";
+        document.querySelector(".login-bottom-text").textContent = "Don’t have an account?";
+        document.querySelector(".login-register").textContent = "Register";
+        userEvent();
+    }
 }
 
 // Sign Up (register) event
-function registerEvent() {
-    isLogging = false;
-    loginForm.style.height = "382px"
-    document.querySelector(".login-capt").textContent = "register";
-    document.querySelectorAll(".reg").forEach((x) => x.style.display = "block");
-    document.querySelectorAll(".logging").forEach((x) => x.style.display = "none");
-    document.querySelector(".login-mail").innerHTML = "E-mail <input type='text' name='login-email' id='login-email-input' class='login-input' required>";
-    document.querySelector(".login-button").textContent = "Sign Up";
-    document.querySelector(".login-bottom-text").textContent = "Already have an account?";
-    document.querySelector(".login-register").textContent = "Login";
-    userEvent();
+function secondLineEvent() {
+    if(isLogged) {
+        let userArr = JSON.parse(localStorage.getItem("RSS_BPL"));
+        for(let i = 0; i < userArr.length; i++) {
+            if(userArr[i]["cardNum"] === userObj["cardNum"]) {
+                userArr[i]["visits"] = userObj["visits"];
+                userArr[i]["bonuses"] = userObj["bonuses"];
+                userArr[i]["hasLibCard"] = userObj["hasLibCard"];
+                userArr[i]["books"] = userObj["books"];
+                break;
+            }
+        }
+        localStorage.setItem("RSS_BPL", JSON.stringify(userArr));
+
+        document.querySelector(".dropmenu__head").textContent = "Profile";
+        document.querySelector(".dropmenu__head").style.letterSpacing = "normal";
+        document.querySelector(".icon-profile").classList.remove("icon-profile-logged");
+        document.querySelector(".icon-profile").classList.add("icon-profile-icon");
+        document.querySelector(".icon-profile").textContent = "";
+        document.querySelector(".icon-profile").title = "";
+        dropMenuLine1.textContent = "Log In";
+        dropMenuLine2.textContent = "Register";
+        isLogged = false;
+    } else {
+        isLogging = false;
+        loginForm.style.height = "382px"
+        document.querySelector(".login-capt").textContent = "register";
+        document.querySelectorAll(".login-input").forEach((x) => x.value = "");
+        document.querySelector("#reg-fstname-input").required = true;
+        document.querySelector("#reg-lstname-input").required = true;
+        document.querySelectorAll(".reg").forEach((x) => x.style.display = "block");
+        document.querySelectorAll(".logging").forEach((x) => x.style.display = "none");
+        document.querySelector(".login-mail").innerHTML = "E-mail <input type='email' name='login-email' id='login-email-input' class='login-input' required>";
+        document.querySelector(".login-button").textContent = "Sign Up";
+        document.querySelector(".login-bottom-text").textContent = "Already have an account?";
+        document.querySelector(".login-register").textContent = "Login";
+        userEvent();
+    }
+}
+
+function loginProceed() {
+    loginContainer.classList.remove("login-container-visible");
+    loginForm.classList.remove("login-open");
+    let cardNum = "";
+    let initials = "";
+    let userName = "";
+    let userSurName = "";
+    let userArr = [];
+    if(isLogging) {
+        console.log("Logging...");
+        let userPass = document.querySelector("#login-pass-input").value;
+        let userEmail = document.querySelector("#login-email-input").value;
+        userArr = JSON.parse(localStorage.getItem("RSS_BPL"));
+        for(let i = 0; i < userArr.length; i++) {
+            if(((userArr[i]["cardNum"] === userEmail) || (userArr[i]["userEmail"] === userEmail)) && (userArr[i]["userPass"]) === userPass) {
+                userObj = userArr[i];
+                isLogged = true;
+                break;
+            }
+        }
+        if(isLogged) {
+            cardNum = userObj.cardNum;
+            userName = userObj.userName;
+            userSurName = userObj.userSurName;
+            userObj.visits++;
+        }
+    } else {
+        console.log("Registering...");
+        isLogged = true;
+        const uRandom = ((4294967296*(Math.ceil(14 * Math.random())) + Math.ceil(4294967295 * Math.random())).toString(16)).toUpperCase();
+        cardNum = uRandom;
+        userName = document.querySelector("#reg-fstname-input").value;
+        userSurName = document.querySelector("#reg-lstname-input").value;
+
+        userObj.userName = userName;
+        userObj.userSurName = userSurName;
+        userObj.userPass = document.querySelector("#login-pass-input").value;
+        userObj.userEmail = document.querySelector("#login-email-input").value;
+        userObj.cardNum = cardNum;
+        userObj.visits = 1;
+        userObj.bonuses = 1240;
+        userObj.hasLibCard = false;
+        userObj.books = [];
+
+        if(localStorage.getItem("RSS_BPL") === null) localStorage.setItem("RSS_BPL", JSON.stringify(userArr));
+        userArr = JSON.parse(localStorage.getItem("RSS_BPL"));
+        userArr.push(userObj);
+        localStorage.setItem("RSS_BPL", JSON.stringify(userArr));
+    }
+    if(isLogged) {
+        document.querySelector(".dropmenu__head").textContent = cardNum;
+        document.querySelector(".dropmenu__head").style.letterSpacing = "-1.3px";
+        document.querySelector(".icon-profile").classList.remove("icon-profile-icon");
+        document.querySelector(".icon-profile").classList.add("icon-profile-logged");
+        initials = (userName.slice(0,1) + userSurName.slice(0,1)).toUpperCase();
+        document.querySelector(".icon-profile").textContent = initials;
+        document.querySelector(".icon-profile").title = userName + " " + userSurName;
+        dropMenuLine1.textContent = "My profile";
+        dropMenuLine2.textContent = "Log Out";
+    }
 }
 
 // About carousel rotation
@@ -164,29 +266,33 @@ window.onresize = aboutCarouselResize;
 
 function favBookList(item) {
     document.querySelectorAll(".fav-book").forEach((x) => x.classList.add("fbhide"));
-    setTimeout(()=>document.querySelectorAll(".fav-book").forEach((x) => x.classList.add("disbl")), 250);
-    setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("disbl")), 250);
-    setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("fbhide")), 500);
+    setTimeout(()=>document.querySelectorAll(".fav-book").forEach((x) => x.classList.add("disbl")), 300);
+    setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("disbl")), 300);
+    setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("fbhide")), 400);
 }
 // Listener to open dropdown menu on User button click
 profile.addEventListener("click", () => { dropMenu.classList.toggle("dropmenu-open"); });
 
 // Listeners to open Login modal
-dropMenuLine1.addEventListener("click", loginEvent);                // On 1st line of dropdown menu
-dropMenuLine2.addEventListener("click", registerEvent);             // On 2st line of dropdown menu
-loginCard.addEventListener("click", loginEvent);                    // On Get card Log In button
-regCard.addEventListener("click", registerEvent);                   // On Get card Sign Up button
-favButtons.forEach((x) => x.addEventListener("click", loginEvent)); // On every button in Favorites
+dropMenuLine1.addEventListener("click", firstLineEvent);                // On 1st line of dropdown menu
+dropMenuLine2.addEventListener("click", secondLineEvent);             // On 2st line of dropdown menu
+loginCard.addEventListener("click", firstLineEvent);                    // On Get card Log In button
+regCard.addEventListener("click", secondLineEvent);                   // On Get card Sign Up button
+favButtons.forEach((x) => x.addEventListener("click", firstLineEvent)); // On every button in Favorites
 
 // Close Login modal on Cross click
 loginClose.addEventListener("click", () => {
     loginContainer.classList.remove("login-container-visible");
     loginForm.classList.remove("login-open");
 });
+profileClose.addEventListener("click", () => {
+    profileContainer.classList.remove("login-container-visible");
+    profileForm.classList.remove("login-open");
+});
 
 // Login / register click
 loginReg.addEventListener("click", () => {
-    if (isLogging) registerEvent(); else loginEvent();
+    if (isLogging) secondLineEvent(); else firstLineEvent();
 });
 
 
@@ -214,6 +320,10 @@ document.addEventListener("click", (event) => {
         loginContainer.classList.remove("login-container-visible");
         loginForm.classList.remove("login-open");
     }
+    if (event.target.classList.contains("profile-container")) {       // Close Login modal on click to faded container
+        profileContainer.classList.remove("login-container-visible");
+        profileForm.classList.remove("login-open");
+    }
     if (event.target.classList.contains("abtn-1") || event.target.classList.contains("circle-1")) {
         aboutCarouselRotate(1);
     } else if (event.target.classList.contains("abtn-2") || event.target.classList.contains("circle-2")) {
@@ -235,6 +345,7 @@ document.addEventListener("click", (event) => {
     } else if (event.target.classList.contains("favr-4")) {
         favBookList(4);
     }
+    if (event.target.classList.contains("login-button")) loginProceed();
     console.log(event.target.classList);
 }
 );
