@@ -115,6 +115,7 @@ function loginEvent() {
     document.querySelector(".login-capt").textContent = "login";
     document.querySelectorAll(".reg").forEach((x) => x.style.display = "none");
     document.querySelectorAll(".logging").forEach((x) => x.style.display = "block");
+    document.querySelector(".login-mail").innerHTML = "E-mail or readers card <input type='text' name='login-email' id='login-email-input' class='login-input' required>";
     document.querySelector(".login-button").textContent = "Log In";
     document.querySelector(".login-bottom-text").textContent = "Don’t have an account?";
     document.querySelector(".login-register").textContent = "Register";
@@ -128,11 +129,38 @@ function registerEvent() {
     document.querySelector(".login-capt").textContent = "register";
     document.querySelectorAll(".reg").forEach((x) => x.style.display = "block");
     document.querySelectorAll(".logging").forEach((x) => x.style.display = "none");
+    document.querySelector(".login-mail").innerHTML = "E-mail <input type='text' name='login-email' id='login-email-input' class='login-input' required>";
     document.querySelector(".login-button").textContent = "Sign Up";
     document.querySelector(".login-bottom-text").textContent = "Already have an account?";
     document.querySelector(".login-register").textContent = "Login";
     userEvent();
 }
+
+// About carousel rotation
+function aboutCarouselRotate(item) {
+    document.querySelectorAll(".about-circle").forEach((x) => x.classList.remove("about-circle-selected"));
+    document.querySelector(`.circle-${item}`).classList.add("about-circle-selected");
+    carousel.style.left = "-" + ((item - 1) * 475) + 'px';
+    carouselCurrent = item;
+    if(carouselCurrent === 5) document.querySelector(".about-carousel-next").classList.add("about-carousel-inactive");
+    else document.querySelector(".about-carousel-next").classList.remove("about-carousel-inactive");
+    if(carouselCurrent === 1) document.querySelector(".about-carousel-prev").classList.add("about-carousel-inactive");
+    else document.querySelector(".about-carousel-prev").classList.remove("about-carousel-inactive");
+}
+function aboutCarouselShiftRight() {
+    if(carouselCurrent < 5) aboutCarouselRotate(++carouselCurrent);
+}
+function aboutCarouselShiftLeft() {
+    if(carouselCurrent > 1) aboutCarouselRotate(--carouselCurrent);
+}
+function aboutCarouselResize() {
+    if((+window.innerWidth > 1420) && (carouselCurrent > 3)) {
+        carouselCurrent = 3; aboutCarouselRotate(carouselCurrent);
+    } else if((+window.innerWidth <= 1420) && (+window.innerWidth > 1280) && (carouselCurrent > 4)) {
+        carouselCurrent = 4; aboutCarouselRotate(carouselCurrent);
+    }
+}
+window.onresize = aboutCarouselResize;
 
 // Listener to open dropdown menu on User button click
 profile.addEventListener("click", () => { dropMenu.classList.toggle("dropmenu-open"); });
@@ -180,27 +208,18 @@ document.addEventListener("click", (event) => {
         loginContainer.classList.remove("login-container-visible");
         loginForm.classList.remove("login-open");
     }
-    if (event.target.classList.contains("circle-1")) {
-        document.querySelectorAll(".about-circle").forEach((x) => x.classList.remove("about-circle-selected"));
-        document.querySelector(".circle-1").classList.add("about-circle-selected");
-        carousel.style.left = "0";
-    } else if (event.target.classList.contains("circle-2")) {
-        document.querySelectorAll(".about-circle").forEach((x) => x.classList.remove("about-circle-selected"));
-        document.querySelector(".circle-2").classList.add("about-circle-selected");
-        carousel.style.left = "-475px";
-    } else if (event.target.classList.contains("circle-3")) {
-        document.querySelectorAll(".about-circle").forEach((x) => x.classList.remove("about-circle-selected"));
-        document.querySelector(".circle-3").classList.add("about-circle-selected");
-        carousel.style.left = "-950px";
-    } else if (event.target.classList.contains("circle-4")) {
-        document.querySelectorAll(".about-circle").forEach((x) => x.classList.remove("about-circle-selected"));
-        document.querySelector(".circle-4").classList.add("about-circle-selected");
-        carousel.style.left = "-1425px";
-    } else if (event.target.classList.contains("circle-5")) {
-        document.querySelectorAll(".about-circle").forEach((x) => x.classList.remove("about-circle-selected"));
-        document.querySelector(".circle-5").classList.add("about-circle-selected");
-        carousel.style.left = "-1900px";
-    }
+    if (event.target.classList.contains("abtn-1") || event.target.classList.contains("circle-1")) {
+        aboutCarouselRotate(1);
+    } else if (event.target.classList.contains("abtn-2") || event.target.classList.contains("circle-2")) {
+        aboutCarouselRotate(2);
+    } else if (event.target.classList.contains("abtn-3") || event.target.classList.contains("circle-3")) {
+        aboutCarouselRotate(3);
+    } else if (event.target.classList.contains("abtn-4") || event.target.classList.contains("circle-4")) {
+        aboutCarouselRotate(4);
+    } else if (event.target.classList.contains("abtn-5") || event.target.classList.contains("circle-5")) {
+        aboutCarouselRotate(5);
+    } else if (event.target.classList.contains("about-carousel-next")) aboutCarouselShiftRight();
+    else if (event.target.classList.contains("about-carousel-prev")) aboutCarouselShiftLeft();
     console.log(event.target.classList);
 }
 );
