@@ -588,7 +588,7 @@ svg:hover {
     height: 555px;
     opacity: 1;
     visibility: visible;
-    transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in;
 }
 .bg-description {
     position: absolute;
@@ -736,7 +736,7 @@ svg:hover {
 .fbhide {
     opacity: 0;
     visibility: hidden;
-    transition: 0.25s ease-in-out;
+    transition: 0.25s ease-out;
 }
 
 .coffee {
