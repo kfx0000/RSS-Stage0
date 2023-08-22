@@ -105,10 +105,6 @@
                         <span class="profile-card-number-text">Card number</span>
                         <span class="profile-card-number-num">F00234030</span>
                         <span class="profile-card-number-copy">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" viewBox="0 0 14 12" fill="none">
-                                <rect x="2.46826" y="0.25" width="10.5917" height="9.5" rx="0.75" stroke="black" stroke-width="0.5"/>
-                                <rect x="0.25" y="2.25" width="10.5917" height="9.5" rx="0.75" fill="white" stroke="black" stroke-width="0.5"/>
-                            </svg>
                         </span>
                     </div>
                 </div>
@@ -604,12 +600,43 @@
                             <div class="card-bg">
                                 <div class="card-gold-bg">
                                     <div class="card-text">Brooklyn Public Library</div>
-                                    <input class="card-input" type="text" name="name" placeholder="Reader's name"
+                                    <input class="card-input card-input-txt" type="text" name="name" placeholder="Reader's name"
                                         pattern="^[a-zA-Z]+$" autocomplete="off" required>
-                                    <input class="card-input" type="text" name="number" placeholder="Card number"
+                                    <input class="card-input card-input-num" type="text" name="number" placeholder="Card number"
                                         pattern="^[0-9A-F]+$" minlength="9" maxlength="9" required>
                                 </div>
                                 <button class="card-find-button">Check the card</button>
+                                <div class="card-badges">
+                                    <div class="card-badge">
+                                        <div class="card-badge-txt">Visits</div>
+                                        <div class="card-badge-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
+                                            </svg>
+                                        </div>
+                                        <div class="card-badge-txt"  id="card-num-visits">3</div>
+                                    </div>
+                                    <div class="card-badge">
+                                        <div class="card-badge-txt">Bonuses</div>
+                                        <div class="card-badge-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                                <path d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z" fill="#BB945F"/>
+                                            </svg>
+                                        </div>
+                                        <div class="card-badge-txt"  id="card-num-bonuses">1240</div>
+                                    </div>
+                                    <div class="card-badge">
+                                        <div class="card-badge-txt">Books</div>
+                                        <div class="card-badge-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                                                <rect width="20" height="21" fill="#BB945F"/>
+                                                <rect x="2" width="1" height="19" fill="#826844"/>
+                                                <rect x="1" width="1" height="21" fill="white"/>
+                                            </svg>
+                                        </div>
+                                        <div class="card-badge-txt"  id="card-num-books">2</div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -101,6 +101,7 @@ const loginCard = document.querySelector("#card-log-in");
 const regCard = document.querySelector("#card-sign-up");
 const favButtons = document.querySelectorAll(".fav-button");
 const carousel = document.querySelector(".about-carousel");
+const copyButton = document.querySelector(".profile-card-number-copy");
 
 let isLogging = false;
 let isLogged = false;
@@ -158,6 +159,20 @@ function secondLineEvent() {
         document.querySelector(".icon-profile").title = "";
         dropMenuLine1.textContent = "Log In";
         dropMenuLine2.textContent = "Register";
+        document.querySelector("#card-sign-up").style.display = "block";
+        document.querySelector("#card-log-in").textContent = "Log In";
+        document.querySelector(".card-get-capt").textContent = "Get a reader card";
+        document.querySelector(".card-get-text").textContent = "You will be able to see a reader card after logging into account or you can register a new account";
+
+        document.querySelector(".card-find-button").style.display = "block";
+        document.querySelector(".card-bg").style.gap = "20px";
+        document.querySelector(".card-badges").style.display = "none";
+        document.querySelectorAll(".card-input").forEach((x) => {
+            x.style.color = "#8E8E8E";
+            x.readOnly = false;
+        });
+        document.querySelector(".card-input-txt").value = "";
+        document.querySelector(".card-input-num").value = "";
         isLogged = false;
     } else {
         isLogging = false;
@@ -235,6 +250,25 @@ function loginProceed() {
         document.querySelector(".icon-profile").title = userName + " " + userSurName;
         dropMenuLine1.textContent = "My profile";
         dropMenuLine2.textContent = "Log Out";
+        document.querySelector("#card-sign-up").style.display = "none";
+        document.querySelector("#card-log-in").textContent = "Profile";
+        document.querySelector(".card-get-capt").textContent = "Visit your profile";
+        document.querySelector(".card-get-text").textContent = "With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.";
+
+        document.querySelector(".card-find-button").style.display = "none";
+        document.querySelector(".card-bg").style.gap = "15px";
+        document.querySelector(".card-badges").style.display = "flex";
+        document.querySelector(".card-input-txt").value = userObj.userName + " " + userObj.userSurName;
+        document.querySelector(".card-input-num").value = userObj.cardNum;
+        document.querySelectorAll(".card-input").forEach((x) => {
+            x.style.color = "#BB945F";
+            x.readOnly = true;
+        });
+        document.querySelector("#profile-num-visits").textContent = userObj.visits.toString();
+        document.querySelector("#card-num-visits").textContent = userObj.visits.toString();
+        document.querySelector(".profile-initials").textContent = initials;
+        document.querySelector(".profile-username").textContent = userObj.userName + " " + userObj.userSurName;
+        document.querySelector(".profile-card-number-num").textContent = userObj.cardNum;
     }
 }
 
@@ -279,6 +313,14 @@ dropMenuLine2.addEventListener("click", secondLineEvent);             // On 2st 
 loginCard.addEventListener("click", firstLineEvent);                    // On Get card Log In button
 regCard.addEventListener("click", secondLineEvent);                   // On Get card Sign Up button
 favButtons.forEach((x) => x.addEventListener("click", firstLineEvent)); // On every button in Favorites
+
+copyButton.addEventListener("click", () => {
+    let copyTxt = document.querySelector(".card-input-num");
+    // copyTxt.focus();
+    copyTxt.select();
+    document.execCommand('copy');
+    copyTxt.blur();
+});
 
 // Close Login modal on Cross click
 loginClose.addEventListener("click", () => {
