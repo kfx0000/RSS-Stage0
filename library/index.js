@@ -102,11 +102,51 @@ const regCard = document.querySelector("#card-sign-up");
 const favButtons = document.querySelectorAll(".fav-button");
 const carousel = document.querySelector(".about-carousel");
 const copyButton = document.querySelector(".profile-card-number-copy");
+const checkCardButton = document.querySelector(".card-find-button");
 
 let isLogging = false;
 let isLogged = false;
 let carouselCurrent = 1;
 let userObj = {};
+
+function userCommit() {
+    let userArr = JSON.parse(localStorage.getItem("RSS_BPL"));
+    for(let i = 0; i < userArr.length; i++) {
+        if(userArr[i]["cardNum"] === userObj["cardNum"]) {
+            userArr[i]["visits"] = userObj["visits"];
+            userArr[i]["bonuses"] = userObj["bonuses"];
+            userArr[i]["hasLibCard"] = userObj["hasLibCard"];
+            userArr[i]["books"] = userObj["books"];
+            break;
+        }
+    }
+    localStorage.setItem("RSS_BPL", JSON.stringify(userArr));
+}
+
+function cardFill() {
+    document.querySelector("#card-num-visits").textContent = userObj.visits.toString();
+    document.querySelector("#card-num-books").textContent = userObj.books.length.toString();
+    document.querySelector(".card-find-button").style.display = "none";
+    document.querySelector(".card-bg").style.gap = "15px";
+    document.querySelector(".card-badges").style.display = "flex";
+    document.querySelector(".card-input-txt").value = userObj.userName + " " + userObj.userSurName;
+    document.querySelector(".card-input-num").value = userObj.cardNum;
+    document.querySelectorAll(".card-input").forEach((x) => {
+        x.style.color = "#BB945F";
+        x.readOnly = true;
+    });
+}
+function cardRevert () {
+    document.querySelector(".card-badges").style.display = "none";
+    document.querySelector(".card-bg").style.gap = "20px";
+    document.querySelector(".card-find-button").style.display = "block";
+    document.querySelectorAll(".card-input").forEach((x) => {
+        x.style.color = "#8E8E8E";
+        x.readOnly = false;
+    });
+    document.querySelector(".card-input-txt").value = "";
+    document.querySelector(".card-input-num").value = "";
+}
 
 // Common function to open Login modal form
 function userEvent() {
@@ -139,18 +179,7 @@ function firstLineEvent() {
 // Sign Up (register) event
 function secondLineEvent() {
     if(isLogged) {
-        let userArr = JSON.parse(localStorage.getItem("RSS_BPL"));
-        for(let i = 0; i < userArr.length; i++) {
-            if(userArr[i]["cardNum"] === userObj["cardNum"]) {
-                userArr[i]["visits"] = userObj["visits"];
-                userArr[i]["bonuses"] = userObj["bonuses"];
-                userArr[i]["hasLibCard"] = userObj["hasLibCard"];
-                userArr[i]["books"] = userObj["books"];
-                break;
-            }
-        }
-        localStorage.setItem("RSS_BPL", JSON.stringify(userArr));
-
+        userCommit();
         document.querySelector(".dropmenu__head").textContent = "Profile";
         document.querySelector(".dropmenu__head").style.letterSpacing = "normal";
         document.querySelector(".icon-profile").classList.remove("icon-profile-logged");
@@ -163,16 +192,7 @@ function secondLineEvent() {
         document.querySelector("#card-log-in").textContent = "Log In";
         document.querySelector(".card-get-capt").textContent = "Get a reader card";
         document.querySelector(".card-get-text").textContent = "You will be able to see a reader card after logging into account or you can register a new account";
-
-        document.querySelector(".card-find-button").style.display = "block";
-        document.querySelector(".card-bg").style.gap = "20px";
-        document.querySelector(".card-badges").style.display = "none";
-        document.querySelectorAll(".card-input").forEach((x) => {
-            x.style.color = "#8E8E8E";
-            x.readOnly = false;
-        });
-        document.querySelector(".card-input-txt").value = "";
-        document.querySelector(".card-input-num").value = "";
+        cardRevert();
         isLogged = false;
     } else {
         isLogging = false;
@@ -212,10 +232,11 @@ function loginProceed() {
             }
         }
         if(isLogged) {
+            userObj.visits++;
+            userCommit();
             cardNum = userObj.cardNum;
             userName = userObj.userName;
             userSurName = userObj.userSurName;
-            userObj.visits++;
         }
     } else {
         console.log("Registering...");
@@ -254,21 +275,12 @@ function loginProceed() {
         document.querySelector("#card-log-in").textContent = "Profile";
         document.querySelector(".card-get-capt").textContent = "Visit your profile";
         document.querySelector(".card-get-text").textContent = "With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.";
-
-        document.querySelector(".card-find-button").style.display = "none";
-        document.querySelector(".card-bg").style.gap = "15px";
-        document.querySelector(".card-badges").style.display = "flex";
-        document.querySelector(".card-input-txt").value = userObj.userName + " " + userObj.userSurName;
-        document.querySelector(".card-input-num").value = userObj.cardNum;
-        document.querySelectorAll(".card-input").forEach((x) => {
-            x.style.color = "#BB945F";
-            x.readOnly = true;
-        });
+        cardFill();
         document.querySelector("#profile-num-visits").textContent = userObj.visits.toString();
-        document.querySelector("#card-num-visits").textContent = userObj.visits.toString();
         document.querySelector(".profile-initials").textContent = initials;
         document.querySelector(".profile-username").textContent = userObj.userName + " " + userObj.userSurName;
         document.querySelector(".profile-card-number-num").textContent = userObj.cardNum;
+        document.querySelector("#profile-num-books").textContent = userObj.books.length.toString();
     }
 }
 
@@ -298,12 +310,27 @@ function aboutCarouselResize() {
 }
 window.onresize = aboutCarouselResize;
 
+// Tabs in favorites - fadu out/fade in
 function favBookList(item) {
     document.querySelectorAll(".fav-book").forEach((x) => x.classList.add("fbhide"));
     setTimeout(()=>document.querySelectorAll(".fav-book").forEach((x) => x.classList.add("disbl")), 300);
     setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("disbl")), 300);
     setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("fbhide")), 400);
 }
+// Check the card & timeout 10sec
+function checkTheCard() {
+    let userArr = JSON.parse(localStorage.getItem("RSS_BPL"));
+    for(let i = 0; i < userArr.length; i++) {
+        if((userArr[i]["userName"] + userArr[i]["userSurName"]).toUpperCase() ===
+            document.querySelector(".card-input-txt").value.replace(/\s/g,'').toUpperCase()) {
+            userObj = userArr[i];
+            cardFill();
+            setTimeout(() => cardRevert(), 10000);
+            break;
+        }
+    }
+}
+
 // Listener to open dropdown menu on User button click
 profile.addEventListener("click", () => { dropMenu.classList.toggle("dropmenu-open"); });
 
@@ -314,12 +341,11 @@ loginCard.addEventListener("click", firstLineEvent);                    // On Ge
 regCard.addEventListener("click", secondLineEvent);                   // On Get card Sign Up button
 favButtons.forEach((x) => x.addEventListener("click", firstLineEvent)); // On every button in Favorites
 
+// Copy button listener
 copyButton.addEventListener("click", () => {
     let copyTxt = document.querySelector(".card-input-num");
-    // copyTxt.focus();
     copyTxt.select();
     document.execCommand('copy');
-    copyTxt.blur();
 });
 
 // Close Login modal on Cross click
@@ -337,6 +363,8 @@ loginReg.addEventListener("click", () => {
     if (isLogging) secondLineEvent(); else firstLineEvent();
 });
 
+// Check the card Listener
+checkCardButton.addEventListener("click", () => checkTheCard());
 
 // Listener to open burger menu in mobile version
 burger.addEventListener("click", () => {
