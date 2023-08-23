@@ -108,6 +108,25 @@ const copyButton = document.querySelector(".profile-card-number-copy");
 const checkCardButton = document.querySelector(".card-find-button");
 const buyCardButton = document.querySelector(".buy-button");
 
+const booksMap = {
+    book01: "The Book Eaters, Sunyi Dean",
+    book02: "Cackle, Rachel Harrison",
+    book03: "Dante: Poet of the Secular World, Erich Auerbach",
+    book04: "The Last Queen, Clive Irving",
+    book05: "The Body, Stephen King",
+    book06: "Carry: A Memoir of Survival on Stolen Land, Toni Jenson",
+    book07: "Days of Distraction, Alexandra Chang",
+    book08: "Dominicana, Angie Cruz",
+    book09: "Crude: A Memoir, Pablo Fajardo &amp; Sophie Tardy-Joubert",
+    book10: "Let My People Go Surfing, Yvon Chouinard",
+    book11: "The Octopus Museum: Poems, Brenda Shaughnessy",
+    book12: "Shark Dialogues: A Novel, Kiana Davenport",
+    book13: "Casual Conversation, Renia White",
+    book14: "The Great Fire, Lou Ureneck",
+    book15: "Rickey: The Life and Legend, Howard Bryant",
+    book16: "Slug: And Other Stories, Megan Milks",
+};
+
 let isLogging = false;
 let isLogged = false;
 let carouselCurrent = 1;
@@ -197,6 +216,12 @@ function secondLineEvent() {
         document.querySelector(".card-get-capt").textContent = "Get a reader card";
         document.querySelector(".card-get-text").textContent = "You will be able to see a reader card after logging into account or you can register a new account";
         cardRevert();
+        for(let i = 1; i <= 16; i++) {
+            let bookSelector = (i < 10) ? ".book-0" + i.toString() : ".book-" + i.toString();
+            document.querySelector(bookSelector).classList.remove("fav-button-own");
+            document.querySelector(bookSelector).disabled = false;
+            document.querySelector(bookSelector).textContent = "Buy";
+        }
         isLogged = false;
     } else {
         isLogging = false;
@@ -287,6 +312,16 @@ function loginProceed() {
         document.querySelector(".profile-username").textContent = userObj.userName + " " + userObj.userSurName;
         document.querySelector(".profile-card-number-num").textContent = userObj.cardNum;
         document.querySelector("#profile-num-books").textContent = userObj.books.length.toString();
+        document.querySelectorAll(".profile-books-item").forEach((x) => x.remove());
+        for(let i = 0; i < userObj.books.length; i++) {
+            document.querySelector(`.book-${userObj.books[i]}`).classList.add("fav-button-own");
+            document.querySelector(`.book-${userObj.books[i]}`).disabled = true;
+            document.querySelector(`.book-${userObj.books[i]}`).textContent = "Own";
+            let li = document.createElement("li");
+            li.classList.add("profile-books-item");
+            li.textContent = booksMap[`book${userObj.books[i]}`];
+            document.getElementById("books-list").appendChild(li);
+        }
     }
 }
 
@@ -342,16 +377,31 @@ function checkTheCard() {
 
 // Buy card
 function buyTheCard() {
-    console.log("Buy!!!");
+    buyContainer.classList.remove("login-container-visible");
+    buyForm.classList.remove("login-open");
+    userObj.hasLibCard = true;
+    userCommit();
 }
 
 // Fav buttons click
-function favButtClick() {
+function favButtClick(bookNum) {
     if(isLogged) {
-        buyContainer.classList.add("login-container-visible");
-        buyForm.classList.add("login-open");
+        if(userObj.hasLibCard) {
+            userObj.books = userObj.books.concat(bookNum.slice(-2));
+            document.querySelector(`.${bookNum}`).classList.add("fav-button-own");
+            document.querySelector(`.${bookNum}`).disabled = true;
+            document.querySelector(`.${bookNum}`).textContent = "Own";
+            let li = document.createElement("li");
+            li.classList.add("profile-books-item");
+            li.textContent = booksMap[`book${bookNum.slice(-2)}`];
+            document.getElementById("books-list").appendChild(li);
+            userCommit();
+        } else {
+            buyContainer.classList.add("login-container-visible");
+            buyForm.classList.add("login-open");
+        }
     } else {
-    firstLineEvent();
+        firstLineEvent();
     }
 }
 
@@ -363,7 +413,7 @@ dropMenuLine1.addEventListener("click", firstLineEvent);                // On 1s
 dropMenuLine2.addEventListener("click", secondLineEvent);             // On 2st line of dropdown menu
 loginCard.addEventListener("click", firstLineEvent);                    // On Get card Log In button
 regCard.addEventListener("click", secondLineEvent);                   // On Get card Sign Up button
-favButtons.forEach((x) => x.addEventListener("click", favButtClick)); // On every button in Favorites
+//favButtons.forEach((x) => x.addEventListener("click", favButtClick)); // On every button in Favorites
 
 // Copy button listener
 copyButton.addEventListener("click", () => {
@@ -451,6 +501,7 @@ document.addEventListener("click", (event) => {
         favBookList(4);
     }
     if (event.target.classList.contains("login-button")) loginProceed();
+    if (event.target.classList.contains("fav-button")) favButtClick(event.target.classList[1]);
     console.log(event.target.classList);
 }
 );

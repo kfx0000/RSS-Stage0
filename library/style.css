@@ -428,13 +428,17 @@ svg:hover {
     line-height: 20px;
     margin-bottom: 26px;
 }
+.profile-books-list {
+    overflow: auto;
+    max-width: 390px;
+    max-height: 80px;
+}
 .profile-books-item {
     color: #000;
     font-family: Inter;
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
-    line-height: 20px;
     letter-spacing: 2px;
     text-transform: capitalize;
     margin-left: 30px;
