@@ -94,8 +94,11 @@ const loginForm = document.querySelector(".login");
 const loginContainer = document.querySelector(".login-container");
 const profileForm = document.querySelector(".profile");
 const profileContainer = document.querySelector(".profile-container");
+const buyForm = document.querySelector(".buy");
+const buyContainer = document.querySelector(".buy-container");
 const loginClose = document.querySelector(".login-cross");
 const profileClose = document.querySelector(".profile-cross");
+const buyClose = document.querySelector(".buy-cross");
 const loginReg = document.querySelector(".login-register");
 const loginCard = document.querySelector("#card-log-in");
 const regCard = document.querySelector("#card-sign-up");
@@ -103,6 +106,7 @@ const favButtons = document.querySelectorAll(".fav-button");
 const carousel = document.querySelector(".about-carousel");
 const copyButton = document.querySelector(".profile-card-number-copy");
 const checkCardButton = document.querySelector(".card-find-button");
+const buyCardButton = document.querySelector(".buy-button");
 
 let isLogging = false;
 let isLogged = false;
@@ -224,11 +228,13 @@ function loginProceed() {
         let userPass = document.querySelector("#login-pass-input").value;
         let userEmail = document.querySelector("#login-email-input").value;
         userArr = JSON.parse(localStorage.getItem("RSS_BPL"));
-        for(let i = 0; i < userArr.length; i++) {
-            if(((userArr[i]["cardNum"] === userEmail) || (userArr[i]["userEmail"] === userEmail)) && (userArr[i]["userPass"]) === userPass) {
-                userObj = userArr[i];
-                isLogged = true;
-                break;
+        if(userArr) {
+            for(let i = 0; i < userArr.length; i++) {
+                if(((userArr[i]["cardNum"] === userEmail) || (userArr[i]["userEmail"] === userEmail)) && (userArr[i]["userPass"]) === userPass) {
+                    userObj = userArr[i];
+                    isLogged = true;
+                    break;
+                }
             }
         }
         if(isLogged) {
@@ -317,17 +323,35 @@ function favBookList(item) {
     setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("disbl")), 300);
     setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("fbhide")), 400);
 }
+
 // Check the card & timeout 10sec
 function checkTheCard() {
     let userArr = JSON.parse(localStorage.getItem("RSS_BPL"));
-    for(let i = 0; i < userArr.length; i++) {
-        if((userArr[i]["userName"] + userArr[i]["userSurName"]).toUpperCase() ===
-            document.querySelector(".card-input-txt").value.replace(/\s/g,'').toUpperCase()) {
-            userObj = userArr[i];
-            cardFill();
-            setTimeout(() => cardRevert(), 10000);
-            break;
+    if(userArr) {
+        for(let i = 0; i < userArr.length; i++) {
+            if((userArr[i]["userName"] + userArr[i]["userSurName"]).toUpperCase() ===
+                    document.querySelector(".card-input-txt").value.replace(/\s/g,'').toUpperCase()) {
+                userObj = userArr[i];
+                cardFill();
+                setTimeout(() => cardRevert(), 10000);
+                break;
+            }
         }
+    }
+}
+
+// Buy card
+function buyTheCard() {
+    console.log("Buy!!!");
+}
+
+// Fav buttons click
+function favButtClick() {
+    if(isLogged) {
+        buyContainer.classList.add("login-container-visible");
+        buyForm.classList.add("login-open");
+    } else {
+    firstLineEvent();
     }
 }
 
@@ -339,7 +363,7 @@ dropMenuLine1.addEventListener("click", firstLineEvent);                // On 1s
 dropMenuLine2.addEventListener("click", secondLineEvent);             // On 2st line of dropdown menu
 loginCard.addEventListener("click", firstLineEvent);                    // On Get card Log In button
 regCard.addEventListener("click", secondLineEvent);                   // On Get card Sign Up button
-favButtons.forEach((x) => x.addEventListener("click", firstLineEvent)); // On every button in Favorites
+favButtons.forEach((x) => x.addEventListener("click", favButtClick)); // On every button in Favorites
 
 // Copy button listener
 copyButton.addEventListener("click", () => {
@@ -357,6 +381,10 @@ profileClose.addEventListener("click", () => {
     profileContainer.classList.remove("login-container-visible");
     profileForm.classList.remove("login-open");
 });
+buyClose.addEventListener("click", () => {
+    buyContainer.classList.remove("login-container-visible");
+    buyForm.classList.remove("login-open");
+});
 
 // Login / register click
 loginReg.addEventListener("click", () => {
@@ -365,6 +393,9 @@ loginReg.addEventListener("click", () => {
 
 // Check the card Listener
 checkCardButton.addEventListener("click", () => checkTheCard());
+
+// Buy the card Listener
+buyCardButton.addEventListener("click", () => buyTheCard());
 
 // Listener to open burger menu in mobile version
 burger.addEventListener("click", () => {
@@ -390,9 +421,13 @@ document.addEventListener("click", (event) => {
         loginContainer.classList.remove("login-container-visible");
         loginForm.classList.remove("login-open");
     }
-    if (event.target.classList.contains("profile-container")) {       // Close Login modal on click to faded container
+    if (event.target.classList.contains("profile-container")) {       // Close Profile modal on click to faded container
         profileContainer.classList.remove("login-container-visible");
         profileForm.classList.remove("login-open");
+    }
+    if (event.target.classList.contains("buy-container")) {           // Close Buy card modal on click to faded container
+        buyContainer.classList.remove("login-container-visible");
+        buyForm.classList.remove("login-open");
     }
     if (event.target.classList.contains("abtn-1") || event.target.classList.contains("circle-1")) {
         aboutCarouselRotate(1);

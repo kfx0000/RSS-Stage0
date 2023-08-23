@@ -67,8 +67,11 @@
                         <div class="profile-badge">
                             <div class="profile-badge-name">Visits</div>
                             <div class="profile-badge-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76143 15.5 5C15.5 2.23857 13.2614 0 10.5 0C7.73857 0 5.5 2.23857 5.5 5C5.5 7.76143 7.73857 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5H0.5C0.5 18.3478 1.55357 15.8043 3.42894 13.9289C5.30429 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
+                                    fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M10.5 10C13.2614 10 15.5 7.76143 15.5 5C15.5 2.23857 13.2614 0 10.5 0C7.73857 0 5.5 2.23857 5.5 5C5.5 7.76143 7.73857 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5H0.5C0.5 18.3478 1.55357 15.8043 3.42894 13.9289C5.30429 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z"
+                                        fill="#BB945F" />
                                 </svg>
                             </div>
                             <div class="profile-badge-num" id="profile-num-visits">23</div>
@@ -76,8 +79,11 @@
                         <div class="profile-badge">
                             <div class="profile-badge-name">Bonuses</div>
                             <div class="profile-badge-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                                    <path d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z" fill="#BB945F"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21"
+                                    fill="none">
+                                    <path
+                                        d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z"
+                                        fill="#BB945F" />
                                 </svg>
                             </div>
                             <div class="profile-badge-num" id="profile-num-bonuses">1240</div>
@@ -85,11 +91,12 @@
                         <div class="profile-badge">
                             <div class="profile-badge-name">Books</div>
                             <div class="profile-badge-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                                    <rect width="20" height="21" fill="#BB945F"/>
-                                    <rect x="2" width="1" height="19" fill="#826844"/>
-                                    <rect x="1" width="1" height="21" fill="white"/>
-                                  </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21"
+                                    fill="none">
+                                    <rect width="20" height="21" fill="#BB945F" />
+                                    <rect x="2" width="1" height="19" fill="#826844" />
+                                    <rect x="1" width="1" height="21" fill="white" />
+                                </svg>
                             </div>
                             <div class="profile-badge-num" id="profile-num-books">2</div>
                         </div>
@@ -106,6 +113,57 @@
                         <span class="profile-card-number-num">F00234030</span>
                         <span class="profile-card-number-copy">
                         </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="buy-container login-container">
+            <div class="buy">
+                <button class="login-cross buy-cross"></button>
+                <div class="buy-header">Buy a library card</div>
+                <div class="buy-inner">
+                    <form action="javascript:void(0);" class="buy-data">
+                        <label for="buy-bank-card-num" class="buy-data-label">Bank card number
+                            <input type="text" name="buy-bank-card" id="buy-bank-card-num" class="buy-data-input"
+                                title="Input 16 digits only!" autocomplete="off" minlength="16" pattern="^[0-9 ]+$"
+                                required>
+                        </label>
+                        <label for="buy-bank-exp-month" class="buy-data-label">Expiration code<br>
+                            <input type="text" name="buy-bank-expmnth" id="buy-bank-exp-month" autocomplete="off"
+                                class="buy-data-input buy-data-input-n" minlength="2" maxlength="2" pattern="^[0-9]+$"
+                                title="Input 2 digits only!" required>
+                            <input type="text" name="buy-bank-expyear" id="buy-bank-exp-year" autocomplete="off"
+                                class="buy-data-input buy-data-input-n" minlength="2" maxlength="2" pattern="^[0-9]+$"
+                                title="Input 2 digits only!" required>
+                        </label>
+                        <label for="buy-bank-cvc" class="buy-data-label">CVC<br>
+                            <input type="text" name="buy-bank-cvc-code" id="buy-bank-cvc" autocomplete="off"
+                                class="buy-data-input buy-data-input-n" minlength="3" maxlength="3" pattern="^[0-9]+$"
+                                title="Input 3 digits only!" required>
+                        </label>
+                        <div class="empty"></div>
+                        <label for="buy-bank-card-name" class="buy-data-label">Cardholder name
+                            <input type="text" name="buy-bank-name" id="buy-bank-card-name" class="buy-data-input"
+                                title="Input letters only!" autocomplete="off" pattern="^[a-zA-Z]+$" required>
+                        </label>
+                        <label for="buy-bank-card-post" class="buy-data-label">Postal code
+                            <input type="text" name="buy-bank-post" id="buy-bank-card-post" class="buy-data-input"
+                                title="Input digits only!" autocomplete="off" pattern="^[0-9]+$" required>
+                        </label>
+                        <label for="buy-bank-card-city" class="buy-data-label">City / Town
+                            <input type="text" name="buy-bank-city" id="buy-bank-card-city" class="buy-data-input"
+                                title="Input letters only!" autocomplete="off" pattern="^[a-zA-Z ]+$" required>
+                        </label>
+                        <div class="empty"></div>
+                        <div class="buy-button-container">
+                            <button type="submit" class="buy-button">Buy</button>
+                            <span class="buy-cost">$ 25.00</span>
+                        </div>
+                    </form>
+                    <div class="buy-text">If you are live, work, attend school, or pay property taxes in New York State,
+                        you can get a $25 digital library card right now using this online form. Visitors to New York
+                        State can also use this form to apply for a temporary card.
                     </div>
                 </div>
             </div>
@@ -600,41 +658,49 @@
                             <div class="card-bg">
                                 <div class="card-gold-bg">
                                     <div class="card-text">Brooklyn Public Library</div>
-                                    <input class="card-input card-input-txt" type="text" name="name" placeholder="Reader's name"
-                                        pattern="^[a-zA-Z ]+$" autocomplete="off" required>
-                                    <input class="card-input card-input-num" type="text" name="number" placeholder="Card number"
-                                        pattern="^[0-9A-F]+$" minlength="9" maxlength="9" required>
+                                    <input class="card-input card-input-txt" type="text" name="name" title="Input letters only!"
+                                        placeholder="Reader's name" pattern="^[a-zA-Z ]+$" autocomplete="off" required>
+                                    <input class="card-input card-input-num" type="text" name="number"
+                                        placeholder="Card number" pattern="^[0-9A-F]+$" minlength="9" maxlength="9"
+                                        required>
                                 </div>
                                 <button class="card-find-button">Check the card</button>
                                 <div class="card-badges">
                                     <div class="card-badge">
                                         <div class="card-badge-txt">Visits</div>
                                         <div class="card-badge-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z" fill="#BB945F"/>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21"
+                                                viewBox="0 0 21 21" fill="none">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M10.5 10C13.2614 10 15.5 7.76142 15.5 5C15.5 2.23858 13.2614 0 10.5 0C7.73858 0 5.5 2.23858 5.5 5C5.5 7.76142 7.73858 10 10.5 10ZM17.5711 13.9289C19.4464 15.8043 20.5 18.3478 20.5 21H10.5L0.5 21C0.5 18.3478 1.55357 15.8043 3.42893 13.9289C5.3043 12.0536 7.84784 11 10.5 11C13.1522 11 15.6957 12.0536 17.5711 13.9289Z"
+                                                    fill="#BB945F" />
                                             </svg>
                                         </div>
-                                        <div class="card-badge-txt"  id="card-num-visits">3</div>
+                                        <div class="card-badge-txt" id="card-num-visits">3</div>
                                     </div>
                                     <div class="card-badge">
                                         <div class="card-badge-txt">Bonuses</div>
                                         <div class="card-badge-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                                                <path d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z" fill="#BB945F"/>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21"
+                                                viewBox="0 0 20 21" fill="none">
+                                                <path
+                                                    d="M10 0L12.2249 3.31001L15.8779 2.00532L15.8249 6.05634L19.5106 7.25532L17.2 10.5L19.5106 13.7447L15.8249 14.9437L15.8779 18.9947L12.2249 17.69L10 21L7.77508 17.69L4.12215 18.9947L4.17508 14.9437L0.489435 13.7447L2.8 10.5L0.489435 7.25532L4.17508 6.05634L4.12215 2.00532L7.77508 3.31001L10 0Z"
+                                                    fill="#BB945F" />
                                             </svg>
                                         </div>
-                                        <div class="card-badge-txt"  id="card-num-bonuses">1240</div>
+                                        <div class="card-badge-txt" id="card-num-bonuses">1240</div>
                                     </div>
                                     <div class="card-badge">
                                         <div class="card-badge-txt">Books</div>
                                         <div class="card-badge-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                                                <rect width="20" height="21" fill="#BB945F"/>
-                                                <rect x="2" width="1" height="19" fill="#826844"/>
-                                                <rect x="1" width="1" height="21" fill="white"/>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21"
+                                                viewBox="0 0 20 21" fill="none">
+                                                <rect width="20" height="21" fill="#BB945F" />
+                                                <rect x="2" width="1" height="19" fill="#826844" />
+                                                <rect x="1" width="1" height="21" fill="white" />
                                             </svg>
                                         </div>
-                                        <div class="card-badge-txt"  id="card-num-books">2</div>
+                                        <div class="card-badge-txt" id="card-num-books">2</div>
                                     </div>
                                 </div>
                             </div>

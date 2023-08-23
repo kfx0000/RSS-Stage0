@@ -280,6 +280,9 @@ svg:hover {
     border: 1px solid #BB945F;
     background: #BB945F;
 }
+.login-bottom {
+    margin-top: -4px;
+}
 .login-bottom-text {
     color: #000;
     text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
@@ -288,7 +291,7 @@ svg:hover {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-right: 10px;
+    margin-right: 7px;
 }
 .login-register {
     color: #0C0C0E;
@@ -317,6 +320,10 @@ svg:hover {
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 20;
+}
+.profile-cross {
+    right: 25px;
+    top: 25px;
 }
 .profile_left-side {
     height: 100%;
@@ -352,7 +359,7 @@ svg:hover {
     text-transform: capitalize;
 }
 .profile_main {
-    padding: 40px 20px;
+    padding: 40px 0 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: baseline;
@@ -373,7 +380,7 @@ svg:hover {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    margin-top: 40px;
+    margin-top: 38px;
 }
 .profile-badge {
     display: flex;
@@ -408,9 +415,9 @@ svg:hover {
     text-transform: capitalize;
 }
 .profile-rented {
-    width: 350px;
+    /* width: 350px; */
     height: 100px;
-    padding-top: 20px;
+    padding-top: 18px;
 }
 .profile-rented-capt {
     color: #0C0C0E;
@@ -419,7 +426,7 @@ svg:hover {
     font-style: normal;
     font-weight: 400;
     line-height: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 26px;
 }
 .profile-books-item {
     color: #000;
@@ -430,13 +437,13 @@ svg:hover {
     line-height: 20px;
     letter-spacing: 2px;
     text-transform: capitalize;
-    margin-left: 20px;
+    margin-left: 30px;
     line-height: 30px;
 }
 .profile-card-number {
     display: flex;
     gap: 15px;
-    margin-top: 55px;
+    margin-top: 59px;
 }
 .profile-card-number-text {
     color: #0C0C0E;
@@ -458,14 +465,129 @@ svg:hover {
 }
 .profile-card-number-copy {
     cursor: pointer;
-    width: 13.31px;
+    width: 14px;
     height: 12px;
     margin-top: 3px;
+    margin-left: 3px;
     transition: 0.6s ease-in-out;
     background: url('./img/copy.svg') no-repeat;
 }
 .profile-card-number-copy:hover {
     transform: scale(1.3);
+}
+
+.buy {
+    display: none;
+    flex-direction: column;
+    margin: 0 auto;
+    position: fixed;
+    background-color: #FFF;
+    width: 640px;
+    height: 540px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+}
+.buy-cross {
+    right: 20px;
+    top: 25px;
+    background-color: #0C0C0E;
+    background: url('./img/close_w.svg') center/cover no-repeat;
+}
+.buy-header {
+    padding: 20px;
+    width: 100%;
+    height: 60px;
+    background-color: #0C0C0E;
+    color: #FFF;
+    text-align: center;
+    font-family: Forum;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+.buy-inner {
+    display: flex;
+    gap: 40px;
+    padding: 30px 35px;
+}
+.buy-data {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+.buy-data-label{
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+}
+.buy-data-input {
+    border: 1px solid #BB945F;
+    margin: 10px auto;
+    height: 20px;
+    width: 200px;
+    padding: 0 5px;
+}
+.buy-data-input-n {
+    margin-right: 6px;
+    width: 45px;
+}
+.buy-button-container {
+    display: flex;
+    align-items: flex-end;
+}
+.buy-button {
+    width: 75px;
+    height: 30px;
+    border-radius: 2px;
+    border: 1px solid #0C0C0E;
+    background-color: #FFF;
+    color: #0C0C0E;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    transition: background-color 0.6s;
+    cursor: pointer;
+}
+.buy-button:hover {
+    border: 1px solid #BB945F;
+    background: #BB945F;
+}
+.buy-cost {
+    color: #0C0C0E;
+    font-family: Inter;
+    margin-left: 25px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.buy-text {
+    width: 330px;
+    color: #8E8E8E;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 2px;
+}
+.empty {
+    height: 10px;
 }
 
 .login-open {
