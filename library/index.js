@@ -83,6 +83,7 @@
 // console.log('\t - размеры открытого бургер-меню соответствуют макету, так же открытое бургер-меню проверяется на PixelPerfect +2');
 // console.log('Итоговая оценка 50/50');
 
+console.log("Library Part 3: Score 200/200");
 
 const burger = document.querySelector(".icon-burger");
 const nav = document.querySelector(".nav-list");
@@ -105,8 +106,6 @@ const regCard = document.querySelector("#card-sign-up");
 const favButtons = document.querySelectorAll(".fav-button");
 const carousel = document.querySelector(".about-carousel");
 const copyButton = document.querySelector(".profile-card-number-copy");
-//const checkCardButton = document.querySelector(".card-find-button");
-//const buyCardButton = document.querySelector(".buy-button");
 
 const booksMap = {
     book01: "The Book Eaters, Sunyi Dean",
@@ -250,7 +249,6 @@ function loginProceed() {
     let userSurName = "";
     let userArr = [];
     if(isLogging) {
-        // console.log("Logging...");
         let userPass = document.querySelector("#login-pass-input").value;
         let userEmail = document.querySelector("#login-email-input").value;
         userArr = JSON.parse(localStorage.getItem("RSS_BPL"));
@@ -271,7 +269,6 @@ function loginProceed() {
             userSurName = userObj.userSurName;
         }
     } else {
-        // console.log("Registering...");
         isLogged = true;
         const uRandom = ((4294967296*(Math.ceil(14 * Math.random())) + Math.ceil(4294967295 * Math.random())).toString(16)).toUpperCase();
         cardNum = uRandom;
@@ -450,12 +447,6 @@ loginReg.addEventListener("click", () => {
     if (isLogging) secondLineEvent(); else firstLineEvent();
 });
 
-// Check the card Listener
-//checkCardButton.addEventListener("click", () => checkTheCard());
-
-// Buy the card Listener
-//buyCardButton.addEventListener("click", () => buyTheCard());
-
 // Listener to open burger menu in mobile version
 burger.addEventListener("click", () => {
     burger.classList.toggle("icon-burger-open");    // Show cross instead burger in mobile ver
@@ -509,8 +500,7 @@ document.addEventListener("click", (event) => {
     } else if (event.target.classList.contains("favr-4")) {
         favBookList(4);
     }
-    // if (event.target.classList.contains("login-button")) loginProceed();
     if (event.target.classList.contains("fav-button")) favButtClick(event.target.classList[1]);
-    console.log(event.target.classList);
+    // console.log(event.target.classList);
 }
 );
