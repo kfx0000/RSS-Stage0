@@ -105,8 +105,8 @@ const regCard = document.querySelector("#card-sign-up");
 const favButtons = document.querySelectorAll(".fav-button");
 const carousel = document.querySelector(".about-carousel");
 const copyButton = document.querySelector(".profile-card-number-copy");
-const checkCardButton = document.querySelector(".card-find-button");
-const buyCardButton = document.querySelector(".buy-button");
+//const checkCardButton = document.querySelector(".card-find-button");
+//const buyCardButton = document.querySelector(".buy-button");
 
 const booksMap = {
     book01: "The Book Eaters, Sunyi Dean",
@@ -130,6 +130,7 @@ const booksMap = {
 let isLogging = false;
 let isLogged = false;
 let carouselCurrent = 1;
+let favr = 1;
 let userObj = {};
 
 function userCommit() {
@@ -249,7 +250,7 @@ function loginProceed() {
     let userSurName = "";
     let userArr = [];
     if(isLogging) {
-        console.log("Logging...");
+        // console.log("Logging...");
         let userPass = document.querySelector("#login-pass-input").value;
         let userEmail = document.querySelector("#login-email-input").value;
         userArr = JSON.parse(localStorage.getItem("RSS_BPL"));
@@ -270,7 +271,7 @@ function loginProceed() {
             userSurName = userObj.userSurName;
         }
     } else {
-        console.log("Registering...");
+        // console.log("Registering...");
         isLogged = true;
         const uRandom = ((4294967296*(Math.ceil(14 * Math.random())) + Math.ceil(4294967295 * Math.random())).toString(16)).toUpperCase();
         cardNum = uRandom;
@@ -353,10 +354,13 @@ window.onresize = aboutCarouselResize;
 
 // Tabs in favorites - fadu out/fade in
 function favBookList(item) {
-    document.querySelectorAll(".fav-book").forEach((x) => x.classList.add("fbhide"));
-    setTimeout(()=>document.querySelectorAll(".fav-book").forEach((x) => x.classList.add("disbl")), 300);
-    setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("disbl")), 300);
-    setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("fbhide")), 400);
+    if(favr != item) {
+        document.querySelectorAll(".fav-book").forEach((x) => x.classList.add("fbhide"));
+        setTimeout(()=>document.querySelectorAll(".fav-book").forEach((x) => x.classList.add("disbl")), 300);
+        setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("disbl")), 300);
+        setTimeout(()=>document.querySelectorAll(`.favb-${item}`).forEach((x) => x.classList.remove("fbhide")), 400);
+        favr = item;
+    }
 }
 
 // Check the card & timeout 10sec
@@ -364,8 +368,9 @@ function checkTheCard() {
     let userArr = JSON.parse(localStorage.getItem("RSS_BPL"));
     if(userArr) {
         for(let i = 0; i < userArr.length; i++) {
-            if((userArr[i]["userName"] + userArr[i]["userSurName"]).toUpperCase() ===
-                    document.querySelector(".card-input-txt").value.replace(/\s/g,'').toUpperCase()) {
+            if(((userArr[i]["userName"] + userArr[i]["userSurName"]).toUpperCase() ===
+                    document.querySelector(".card-input-txt").value.replace(/\s/g,'').toUpperCase()) &&
+                    (userArr[i]["cardNum"] === document.querySelector(".card-input-num").value.toUpperCase())) {
                 userObj = userArr[i];
                 cardFill();
                 setTimeout(() => cardRevert(), 10000);
@@ -377,10 +382,12 @@ function checkTheCard() {
 
 // Buy card
 function buyTheCard() {
-    buyContainer.classList.remove("login-container-visible");
-    buyForm.classList.remove("login-open");
-    userObj.hasLibCard = true;
-    userCommit();
+    if(document.getElementById("buy-bank-card-num").value.replace(/\s/g,'').length === 16) {
+        buyContainer.classList.remove("login-container-visible");
+        buyForm.classList.remove("login-open");
+        userObj.hasLibCard = true;
+        userCommit();
+    } else document.getElementById("buy-bank-card-num").style.border = "1px solid red";
 }
 
 // Fav buttons click
@@ -397,6 +404,8 @@ function favButtClick(bookNum) {
             document.getElementById("books-list").appendChild(li);
             userCommit();
         } else {
+            document.querySelectorAll(".buy-data-input").forEach((x) => x.value = '');
+            document.getElementById("buy-bank-card-num").style.border = "1px solid #BB945F";
             buyContainer.classList.add("login-container-visible");
             buyForm.classList.add("login-open");
         }
@@ -442,10 +451,10 @@ loginReg.addEventListener("click", () => {
 });
 
 // Check the card Listener
-checkCardButton.addEventListener("click", () => checkTheCard());
+//checkCardButton.addEventListener("click", () => checkTheCard());
 
 // Buy the card Listener
-buyCardButton.addEventListener("click", () => buyTheCard());
+//buyCardButton.addEventListener("click", () => buyTheCard());
 
 // Listener to open burger menu in mobile version
 burger.addEventListener("click", () => {
@@ -500,7 +509,7 @@ document.addEventListener("click", (event) => {
     } else if (event.target.classList.contains("favr-4")) {
         favBookList(4);
     }
-    if (event.target.classList.contains("login-button")) loginProceed();
+    // if (event.target.classList.contains("login-button")) loginProceed();
     if (event.target.classList.contains("fav-button")) favButtClick(event.target.classList[1]);
     console.log(event.target.classList);
 }

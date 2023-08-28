@@ -25,16 +25,16 @@
                 <div class="login-capt">
                     login
                 </div>
-                <form action="javascript:void(0);">
+                <form action="javascript:loginProceed();">
                     <label for="reg-fstname-input" class="reg login-label">
                         First name
                         <input type="text" name="reg-fstname" id="reg-fstname-input" class="reg login-input"
-                            title="Input letters only!" pattern="^[a-zA-Z]+$" autocomplete="off" required>
+                            title="Input letters only!" pattern="^[а-яА-Яa-zA-Z]+$" autocomplete="off" required>
                     </label>
                     <label for="reg-lstname-input" class="reg login-label">
                         Last name
                         <input type="text" name="reg-lstname" id="reg-lstname-input" class="reg login-input"
-                            title="Input letters only!" pattern="^[a-zA-Z]+$" autocomplete="off" required>
+                            title="Input letters only!" pattern="^[а-яА-Яa-zA-Z]+$" autocomplete="off" required>
                     </label>
                     <label for="login-email-input" class="login-label login-mail">
                         E-mail or readers card
@@ -45,7 +45,7 @@
                         <input type="password" name="login-pass" id="login-pass-input" class="login-input" minlength="8"
                             title="Enter 8 symbols at least!" required>
                     </label>
-                    <button type="button" class="login-button">Log In</button>
+                    <button class="login-button">Log In</button>
                 </form>
                 <div class="login-bottom">
                     <span class="login-bottom-text">Don’t have an account?</span>
@@ -123,11 +123,11 @@
                 <button class="login-cross buy-cross"></button>
                 <div class="buy-header">Buy a library card</div>
                 <div class="buy-inner">
-                    <form action="javascript:void(0);" class="buy-data">
+                    <form action="javascript:buyTheCard();" class="buy-data">
                         <label for="buy-bank-card-num" class="buy-data-label">Bank card number
                             <input type="text" name="buy-bank-card" id="buy-bank-card-num" class="buy-data-input"
-                                title="Input 16 digits only!" autocomplete="off" minlength="16" pattern="^[0-9 ]+$"
-                                required>
+                                title="Input 16 digits only! Spaces allowed" autocomplete="off" minlength="16"
+                                maxlength="19" pattern="^[0-9 ]+$" required>
                         </label>
                         <label for="buy-bank-exp-month" class="buy-data-label">Expiration code<br>
                             <input type="text" name="buy-bank-expmnth" id="buy-bank-exp-month" autocomplete="off"
@@ -145,7 +145,7 @@
                         <div class="empty"></div>
                         <label for="buy-bank-card-name" class="buy-data-label">Cardholder name
                             <input type="text" name="buy-bank-name" id="buy-bank-card-name" class="buy-data-input"
-                                title="Input letters only!" autocomplete="off" pattern="^[a-zA-Z]+$" required>
+                                title="Input latin letters only!" autocomplete="off" pattern="^[a-zA-Z ]+$" required>
                         </label>
                         <label for="buy-bank-card-post" class="buy-data-label">Postal code
                             <input type="text" name="buy-bank-post" id="buy-bank-card-post" class="buy-data-input"
@@ -153,11 +153,11 @@
                         </label>
                         <label for="buy-bank-card-city" class="buy-data-label">City / Town
                             <input type="text" name="buy-bank-city" id="buy-bank-card-city" class="buy-data-input"
-                                title="Input letters only!" autocomplete="off" pattern="^[a-zA-Z ]+$" required>
+                                title="Input letters only!" autocomplete="off" pattern="^[а-яА-Яa-zA-Z\- ]+$" required>
                         </label>
                         <div class="empty"></div>
                         <div class="buy-button-container">
-                            <button type="button" class="buy-button">Buy</button>
+                            <button class="buy-button">Buy</button>
                             <span class="buy-cost">$ 25.00</span>
                         </div>
                     </form>
@@ -654,15 +654,16 @@
                 <div class="card-container">
                     <div class="card-find">
                         <div class="card-find-capt">Find your Library card</div>
-                        <form action="javascript:void(0);" class="card-body">
+                        <form action="javascript:checkTheCard();" class="card-body">
                             <div class="card-bg">
                                 <div class="card-gold-bg">
                                     <div class="card-text">Brooklyn Public Library</div>
-                                    <input class="card-input card-input-txt" type="text" name="name" title="Input letters only!"
-                                        placeholder="Reader's name" pattern="^[a-zA-Z ]+$" autocomplete="off" required>
+                                    <input class="card-input card-input-txt" type="text" name="name"
+                                        title="Input letters only!" placeholder="Reader's name"
+                                        pattern="^[а-яА-Яa-zA-Z ]+$" autocomplete="off" required>
                                     <input class="card-input card-input-num" type="text" name="number"
-                                        placeholder="Card number" pattern="^[0-9A-F]+$" minlength="9" maxlength="9"
-                                        required>
+                                        title="Input 9-digit Hex number!" placeholder="Card number"
+                                        pattern="^[0-9A-Fa-f]+$" minlength="9" maxlength="9" required>
                                 </div>
                                 <button class="card-find-button">Check the card</button>
                                 <div class="card-badges">

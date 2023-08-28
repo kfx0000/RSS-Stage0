@@ -827,6 +827,7 @@ svg:hover {
 .fav-radio-label {
     padding: 5px 0 5px 5px;
     cursor: pointer;
+    user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
 .fav-radio-input {
