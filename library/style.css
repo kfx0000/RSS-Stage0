@@ -357,6 +357,7 @@ svg:hover {
     background-color: #FFF;
     color: #000;
     overflow: hidden;
+    word-break: break-word;
     text-align: center;
     font-family: Inter;
     font-size: 20px;
