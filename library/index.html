@@ -111,7 +111,7 @@
                     <div class="profile-card-number">
                         <span class="profile-card-number-text">Card number</span>
                         <span class="profile-card-number-num">F00234030</span>
-                        <span class="profile-card-number-copy">
+                        <span class="profile-card-number-copy" onclick="copyButton()">
                         </span>
                     </div>
                 </div>
@@ -182,13 +182,13 @@
                     </ul>
                 </nav>
             </div>
-            <div class="icon-profile icon-butt icon-profile-icon" title=""></div>
+            <div class="icon-profile icon-butt icon-profile-icon" title="" onclick="dropMenu.classList.toggle('dropmenu-open');"></div>
             <div class="icon-burger icon-butt"></div>
 
             <div class="dropmenu">
                 <div class="dropmenu__head">Profile</div>
-                <div class="dropmenu__line" id="dropmenu__line1">Log In</div>
-                <div class="dropmenu__line" id="dropmenu__line2">Register</div>
+                <div class="dropmenu__line" id="dropmenu__line1" onclick="firstLineEvent()">Log In</div>
+                <div class="dropmenu__line" id="dropmenu__line2" onclick="secondLineEvent()">Register</div>
             </div>
 
         </header>
@@ -659,11 +659,9 @@
                                 <div class="card-gold-bg">
                                     <div class="card-text">Brooklyn Public Library</div>
                                     <input class="card-input card-input-txt" type="text" name="name"
-                                        title="Input letters only!" placeholder="Reader's name"
-                                        pattern="^[а-яА-Яa-zA-Z ]+$" autocomplete="off" required>
+                                        placeholder="Reader's name" autocomplete="off">
                                     <input class="card-input card-input-num" type="text" name="number"
-                                        title="Input 9-digit Hex number!" placeholder="Card number"
-                                        pattern="^[0-9A-Fa-f]+$" minlength="9" maxlength="9" required>
+                                        placeholder="Card number">
                                 </div>
                                 <button class="card-find-button">Check the card</button>
                                 <div class="card-badges">
@@ -713,8 +711,8 @@
                             you
                             can register a new account</div>
                         <div class="card-get-buttons">
-                            <button class="card-get-button" id="card-sign-up">Sign Up</button>
-                            <button class="card-get-button" id="card-log-in">Log in</button>
+                            <button class="card-get-button" id="card-sign-up" onclick="secondLineEvent()">Sign Up</button>
+                            <button class="card-get-button" id="card-log-in" onclick="firstLineEvent()">Log in</button>
                         </div>
                     </div>
                 </div>
