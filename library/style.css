@@ -7,7 +7,6 @@
     box-sizing: border-box;
     font-style: normal;
     font-weight: 400;
-    user-zoom: fixed;
     -webkit-tap-highlight-color: transparent;
 }
 *:focus-visible {
@@ -89,7 +88,7 @@ svg:hover {
     display: flex;
     justify-content: space-between;
     gap: 30px;
-    padding-top: 4px; /* animation aligning compensation */
+    padding-top: 4px;
     list-style: none;
     width: 584px;
 }
@@ -109,6 +108,7 @@ svg:hover {
     right: 20px;
     width: 28px;
     height: 28px;
+    user-select: none;
 }
 .icon-profile-icon {
     background: url('./img/profile.svg') center/cover no-repeat;
@@ -124,10 +124,6 @@ svg:hover {
     text-align: center;
     line-height: 28px;
 }
-/* .icon-profile:hover {
-    transform: scale(0.9);
-    transition: 0.6s ease-in-out;
-} */
 .icon-burger {
     display: none;
 }
@@ -262,6 +258,7 @@ svg:hover {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 0 5px;
+    font-family: Inter;
 }
 .login-button {
     width: 75px;
@@ -276,7 +273,7 @@ svg:hover {
     font-weight: 700;
     line-height: normal;
     letter-spacing: 1px;
-    padding: 9px 14px; /*border compensation*/
+    padding: 9px 14px;
     margin-top: 10px;
     margin-bottom: 10px;
     transition: background-color 0.6s;
@@ -313,6 +310,9 @@ svg:hover {
 .login-register:hover {
     cursor: pointer;
     color: #BB945F;
+}
+#login-email-input::placeholder {
+    color: red;
 }
 
 .profile {
@@ -423,7 +423,6 @@ svg:hover {
     text-transform: capitalize;
 }
 .profile-rented {
-    /* width: 350px; */
     height: 100px;
     padding-top: 18px;
 }
@@ -441,6 +440,15 @@ svg:hover {
     max-width: 390px;
     max-height: 80px;
 }
+.profile-books-list::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    background-color: #0C0C0E;
+}
+.profile-books-list::-webkit-scrollbar-thumb {
+    background-color: #BB945F;
+    border-radius: 2px;
+}
 .profile-books-item {
     color: #000;
     font-family: Inter;
@@ -451,6 +459,7 @@ svg:hover {
     text-transform: capitalize;
     margin-left: 30px;
     line-height: 30px;
+    white-space: nowrap;
 }
 .profile-card-number {
     display: flex;
@@ -489,6 +498,7 @@ svg:hover {
 }
 .profile-card-number-copy:active {
     filter: invert(1);
+    transition: 0s;
 }
 
 .buy {
@@ -550,6 +560,7 @@ svg:hover {
     height: 20px;
     width: 200px;
     padding: 0 5px;
+    font-family: Inter;
 }
 .buy-data-input-n {
     margin-right: 6px;
@@ -628,7 +639,7 @@ svg:hover {
 }
 .welcome-bg {
     display: inline-block;
-    position: relative; /* for proper z-index */
+    position: relative;
     width: 600px;
     height: 220px;
     padding: 35px 40px;
@@ -688,12 +699,10 @@ svg:hover {
     padding-top: 40px;
     margin-bottom: 20px;
 }
-/* for fucking arrows only! */
 .about-carousel-wrapper {
     position: relative;
     max-width: 1440px;
 }
-/*  */
 .about-carousel-arrow {
     display: none;
     position: absolute;
@@ -789,15 +798,6 @@ svg:hover {
     cursor: auto;
     background-color: #FFF;
 }
- /* .about-circle:hover {
-    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5),
-        -1px -1px 1px 2px rgba(0, 0, 0, 0.5),
-        1px -1px 1px 2px rgba(0, 0, 0, 0.5),
-        -1px 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-.about-circle-selected:hover {
-    box-shadow: none;
-} */
 .about-button:hover {
     background-color: #0C0C0E;
 }
@@ -820,12 +820,13 @@ svg:hover {
 .fav-seasons {
     display: flex;
     align-items: center;
-    gap: 77px; /* radio padding +5px compensation*/
+    gap: 77px;
     margin: 0 15px;
     padding: 52px 0;
     height: 34px;
     z-index: 13;
     background-color: #FFF;
+    opacity: 0.85;
 }
 .fav-radio {
     color: #000;
@@ -879,7 +880,6 @@ svg:hover {
     gap: 40px;
     padding: 0 20px 35px 20px;
 }
-/* Strange workaround. I know :) */
 #fr1 {
     width: 115px;
 }
@@ -923,12 +923,12 @@ svg:hover {
 .fav-staff-line {
     width: 60px;
     height: 1px;
-    margin-top: 13px;  /* border+width compensation */
+    margin-top: 13px;
     margin-left: 19px;
     background: #BB945F;
 }
 .fav-desc {
-    padding: 20px 19px;   /* border compensation */
+    padding: 20px 19px;
     color: #000;
     font-family: Inter;
     font-size: 15px;
@@ -939,7 +939,7 @@ svg:hover {
 }
 .fav-desc-2nd {
     font-weight: 700;
-    text-transform: none;  /* don't upperacse */
+    text-transform: none;
 }
 .fav-description {
     color: #000;
@@ -950,7 +950,7 @@ svg:hover {
     text-transform: capitalize;
     width: 380px;
     height: 320px;
-    padding-left: 19px;  /* border compensation */
+    padding-left: 19px;
 }
 .fav-button {
     display: flex;
@@ -989,7 +989,7 @@ svg:hover {
 .fav-img {
     position: relative;
     top: -285px;
-    left: 389px;   /* border compensation */
+    left: 389px;
     width: 200px;
     height: 300px;
 }
@@ -1059,7 +1059,7 @@ svg:hover {
 }
 #coffee {
     padding: 0;
-    padding-left: 2px; /* ??? */
+    padding-left: 2px;
 }
 .coffee-caption {
     display: flex;
@@ -1073,10 +1073,10 @@ svg:hover {
     font-size: 20px;
     line-height: 40px;
     letter-spacing: 2px;
-    padding-left: 2px; /* ??? */
+    padding-left: 2px;
 }
 .coffee-text-fix {
-    padding-right: 7px; /* ??? */
+    padding-right: 7px;
 }
 .coffee-menu {
     display: flex;
@@ -1160,7 +1160,7 @@ svg:hover {
     background: #FFFFFF;
 }
 #contacts {
-    padding: 20px 0 0 2px;  /* ??? */
+    padding: 20px 0 0 2px;
 }
 .contacts-info {
     display: flex;
@@ -1257,7 +1257,7 @@ svg:hover {
 }
 .card-find-button {
     width: 242px;
-    height: 42px; /* border compensation */
+    height: 42px;
     margin: 1px;
     align-self: center;
     border-radius: 2px;
@@ -1293,7 +1293,7 @@ svg:hover {
     border-radius: 10px;
     border-width: 0;
     background: #FFF;
-    color: #8E8E8E;
+    color: #000;
     font-family: Forum;
     font-size: 30px;
     line-height: 50px;
@@ -1433,7 +1433,7 @@ svg:hover {
     max-width: 1400px;
     height: 1px;
     background: #FFF;
-    margin: 29px 0 45px 0;  /* ??? */
+    margin: 29px 0 45px 0;
 }
 .footer-rss {
     display: flex;
@@ -1474,21 +1474,17 @@ svg:hover {
         justify-content: flex-start;
         position: fixed;
         height: 570px;
-        /* height: 480px; */
         width: 332px;
         top: 0;
-        /* top: 90px; */
         right: -332px;
         z-index: 10;
         padding-top: 102px;
-        /* padding-top: 12px; */
         background-color: #0C0C0E;
         transition: 0.6s ease-in-out;
     }
     .nav-list-item {
-        /* width: 100%;      */     /*  for full-width links   */
         text-align: center;
-        line-height: 46px;      /*??? - must be 50px */
+        line-height: 46px;
     }
     .nav-list-open {
         transform: translateX(-332px);
@@ -1526,6 +1522,7 @@ svg:hover {
     }
     .dropmenu {
         right: 105px;
+        z-index: 10;
     }
 
     .sect-br {
@@ -1537,7 +1534,7 @@ svg:hover {
     .about-carousel-container {
         max-width: 450px;
     }.about-carousel {
-        margin-bottom: 0; /* !!! margin !!! */
+        margin-bottom: 0;
         justify-content: center;
     }
     .about-carousel-arrow {
