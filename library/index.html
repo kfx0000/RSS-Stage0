@@ -132,11 +132,11 @@
                         <label for="buy-bank-exp-month" class="buy-data-label">Expiration code</label>
                         <div>
                             <input type="text" name="buy-bank-expmnth" id="buy-bank-exp-month" autocomplete="off"
-                                class="buy-data-input buy-data-input-n" minlength="2" maxlength="2" pattern="^[0-9]+$"
-                                title="Input 2 digits only!" required>
+                                class="buy-data-input buy-data-input-n" minlength="2" maxlength="2" pattern="^0[1-9]|1[0-2]$"
+                                title="Input Month of card expiration (01-12)!" required>
                             <input type="text" name="buy-bank-expyear" id="buy-bank-exp-year" autocomplete="off"
-                                class="buy-data-input buy-data-input-n" minlength="2" maxlength="2" pattern="^[0-9]+$"
-                                title="Input 2 digits only!" required>
+                                class="buy-data-input buy-data-input-n" minlength="2" maxlength="2" pattern="^2[3-9]$"
+                                title="Input Year of card expiration (23-29)!" required>
                         </div>
                         <label for="buy-bank-cvc" class="buy-data-label">CVC<br>
                             <input type="text" name="buy-bank-cvc-code" id="buy-bank-cvc" autocomplete="off"
