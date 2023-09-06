@@ -21,7 +21,7 @@
     <div class="container">
         <div class="login-container">
             <div class="login">
-                <button class="login-cross"></button>
+                <button class="login-cross" onclick="enableScroll(loginContainer, loginForm);"></button>
                 <div class="login-capt">
                     login
                 </div>
@@ -56,7 +56,7 @@
 
         <div class="profile-container login-container">
             <div class="profile">
-                <button class="login-cross profile-cross"></button>
+                <button class="login-cross profile-cross" onclick="enableScroll(profileContainer, profileForm);"></button>
                 <div class="profile_left-side">
                     <div class="profile-initials"></div>
                     <div class="profile-username"></div>
@@ -120,7 +120,7 @@
 
         <div class="buy-container login-container">
             <div class="buy">
-                <button class="login-cross buy-cross"></button>
+                <button class="login-cross buy-cross" onclick="enableScroll(buyContainer, buyForm);"></button>
                 <div class="buy-header">Buy a library card</div>
                 <div class="buy-inner">
                     <form action="javascript:buyTheCard();" class="buy-data">
