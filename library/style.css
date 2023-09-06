@@ -625,6 +625,9 @@ svg:hover {
     line-height: 20px;
     letter-spacing: 2px;
 }
+#buy-bank-card-name {
+    text-transform: uppercase;
+}
 .empty {
     height: 10px;
 }
