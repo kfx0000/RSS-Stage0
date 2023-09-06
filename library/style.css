@@ -1,3 +1,7 @@
+:root {
+    --st: 0;
+}
+
 *,
 *:before,
 *:after {
@@ -19,6 +23,14 @@ html {
 
 body {
     background-color: #0C0C0E;
+    position: static;
+    overflow-y:auto
+}
+.scroll-disabled {
+    position: fixed;
+    top: var(--st, 0);
+    overflow-y:scroll;
+    inline-size: 100%;
 }
 
 a {
@@ -353,6 +365,7 @@ svg:hover {
 .profile-username {
     width: 120px;
     min-height: 30px;
+    max-height: 150px;
     margin: 0 auto;
     background-color: #FFF;
     color: #000;

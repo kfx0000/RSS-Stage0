@@ -9,16 +9,15 @@ console.log("7. Если в течение 10 секунд с момента в�
 console.log("8. В работе возможна регистрация нескольких пользователей, а также удержание пользователя в залогиненном состоянии при перезагрузке страницы, несмотря на отсутствие данных требований в ТЗ.\n");
 console.log("9. После регистрации или входа пользователя, размер шрифта, отображающий 9-ти значный номер его карты в шапке меню авторизации, уменьшается с 15px до 13px. После логаута польователя размер шрифта возвращается в первоначальное состояние (15px).\n");
 console.log("10. Нажатие на ссылку в тексте 'Already have an account? Login' в окне регистрации приводит к открытию окна Login. И наоборот, нажатие на ссылку в тексте 'Don’t have an account? Register' приводит к открытию окна Register. Данного требования нет в ТЗ, но оно вытекает из логики работы подобных окон регистрации.\n");
-console.log("11. Все модальные окна не запрещают скролл всей страницы на заднем плане. Обратите внимание, данного требования нет в ТЗ! Запрет скроллирования не был добавлен намеренно, т.к. страница при отсутствии запрета выглядит опрятнее - нет дерганий, связанных с пропаданием/появлением вертикальной полосы прокрутки.\n");
-console.log("12. Требования к паролю соответствуют ТЗ - минимум 8 ЛЮБЫХ символов. Никаких дополнительных условий (обязательные заглавные буквы, спецсимволы, и т.п.) не реализовано, т.к. это противоречит ТЗ.\n");
-console.log("13. При регистрации нового пользователя производится проверка, был ли уже использован введенный email ранее. В случае, если такой email уже был использован, поле в email появляется соответствующая подсказка в виде placeholder красного цвета. Данного требования нет в ТЗ, но это улучшает функциональность страницы.\n");
-console.log("14. При входе (Login) пользователя, в случае, если были введены неверные данные (в любом из полей - email, пароль или номер карты), а также при отсутствии зарегистрированных пользователей вообще, в поле 'E-mail or readers card' появляется сообщение 'User not found!'. Данного требования нет в ТЗ, но это соответствует логике работы сайтов и требований к безопасности (выводить сообщение об отсуствии пользователя при любых ошибочно введенных данных).\n");
-console.log("15. В окне My Profile - в случае, если введенные имя или фамилия слишком длинные и не помещаются по ширине в блок, происходит их перенос на другую строку с использованием 'word-break: break-word;' Это позволяет максимально корректно перенести длинные имя или фамилию.\n");
-console.log("16. Ширина модального окна BUY A LIBRARY CARD - 640px. Сделана обрезка по 5px с левой и правой сторон. В остальном дизайн данного окна соответствует макету.\n");
-console.log("17. Кнопка 'Buy' модального окна BUY A LIBRARY CARD становится активной только при заполнении всех полей формы любыми значениями. Только после этого у кнопки появляется интерактивность, начинает работать валидация и появляется возможность отправки формы. Если любое из полей снова сделать пустым, кнопка Buy опять становится неактивной.\n");
-console.log("18. Поля формы окна BUY A LIBRARY CARD 'Expiration code' не означают месяц или год. Данного требования нет в ТЗ. Это просто два двухзначных поля для цифр. Также никаких требований не предъявляется к полям 'Cardholder name', 'Postal code' и 'City / Town'. Однако, к ним применена валидация на предмет ввода, как минимум, любой латинской буквы для 'Cardholder name', любой цифры для 'Postal code', и любой буквы или дефиса или пробела между двумя словами для 'City / Town'.\n");
-console.log("19. В поле 'Bank card number' окна BUY A LIBRARY CARD применена кастомная валидация. В данное поле возможно вводить исключительно цифры, которые автоматически группируются в блоки по 4 символа.\n");
-console.log("20. После корректного заполнения всех полей и отправки формы окна BUY A LIBRARY CARD, не производится автоматической покупки той книги, на которой была нажата кнопка Buy. Данного требования нет в ТЗ! : 'После удачного нажатия на кнопку Buy, окно закрывается, и больше мы к нему не возвращаемся.' Реализовать автоматическую покупку несложно, но это будет противоречить ТЗ.\n");
+console.log("11. Требования к паролю соответствуют ТЗ - минимум 8 ЛЮБЫХ символов. Никаких дополнительных условий (обязательные заглавные буквы, спецсимволы, и т.п.) не реализовано, т.к. это противоречит ТЗ.\n");
+console.log("12. При регистрации нового пользователя производится проверка, был ли уже использован введенный email ранее. В случае, если такой email уже был использован, поле в email появляется соответствующая подсказка в виде placeholder красного цвета. Данного требования нет в ТЗ, но это улучшает функциональность страницы.\n");
+console.log("13. При входе (Login) пользователя, в случае, если были введены неверные данные (в любом из полей - email, пароль или номер карты), а также при отсутствии зарегистрированных пользователей вообще, в поле 'E-mail or readers card' появляется сообщение 'User not found!'. Данного требования нет в ТЗ, но это соответствует логике работы сайтов и требований к безопасности (выводить сообщение об отсуствии пользователя при любых ошибочно введенных данных).\n");
+console.log("14. В окне My Profile - в случае, если введенные имя или фамилия слишком длинные и не помещаются по ширине в блок, происходит их перенос на другую строку с использованием 'word-break: break-word;' Это позволяет максимально корректно перенести длинные имя или фамилию.\n");
+console.log("15. Ширина модального окна BUY A LIBRARY CARD - 640px. Сделана обрезка по 5px с левой и правой сторон. В остальном дизайн данного окна соответствует макету.\n");
+console.log("16. Кнопка 'Buy' модального окна BUY A LIBRARY CARD становится активной только при заполнении всех полей формы любыми значениями. Только после этого у кнопки появляется интерактивность, начинает работать валидация и появляется возможность отправки формы. Если любое из полей снова сделать пустым, кнопка Buy опять становится неактивной.\n");
+console.log("17. Поля формы окна BUY A LIBRARY CARD 'Expiration code' не означают месяц или год. Данного требования нет в ТЗ. Это просто два двухзначных поля для цифр. Также никаких требований не предъявляется к полям 'Cardholder name', 'Postal code' и 'City / Town'. Однако, к ним применена валидация на предмет ввода, как минимум, любой латинской буквы для 'Cardholder name', любой цифры для 'Postal code', и любой буквы или дефиса или пробела между двумя словами для 'City / Town'.\n");
+console.log("18. В поле 'Bank card number' окна BUY A LIBRARY CARD применена кастомная валидация. В данное поле возможно вводить исключительно цифры, которые автоматически группируются в блоки по 4 символа.\n");
+console.log("19. После корректного заполнения всех полей и отправки формы окна BUY A LIBRARY CARD, не производится автоматической покупки той книги, на которой была нажата кнопка Buy. Данного требования нет в ТЗ! : 'После удачного нажатия на кнопку Buy, окно закрывается, и больше мы к нему не возвращаемся.' Реализовать автоматическую покупку несложно, но это будет противоречить ТЗ.\n");
 console.log(".....\n");
 console.log("99. В случае возникновения прочих вопросов по моей работе - я всегда готов к обсуждению как в приложении RSApp, так и в чатах Discord. С уважением, Андрей Ступаков.\n\n")
 
@@ -37,9 +36,6 @@ const profileForm = document.querySelector(".profile");
 const profileContainer = document.querySelector(".profile-container");
 const buyForm = document.querySelector(".buy");
 const buyContainer = document.querySelector(".buy-container");
-const loginClose = document.querySelector(".login-cross");
-const profileClose = document.querySelector(".profile-cross");
-const buyClose = document.querySelector(".buy-cross");
 const loginReg = document.querySelector(".login-register");
 const loginCard = document.querySelector("#card-log-in");
 const regCard = document.querySelector("#card-sign-up");
@@ -113,17 +109,10 @@ function cardRevert () {
     }
 }
 
-// Common function to open Login modal form
-function userEvent() {
-    loginContainer.classList.add("login-container-visible");
-    loginForm.classList.add("login-open");
-}
-
 // User's menu - first item
-function firstLineEvent() {
+function firstLineEvent(scr) {
     if(isLogged) {                                                      // if user logged now - show Profile modal
-        profileContainer.classList.add("login-container-visible");
-        profileForm.classList.add("login-open");
+        disableScroll(profileContainer, profileForm);
     } else {                                                            // else - do Log In action
         isLogging = true;                                               // isLogging = true if user logs in; = false - if registers
         loginForm.style.height = "262px"                                // Now prepare to show "Login" form
@@ -137,12 +126,12 @@ function firstLineEvent() {
         document.querySelector(".login-button").textContent = "Log In";
         document.querySelector(".login-bottom-text").textContent = "Don’t have an account?";
         loginReg.textContent = "Register";
-        userEvent();
+        if(!scr) disableScroll(loginContainer, loginForm);
     }
 }
 
 // User's menu - second item
-function secondLineEvent() {
+function secondLineEvent(scr) {
     if(isLogged) {                                                      // if user logged now - do Log Out action
         isLogged = false;
         userObj.isLogged = isLogged;
@@ -182,7 +171,7 @@ function secondLineEvent() {
         document.querySelector(".login-button").textContent = "Sign Up";
         document.querySelector(".login-bottom-text").textContent = "Already have an account?";
         loginReg.textContent = "Login";
-        userEvent();
+        if(!scr) disableScroll(loginContainer, loginForm);
     }
 }
 
@@ -214,7 +203,7 @@ function loginProceed() {
         userObj.userSurName = document.querySelector("#reg-lstname-input").value;
         userObj.userPass = document.querySelector("#login-pass-input").value;
         userObj.userEmail = document.querySelector("#login-email-input").value;
-        userObj.cardNum = ((4294967296*(Math.ceil(14 * Math.random())) + Math.ceil(4294967295 * Math.random())).toString(16)).toUpperCase();
+        userObj.cardNum = ((Math.ceil(0xf * Math.random())).toString(16) + (Math.ceil(0xffffffff * Math.random())).toString(16)).toUpperCase();
         userObj.visits = 1;
         userObj.hasLibCard = false;
         userObj.books = [];
@@ -242,8 +231,7 @@ function loginProceed() {
 
 // Make page appearance according logged state
 function Logged() {
-    loginContainer.classList.remove("login-container-visible");
-    loginForm.classList.remove("login-open");
+    enableScroll(loginContainer, loginForm);
     dropMenuHead.textContent = userObj.cardNum;
     dropMenuHead.style.letterSpacing = "-1.1px";
     dropMenuHead.style.fontSize = "13px";
@@ -355,8 +343,7 @@ function favButtClick(bookNum) {
             document.querySelectorAll(".buy-data-input").forEach((x) => x.value = '');
             document.querySelector(".buy-button").disabled = true;
             document.querySelector(".buy-button").classList.add("fav-button-own");
-            buyContainer.classList.add("login-container-visible");
-            buyForm.classList.add("login-open");
+            disableScroll(buyContainer, buyForm);
         }
     } else {
         firstLineEvent();
@@ -368,8 +355,7 @@ function buyTheCard() {
     if((document.getElementById("buy-bank-card-num").value.replace(/\s/g,'').length === 16) &&
         (document.getElementById("buy-bank-card-name").value.trim().length !== 0) &&
         (document.getElementById("buy-bank-card-city").value.trim().length !== 0)) {
-        buyContainer.classList.remove("login-container-visible");
-        buyForm.classList.remove("login-open");
+        enableScroll(buyContainer, buyForm);
         userObj.hasLibCard = true;
         userCommit();
     } else if(document.getElementById("buy-bank-card-num").value.replace(/\s/g,'').length !== 16) {
@@ -382,21 +368,7 @@ function buyTheCard() {
 }
 
 // Login / register click
-loginReg.addEventListener("click", () => {if (isLogging) secondLineEvent(); else firstLineEvent();});
-
-// Close Login modal on Cross click
-loginClose.addEventListener("click", () => {
-    loginContainer.classList.remove("login-container-visible");
-    loginForm.classList.remove("login-open");
-});
-profileClose.addEventListener("click", () => {
-    profileContainer.classList.remove("login-container-visible");
-    profileForm.classList.remove("login-open");
-});
-buyClose.addEventListener("click", () => {
-    buyContainer.classList.remove("login-container-visible");
-    buyForm.classList.remove("login-open");
-});
+loginReg.addEventListener("click", () => {if (isLogging) secondLineEvent(true); else firstLineEvent(true);});
 
 // Listener to open burger menu in mobile version
 burger.addEventListener("click", () => {
@@ -451,19 +423,12 @@ document.addEventListener("click", (event) => {
         (!(event.target.classList.contains("dropmenu"))) &&         // Except click inside dropdown menu
         (!(event.target.classList.contains("dropmenu__head"))))     // Except click on header of dropdown menu
         dropMenu.classList.remove("dropmenu-open");                 // close dropdown menu
-
-    if (event.target.classList.contains("login-container")) {       // Close Login modal on click to faded container
-        loginContainer.classList.remove("login-container-visible");
-        loginForm.classList.remove("login-open");
-    }
-    if (event.target.classList.contains("profile-container")) {       // Close Profile modal on click to faded container
-        profileContainer.classList.remove("login-container-visible");
-        profileForm.classList.remove("login-open");
-    }
-    if (event.target.classList.contains("buy-container")) {           // Close Buy card modal on click to faded container
-        buyContainer.classList.remove("login-container-visible");
-        buyForm.classList.remove("login-open");
-    }
+    if (event.target.classList.contains("login-container"))         // Close Login modal on click to faded container
+        enableScroll(loginContainer, loginForm);
+    if (event.target.classList.contains("profile-container"))       // Close Profile modal on click to faded container
+        enableScroll(profileContainer, profileForm);
+    if (event.target.classList.contains("buy-container"))           // Close Buy card modal on click to faded container
+        enableScroll(buyContainer, buyForm);
     if (event.target.classList.contains("about-button") || event.target.classList.contains("about-circle"))
         aboutCarouselRotate(+event.target.classList[1].slice(-1));
     else if (event.target.classList.contains("about-carousel-next")) aboutCarouselShiftRight();
@@ -482,6 +447,25 @@ function copyButton() {
         copyTxt.select();
         document.execCommand('copy');
     }
+}
+
+let scrollTop = 0;
+function disableScroll(contName, frmName) {
+    contName.classList.add("login-container-visible");
+    frmName.classList.add("login-open");
+    scrollTop = window.scrollY;
+    document.body.style.setProperty('--st', -(document.documentElement.scrollTop) + "px");
+    document.body.classList.add('scroll-disabled');
+}
+function enableScroll(contName, frmName) {
+    contName.classList.remove("login-container-visible");
+    frmName.classList.remove("login-open");
+    document.body.classList.remove('scroll-disabled');
+    window.scrollTo({
+        top: scrollTop,
+        left: 0,
+        behavior: "instant",
+      });
 }
 
 // Check if user was logged on page reload
