@@ -22,9 +22,10 @@ html {
 }
 
 body {
-    background-color: #0C0C0E;
+    width: 100%;
     position: static;
-    overflow-y:auto
+    overflow-y:auto;
+    background-color: #fff;
 }
 .scroll-disabled {
     position: fixed;
@@ -64,6 +65,10 @@ svg:hover {
     transform: scale(1.3);
 }
 
+.wrapper-dark {
+    max-width: 100%;
+    background-color: #0C0C0E;
+}
 .container {
     max-width: 1440px;
     margin: 0 auto;
@@ -624,6 +629,9 @@ svg:hover {
     font-weight: 400;
     line-height: 20px;
     letter-spacing: 2px;
+}
+#buy-bank-card-name {
+    text-transform: uppercase;
 }
 .empty {
     height: 10px;
