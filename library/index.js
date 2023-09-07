@@ -12,10 +12,10 @@ console.log("10. Нажатие на ссылку в тексте 'Already have 
 console.log("11. Требования к паролю соответствуют ТЗ - минимум 8 ЛЮБЫХ символов. Никаких дополнительных условий (обязательные заглавные буквы, спецсимволы, и т.п.) не реализовано, т.к. это противоречит ТЗ.\n");
 console.log("12. При регистрации нового пользователя производится проверка, был ли уже использован введенный email ранее. В случае, если такой email уже был использован, поле в email появляется соответствующая подсказка в виде placeholder красного цвета. Данного требования нет в ТЗ, но это улучшает функциональность страницы.\n");
 console.log("13. При входе (Login) пользователя, в случае, если были введены неверные данные (в любом из полей - email, пароль или номер карты), а также при отсутствии зарегистрированных пользователей вообще, в поле 'E-mail or readers card' появляется сообщение 'User not found!'. Данного требования нет в ТЗ, но это соответствует логике работы сайтов и требований к безопасности (выводить сообщение об отсуствии пользователя при любых ошибочно введенных данных).\n");
-console.log("14. В окне My Profile - в случае, если введенные имя или фамилия слишком длинные и не помещаются по ширине в блок, происходит их перенос на другую строку с использованием 'word-break: break-word;' Это позволяет максимально корректно перенести длинные имя или фамилию.\n");
+console.log("14. В окне My Profile - в случае, если введенные имя или фамилия слишком длинные и не помещаются по ширине в блок, происходит их перенос на другую строку с использованием 'word-break: break-word;' Это позволяет максимально корректно перенести длинные имя или фамилию. Ограничение максимальной высоты блока - 150px\n");
 console.log("15. Ширина модального окна BUY A LIBRARY CARD - 640px. Сделана обрезка по 5px с левой и правой сторон. В остальном дизайн данного окна соответствует макету.\n");
 console.log("16. Кнопка 'Buy' модального окна BUY A LIBRARY CARD становится активной только при заполнении всех полей формы любыми значениями. Только после этого у кнопки появляется интерактивность, начинает работать валидация и появляется возможность отправки формы. Если любое из полей снова сделать пустым, кнопка Buy опять становится неактивной.\n");
-console.log("17. К полям 'Cardholder name', 'Postal code' и 'City / Town' никаких требований не предъявляется. Однако, к ним применена валидация на предмет ввода, как минимум, любой латинской буквы для 'Cardholder name', любой цифры для 'Postal code', и любой буквы или дефиса или пробела между двумя словами для 'City / Town'.\n");
+console.log("17. К полям 'Cardholder name', 'Postal code' и 'City / Town' никаких требований не предъявляется. Однако, к ним применена валидация на предмет ввода, как минимум, любой латинской буквы для 'Cardholder name', от 5 до 6 цифр для 'Postal code', и любой буквы, а также дефиса или пробела между двумя словами для 'City / Town'.\n");
 console.log("18. Поля 'Expiration code окна BUY A LIBRARY CARD валидируются как месяц (01-12) и год (23-29). Данный вопрос уточнялся на стриме Q&A.\n");
 console.log("19. В поле 'Bank card number' окна BUY A LIBRARY CARD применена кастомная валидация. В данное поле возможно вводить исключительно цифры, которые автоматически группируются в блоки по 4 символа.\n");
 console.log("20. После корректного заполнения всех полей и отправки формы окна BUY A LIBRARY CARD, не производится автоматической покупки той книги, на которой была нажата кнопка Buy. Данного требования нет в ТЗ! : 'После удачного нажатия на кнопку Buy, окно закрывается, и больше мы к нему не возвращаемся.' Данная логика реализована и закомментирована. На стриме Q&A было пояснение, что лучше сделать без автоматической покупки.\n");
@@ -83,30 +83,21 @@ function userCommit() {
 }
 
 // Fill and revert "Check the card" form
-function cardFill() {
-    document.querySelector("#card-num-visits").textContent = userObj.visits.toString();
-    document.querySelector("#card-num-books").textContent = userObj.books.length.toString();
-    document.querySelector(".card-find-button").style.display = "none";
-    document.querySelector(".card-bg").style.gap = "15px";
-    document.querySelector(".card-badges").style.display = "flex";
-    document.querySelector(".card-input-txt").value = userObj.userName + " " + userObj.userSurName;
-    document.querySelector(".card-input-num").value = userObj.cardNum;
-    document.querySelectorAll(".card-input").forEach((x) => {
-        x.style.color = "#BB945F";
-        x.readOnly = true;
-    });
-}
-function cardRevert () {
-    if(!isLogged) {
-        document.querySelector(".card-badges").style.display = "none";
-        document.querySelector(".card-bg").style.gap = "20px";
-        document.querySelector(".card-find-button").style.display = "block";
+function cardFillRevert(fill) {
+    if(!isLogged || fill) {
+        if(fill) {
+            document.querySelector("#card-num-visits").textContent = userObj.visits.toString();
+            document.querySelector("#card-num-books").textContent = userObj.books.length.toString();
+        }
+        document.querySelector(".card-find-button").style.display = fill ? "none":"block";
+        document.querySelector(".card-bg").style.gap = fill? "15px":"20px";
+        document.querySelector(".card-badges").style.display = fill ? "flex":"none";
+        document.querySelector(".card-input-txt").value = fill ? userObj.userName + " " + userObj.userSurName:"";
+        document.querySelector(".card-input-num").value = fill ? userObj.cardNum:"";
         document.querySelectorAll(".card-input").forEach((x) => {
-            x.style.color = "#000";
-            x.readOnly = false;
+            x.style.color = fill ? "#BB945F":"#000";
+            x.readOnly = fill;
         });
-        document.querySelector(".card-input-txt").value = "";
-        document.querySelector(".card-input-num").value = "";
     }
 }
 
@@ -116,64 +107,36 @@ function firstLineEvent(scr) {
         disableScroll(profileContainer, profileForm);
     } else {                                                            // else - do Log In action
         isLogging = true;                                               // isLogging = true if user logs in; = false - if registers
-        loginForm.style.height = "262px"                                // Now prepare to show "Login" form
-        document.querySelector(".login-capt").textContent = "login";
-        document.querySelectorAll(".login-input").forEach((x) => x.value = "");
-        document.querySelectorAll(".reg").forEach((x) => x.style.display = "none");
-        document.querySelector("#reg-fstname-input").required = false;
-        document.querySelector("#reg-lstname-input").required = false;
-        document.querySelectorAll(".logging").forEach((x) => x.style.display = "block");
-        document.querySelector(".login-mail").innerHTML = "E-mail or readers card <input type='text' name='login-email' id='login-email-input' class='login-input' required>";
-        document.querySelector(".login-button").textContent = "Log In";
-        document.querySelector(".login-bottom-text").textContent = "Don’t have an account?";
-        loginReg.textContent = "Register";
-        if(!scr) disableScroll(loginContainer, loginForm);
+        doLogReg(isLogging, scr);
     }
 }
 
 // User's menu - second item
 function secondLineEvent(scr) {
-    if(isLogged) {                                                      // if user logged now - do Log Out action
-        isLogged = false;
-        userObj.isLogged = isLogged;
-        userCommit();
-        userObj = {};
-        dropMenuHead.textContent = "Profile";
-        dropMenuHead.style.letterSpacing = "normal";
-        dropMenuHead.style.fontSize = "15px";
-        profile.classList.remove("icon-profile-logged");
-        profile.classList.add("icon-profile-icon");
-        profile.textContent = "";
-        profile.title = "";
-        dropMenuLine1.textContent = "Log In";
-        dropMenuLine2.textContent = "Register";
-        regCard.style.display = "block";
-        loginCard.textContent = "Log In";
-        loginCard.style.marginTop = "0px";
-        document.querySelector(".card-get-capt").textContent = "Get a reader card";
-        document.querySelector(".card-get-text").textContent = "You will be able to see a reader card after logging into account or you can register a new account";
-        for(let i = 1; i <= 16; i++) {
-            let bookSelector = (i < 10) ? ".book-0" + i.toString() : ".book-" + i.toString();
-            document.querySelector(bookSelector).classList.remove("fav-button-own");
-            document.querySelector(bookSelector).disabled = false;
-            document.querySelector(bookSelector).textContent = "Buy";
-        }
-        cardRevert();
+    if(isLogged) {
+        doLogout();                                                // if user logged now - do Log Out action;
+        cardFillRevert(false);
     } else {                                                            // else - do Register action
-        isLogging = false;                                              // Now prepare to show "Register" form
-        loginForm.style.height = "382px"
-        document.querySelector(".login-capt").textContent = "register";
-        document.querySelectorAll(".login-input").forEach((x) => x.value = "");
-        document.querySelector("#reg-fstname-input").required = true;
-        document.querySelector("#reg-lstname-input").required = true;
-        document.querySelectorAll(".reg").forEach((x) => x.style.display = "block");
-        document.querySelectorAll(".logging").forEach((x) => x.style.display = "none");
-        document.querySelector(".login-mail").innerHTML = "E-mail <input type='email' name='login-email' id='login-email-input' class='login-input' required>";
-        document.querySelector(".login-button").textContent = "Sign Up";
-        document.querySelector(".login-bottom-text").textContent = "Already have an account?";
-        loginReg.textContent = "Login";
-        if(!scr) disableScroll(loginContainer, loginForm);
+        isLogging = false;
+        doLogReg(isLogging, scr);                                      // Now prepare to show "Register" form
     }
+}
+
+function doLogReg(isLog, scrRfr) {
+    loginForm.style.height = isLog ? "262px":"382px";
+    document.querySelector(".login-capt").textContent = isLog ? "login":"register";
+    document.querySelector("#reg-fstname-input").required = !isLog;
+    document.querySelector("#reg-lstname-input").required = !isLog;
+    document.querySelector(".login-mail").innerHTML = isLog ?
+        "E-mail or readers card <input type='text' name='login-email' id='login-email-input' class='login-input' required>" :
+        "E-mail <input type='email' name='login-email' id='login-email-input' class='login-input' required>";
+    document.querySelector(".login-button").textContent = isLog ? "Log In":"Sign Up";
+    document.querySelector(".login-bottom-text").textContent = isLog ? "Don’t have an account?":"Already have an account?";
+    loginReg.textContent = isLog ? "Register":"Login";
+    document.querySelectorAll(".reg").forEach((x) => x.style.display = isLog ? "none":"block");
+    document.querySelectorAll(".logging").forEach((x) => x.style.display = isLog ? "block":"none");
+    document.querySelectorAll(".login-input").forEach((x) => x.value = "");
+    if(!scrRfr) disableScroll(loginContainer, loginForm);
 }
 
 // Here we proceed with Log In or Register actions - enters here from onclick button in Login/Register form
@@ -196,8 +159,7 @@ function loginProceed() {
                 }
             }
         }
-        document.querySelector("#login-email-input").value = "";
-        document.querySelector("#login-email-input").placeholder = "User not found!";
+        showErr("User not found!");
     } else {                                                                       // Register action
         // User object records
         userObj.userName = document.querySelector("#reg-fstname-input").value;
@@ -217,10 +179,8 @@ function loginProceed() {
                 if(userArr[i]["userEmail"] === userObj.userEmail) emailDup = true;
             }
         }
-        if(emailDup) {
-            document.querySelector("#login-email-input").value = "";
-            document.querySelector("#login-email-input").placeholder = "Email already in use!";
-        } else {
+        if(emailDup) showErr("Email already in use!");
+        else {
             isLogged = true;
             userObj.isLogged = isLogged;
             userArr.push(userObj);
@@ -230,6 +190,11 @@ function loginProceed() {
     }
 }
 
+function showErr(err) {
+    document.querySelector("#login-email-input").value = "";
+    document.querySelector("#login-pass-input").value = "";
+    document.querySelector("#login-email-input").placeholder = err;
+}
 // Make page appearance according logged state
 function Logged() {
     enableScroll(loginContainer, loginForm);
@@ -247,7 +212,7 @@ function Logged() {
     loginCard.style.marginTop = "-25px";
     document.querySelector(".card-get-capt").textContent = "Visit your profile";
     document.querySelector(".card-get-text").textContent = "With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.";
-    cardFill();
+    cardFillRevert(true);
     document.querySelector(".profile-initials").textContent = (userObj.userName.slice(0,1) + userObj.userSurName.slice(0,1)).toUpperCase();
     document.querySelector(".profile-username").textContent = userObj.userName + " " + userObj.userSurName;
     document.querySelector(".profile-card-number-num").textContent = userObj.cardNum;
@@ -262,6 +227,33 @@ function Logged() {
         li.classList.add("profile-books-item");
         li.textContent = booksMap[`book${userObj.books[i]}`];
         document.getElementById("books-list").appendChild(li);
+    }
+}
+
+function doLogout() {
+    isLogged = false;
+    userObj.isLogged = isLogged;
+    userCommit();
+    userObj = {};
+    dropMenuHead.textContent = "Profile";
+    dropMenuHead.style.letterSpacing = "normal";
+    dropMenuHead.style.fontSize = "15px";
+    profile.classList.remove("icon-profile-logged");
+    profile.classList.add("icon-profile-icon");
+    profile.textContent = "";
+    profile.title = "";
+    dropMenuLine1.textContent = "Log In";
+    dropMenuLine2.textContent = "Register";
+    regCard.style.display = "block";
+    loginCard.textContent = "Log In";
+    loginCard.style.marginTop = "0px";
+    document.querySelector(".card-get-capt").textContent = "Get a reader card";
+    document.querySelector(".card-get-text").textContent = "You will be able to see a reader card after logging into account or you can register a new account";
+    for(let i = 1; i <= 16; i++) {
+        let bookSelector = (i < 10) ? ".book-0" + i.toString() : ".book-" + i.toString();
+        document.querySelector(bookSelector).classList.remove("fav-button-own");
+        document.querySelector(bookSelector).disabled = false;
+        document.querySelector(bookSelector).textContent = "Buy";
     }
 }
 
@@ -317,8 +309,8 @@ function checkTheCard() {
                     document.querySelector(".card-input-txt").value.replace(/\s/g,'').toUpperCase())
                     ) && (userArr[i]["cardNum"] === document.querySelector(".card-input-num").value.toUpperCase().trim())) {
                 userObj = userArr[i];
-                cardFill();
-                setTimeout(() => cardRevert(), 10000);
+                cardFillRevert(true);
+                setTimeout(() => cardFillRevert(false), 10000);
                 break;
             }
         }
@@ -465,11 +457,7 @@ function enableScroll(contName, frmName) {
     contName.classList.remove("login-container-visible");
     frmName.classList.remove("login-open");
     document.body.classList.remove('scroll-disabled');
-    window.scrollTo({
-        top: scrollTop,
-        left: 0,
-        behavior: "instant",
-      });
+    window.scrollTo({top: scrollTop, left: 0, behavior: "instant"});
 }
 
 // Check if user was logged on page reload
