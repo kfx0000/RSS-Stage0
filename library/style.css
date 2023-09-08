@@ -609,6 +609,16 @@ svg:hover {
     border: 1px solid #BB945F;
     background: #BB945F;
 }
+.buy-button-inactive {
+    border: 1px solid #0C0C0E;
+    color: #0C0C0E;
+    cursor: auto;
+}
+.buy-button-inactive:hover {
+    border: 1px solid #0C0C0E;
+    background-color: #FFF;
+}
+
 .buy-cost {
     color: #0C0C0E;
     font-family: Inter;

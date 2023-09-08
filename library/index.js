@@ -89,6 +89,7 @@ function cardFillRevert(fill) {
             document.querySelector("#card-num-visits").textContent = userObj.visits.toString();
             document.querySelector("#card-num-books").textContent = userObj.books.length.toString();
         }
+        document.querySelector(".card-find-capt").textContent = fill ? "Your Library card":"Find your Library card";
         document.querySelector(".card-find-button").style.display = fill ? "none":"block";
         document.querySelector(".card-bg").style.gap = fill? "15px":"20px";
         document.querySelector(".card-badges").style.display = fill ? "flex":"none";
@@ -336,7 +337,7 @@ function favButtClick(bookNum) {
         } else {
             document.querySelectorAll(".buy-data-input").forEach((x) => x.value = '');
             document.querySelector(".buy-button").disabled = true;
-            document.querySelector(".buy-button").classList.add("fav-button-own");
+            document.querySelector(".buy-button").classList.add("buy-button-inactive");
             // bookBuy = bookNum;
             disableScroll(buyContainer, buyForm);
         }
@@ -400,10 +401,10 @@ buyForm.addEventListener("input", (event) => {
     document.querySelectorAll(".buy-data-input").forEach((x) => {if(x.value.length === 0) notEmpty = false});
     if(notEmpty) {
         document.querySelector(".buy-button").disabled = false;
-        document.querySelector(".buy-button").classList.remove("fav-button-own");
+        document.querySelector(".buy-button").classList.remove("buy-button-inactive");
     } else {
         document.querySelector(".buy-button").disabled = true;
-        document.querySelector(".buy-button").classList.add("fav-button-own");
+        document.querySelector(".buy-button").classList.add("buy-button-inactive");
     }
 });
 

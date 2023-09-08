@@ -35,7 +35,8 @@
                         <label for="reg-lstname-input" class="reg login-label">
                             Last name
                             <input type="text" name="reg-lstname" id="reg-lstname-input" class="reg login-input"
-                                title="Input letters only!" pattern="^[а-яА-Яa-zA-Z]+$" autocomplete="off" required>
+                                title="Input letters only!" pattern="^[а-яА-Яa-zA-Z][а-яА-Яa-zA-Z ]+$"
+                                autocomplete="off" required>
                         </label>
                         <label for="login-email-input" class="login-label login-mail">
                             E-mail or readers card
@@ -163,7 +164,7 @@
                             </label>
                             <div class="empty"></div>
                             <div class="buy-button-container">
-                                <button type="submit" class="buy-button fav-button-own" disabled>Buy</button>
+                                <button type="submit" class="buy-button buy-button-inactive" disabled>Buy</button>
                                 <span class="buy-cost">$ 25.00</span>
                             </div>
                         </form>
