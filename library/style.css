@@ -1602,6 +1602,7 @@ svg:hover {
     }
     .coffee-text-nbsp {
         white-space: nowrap;
+        max-width: 1200px;
     }
     .coffee-menu {
         flex-direction: column;
