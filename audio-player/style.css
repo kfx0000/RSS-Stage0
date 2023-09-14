@@ -130,6 +130,18 @@ body {
     border-radius: 2rem;
     cursor: pointer;
 }
+.player__progress::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 0.75rem;
+    width: 0.375rem;
+    margin-top: -0.125rem;
+    background-color: #C0FF07;
+    border: 0;
+    border-radius: 2rem;
+}
+.player__progress::-webkit-slider-thumb:hover {
+    background: #FFF;
+}
 
 
 .empty {
