@@ -14,7 +14,18 @@
 <body>
     <audio src="./assets/dontstartnow.mp3" id="audio"></audio>
     <div class="backgnd"></div>
+    <div class="empty"></div>
     <div class="container">
+        <div class="player">
+            <img src="./assets/play.png" alt="play_pause_button" class="player__button player__button-play">
+            <img src="./assets/backward.png" alt="prev_button" class="player__button player__button-prev">
+            <img src="./assets/forward.png" alt="next_button" class="player__button player__button-next">
+            <div class="player__text player__text-artist">Beyonce</div>
+            <div class="player__text player__text-title">Don't Hurt Yourself</div>
+            <div class="player__text player__text-curr_time">0:00</div>
+            <div class="player__text player__text-total_time">3:53</div>
+            <input type="range" value="0" min="0" max="100" class="player__progress">
+        </div>
     </div>
     <footer>
         <div class="footer__text">2023</div>
