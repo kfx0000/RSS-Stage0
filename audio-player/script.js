@@ -5,8 +5,12 @@ const playList = [
     ['Alan Walker', 'Catch me if you can', 'alancatch'],
     ['Olivia Addams', 'Stranger', 'olivia'],
     ['INNA', 'Flashbacks', 'inna'],
+    ['Irma', 'I know', 'irma'],
+    ['Beyonce', 'Don\'t Hurt Yourself', 'beyonce'],
+    ['ГрОб', 'Все идет по плану', 'vse'],
+    ['Король и Шут', 'Кукла колдуна', 'kish'],
 ]
-let maxCnt = playList.length - 1;
+let maxCnt = playList.length - 3;
 let playPointer = 0;
 
 
@@ -58,6 +62,15 @@ function updatePlayer() {
     document.querySelector('.player__text-curr_time').textContent = calcTime(audio.currentTime);
     progressBar.value = audio.currentTime;
 }
+
+document.addEventListener("keydown", (e) => {
+    if(e.keyCode === 32) audioPlayPause();
+    else if(e.keyCode === 37) audioPrev();
+    else if(e.keyCode === 39) audioNext();
+    else if(e.keyCode === 38) {if(audio.volume < 1) audio.volume += 0.1;}
+    else if(e.keyCode === 40) {if(audio.volume >= 0.1) audio.volume -= 0.1;}
+    else if(e.keyCode === 66) maxCnt ^= 2;
+});
 
 audio.onloadedmetadata = function() {
     progressBar.max = audio.duration;
