@@ -63,6 +63,20 @@ function updatePlayer() {
     progressBar.value = audio.currentTime;
 }
 
+function hideHelp() {
+    document.querySelector('.help').style.visibility = 'hidden';
+    document.querySelector('.help').style.opacity = 0;
+}
+
+function showHelp() {
+    if(document.querySelector('.help').style.visibility === 'visible') {
+        hideHelp();
+    } else {
+        document.querySelector('.help').style.visibility = 'visible';
+        document.querySelector('.help').style.opacity = 1;
+    }
+}
+
 document.addEventListener("keydown", (e) => {
     if(e.keyCode === 32) audioPlayPause();
     else if(e.keyCode === 37) audioPrev();
@@ -70,6 +84,13 @@ document.addEventListener("keydown", (e) => {
     else if(e.keyCode === 38) {if(audio.volume < 1) audio.volume += 0.1;}
     else if(e.keyCode === 40) {if(audio.volume >= 0.1) audio.volume -= 0.1;}
     else if(e.keyCode === 66) maxCnt ^= 2;
+    hideHelp();
+});
+document.addEventListener("click", (event) => {
+    if (!(event.target.classList.contains("player__help"))) {
+        hideHelp();
+    }
+    console.log(event.target.classList);
 });
 
 audio.onloadedmetadata = function() {
