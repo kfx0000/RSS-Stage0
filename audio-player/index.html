@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/png" href="./assets/dvd-disk-icon.svg">
-        <script defer src="script.js"></script>
-        <title>Audio Player</title>
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="./assets/dvd-disk-icon.svg">
+    <script defer src="script.js"></script>
+    <title>Audio Player</title>
+</head>
+
 <body>
-    <audio src="./assets/dontstartnow.mp3" id="audio"></audio>
+    <audio src="" id="audio" preload="metadata"></audio>
     <div class="backgnd"></div>
     <div class="empty"></div>
     <div class="container">
         <div class="player">
-            <img src="./assets/play.png" alt="play_pause_button" class="player__button player__button-play">
-            <img src="./assets/backward.png" alt="prev_button" class="player__button player__button-prev">
-            <img src="./assets/forward.png" alt="next_button" class="player__button player__button-next">
-            <div class="player__text player__text-artist">Beyonce</div>
-            <div class="player__text player__text-title">Don't Hurt Yourself</div>
-            <div class="player__text player__text-curr_time">0:00</div>
-            <div class="player__text player__text-total_time">3:53</div>
-            <input type="range" value="0" min="0" max="100" class="player__progress">
+            <img src="./assets/play.png" alt="play_pause_button" class="player__button player__button-play"
+                onclick="audioPlayPause()" draggable="false">
+            <img src="./assets/backward.png" alt="prev_button" class="player__button player__button-prev"
+                onclick="audioPrev()" draggable="false">
+            <img src="./assets/forward.png" alt="next_button" class="player__button player__button-next"
+                onclick="audioNext()" draggable="false">
+            <div class="player__text player__text-artist"></div>
+            <div class="player__text player__text-title"></div>
+            <div class="player__text player__text-curr_time"></div>
+            <div class="player__text player__text-total_time"></div>
+            <input type="range" value="0" min="0" max="100" class="player__progress" onchange="audioRewind()">
         </div>
     </div>
     <footer>
@@ -37,4 +42,5 @@
         </a>
     </footer>
 </body>
+
 </html>
