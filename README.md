@@ -1,7 +1,6 @@
 # kfx0000-JSFEPRESCHOOL2023Q2
 Private repository for @kfx0000
 
-https://rolling-scopes-school.github.io/kfx0000-JSFEPRESCHOOL2023Q2/library/index.html
+<a href="https://rolling-scopes-school.github.io/kfx0000-JSFEPRESCHOOL2023Q2/library/index.html">Library</a>
 <br>
-https://rolling-scopes-school.github.io/kfx0000-JSFEPRESCHOOL2023Q2/audio-player/index.html
-
+<a href="https://rolling-scopes-school.github.io/kfx0000-JSFEPRESCHOOL2023Q2/audio-player/index.html">Player</a>
