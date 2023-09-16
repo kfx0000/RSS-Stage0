@@ -1,5 +1,6 @@
 const audio = document.getElementById('audio');
 const progressBar = document.querySelector(".player__progress");
+const volBar = document.querySelector(".player__progress-vert");
 const playList = [
     ['Dua Lipa', 'Don\'t Start Now', 'dontstartnow'],
     ['Alan Walker', 'Catch me if you can', 'alancatch'],
@@ -68,11 +69,27 @@ function updateSlider() {
     progressBar.value = audio.currentTime;
 }
 
+function hideVol() {
+    document.querySelector('.vol').style.visibility = 'hidden';
+    document.querySelector('.vol').style.opacity = 0;
+}
+function showVol() {
+    volBar.value = audio.volume * 100;
+    if(document.querySelector('.vol').style.visibility === 'visible') {
+        hideVol();
+    } else {
+        document.querySelector('.vol').style.visibility = 'visible';
+        document.querySelector('.vol').style.opacity = 1;
+    }
+}
+function changeVol() {
+    audio.volume = volBar.value / 100;
+}
+
 function hideHelp() {
     document.querySelector('.help').style.visibility = 'hidden';
     document.querySelector('.help').style.opacity = 0;
 }
-
 function showHelp() {
     if(document.querySelector('.help').style.visibility === 'visible') {
         hideHelp();
@@ -86,13 +103,22 @@ document.addEventListener("keydown", (e) => {
     if(e.keyCode === 32) audioPlayPause();
     else if(e.keyCode === 37) audioPrev();
     else if(e.keyCode === 39) audioNext();
-    else if(e.keyCode === 38) {if(audio.volume < 1) audio.volume += 0.1;}
-    else if(e.keyCode === 40) {if(audio.volume >= 0.1) audio.volume -= 0.1;}
+    else if(e.keyCode === 38) {
+        if(audio.volume <= 0.9) audio.volume += 0.1; else audio.volume = 1;
+        volBar.value = audio.volume * 100;
+    }
+    else if(e.keyCode === 40) {
+        if(audio.volume >= 0.1) audio.volume -= 0.1; else audio.volume = 0;
+        volBar.value = audio.volume * 100;
+    }
     else if(e.keyCode === 66) maxCnt ^= 2;
     hideHelp();
 });
 document.addEventListener("click", (event) => {
     if (!(event.target.classList.contains("player__help"))) hideHelp();
+    if (!(event.target.classList.contains("player__vol"))
+        && !(event.target.classList.contains("player__progress-vert"))
+        && !(event.target.classList.contains("vol"))) hideVol();
 });
 document.addEventListener("mousedown", (event) => {
     if(event.toElement.classList.contains("player__progress")) clearInterval(upd);
