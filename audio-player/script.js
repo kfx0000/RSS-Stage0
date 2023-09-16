@@ -29,11 +29,13 @@ function audioPlayPause() {
 function audioPrev() {
     if(--playPointer < 0) playPointer = maxCnt;
     audioRestart();
+    audioPlayPause();
 }
 
 function audioNext() {
     if(++playPointer > maxCnt) playPointer = 0;
     audioRestart();
+    audioPlayPause();
 }
 
 function audioRewind() {
@@ -48,7 +50,6 @@ function audioRestart() {
     audio.src = './assets/'+playList[playPointer][2]+'.mp3';
     progressBar.value = 0;
     updatePlayer();
-    audioPlayPause();
 }
 
 function calcTime(val) {
@@ -87,10 +88,7 @@ document.addEventListener("keydown", (e) => {
     hideHelp();
 });
 document.addEventListener("click", (event) => {
-    if (!(event.target.classList.contains("player__help"))) {
-        hideHelp();
-    }
-    console.log(event.target.classList);
+    if (!(event.target.classList.contains("player__help"))) hideHelp();
 });
 
 audio.onloadedmetadata = function() {
