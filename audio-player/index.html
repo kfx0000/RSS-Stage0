@@ -30,13 +30,13 @@
             <div class="player__text player__text-curr_time"></div>
             <div class="player__text player__text-total_time"></div>
             <input type="range" value="0" min="0" max="100" class="player__progress" onchange="audioRewind()">
-            <img src="./assets/volume.png" alt="volume_button" class="player__button player__vol" onclick="showVol()"
+            <img src="./assets/volume.png" alt="volume_button" class="player__button player__vol" onclick="showModal('.vol')"
                 draggable="false">
             <div class="vol">
-                <input type="range" value="0" min="0" max="100" class="player__progress-vert" onchange="changeVol()"
+                <input type="range" value="100" min="0" max="100" class="player__progress-vert" onchange="changeVol()"
                     oninput="changeVol()">
             </div>
-            <img src="./assets/help.png" alt="help_button" class="player__button player__help" onclick="showHelp()"
+            <img src="./assets/help.png" alt="help_button" class="player__button player__help" onclick="showModal('.help')"
                 draggable="false">
             <div class="help">UP - Vol Up,<br>DOWN - Vol Down,<br>RIGHT - Next Song,<br>LEFT - Prev Song,<br>SPACE -
                 Play/Pause<br>'b' - Bonus Tracks
