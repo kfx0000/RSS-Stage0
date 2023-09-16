@@ -12,7 +12,8 @@ const playList = [
 ]
 let maxCnt = playList.length - 3;
 let playPointer = 0;
-
+let upd = setInterval(updateSlider, 1000);
+setInterval(updateTimer, 500);
 
 function audioPlayPause() {
     if(audio.paused) {
@@ -40,7 +41,7 @@ function audioNext() {
 
 function audioRewind() {
     audio.currentTime = progressBar.value;
-    updatePlayer();
+    updateTimer();
 }
 
 function audioRestart() {
@@ -49,7 +50,8 @@ function audioRestart() {
     document.documentElement.style.setProperty('--pict', 'url("./assets/'+playList[playPointer][2]+'.jpg")');
     audio.src = './assets/'+playList[playPointer][2]+'.mp3';
     progressBar.value = 0;
-    updatePlayer();
+    updateTimer();
+    updateSlider();
 }
 
 function calcTime(val) {
@@ -59,8 +61,10 @@ function calcTime(val) {
     return timeMin + ':' + timeSec;
 }
 
-function updatePlayer() {
+function updateTimer() {
     document.querySelector('.player__text-curr_time').textContent = calcTime(audio.currentTime);
+}
+function updateSlider() {
     progressBar.value = audio.currentTime;
 }
 
@@ -90,6 +94,12 @@ document.addEventListener("keydown", (e) => {
 document.addEventListener("click", (event) => {
     if (!(event.target.classList.contains("player__help"))) hideHelp();
 });
+document.addEventListener("mousedown", (event) => {
+    if(event.toElement.classList.contains("player__progress")) clearInterval(upd);
+});
+document.addEventListener("mouseup", (event) => {
+    if(event.toElement.classList.contains("player__progress")) upd = setInterval(updateSlider, 1000);
+});
 
 audio.onloadedmetadata = function() {
     progressBar.max = audio.duration;
@@ -98,4 +108,3 @@ audio.onloadedmetadata = function() {
 
 audio.onended = audioNext;
 window.onload = audioRestart();
-setInterval(updatePlayer, 1000);
