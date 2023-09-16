@@ -33,18 +33,13 @@ const playList = [
 let maxCnt = playList.length - 3;
 let playPointer = 0;
 let upd = setInterval(updateSlider, 1000);
-setInterval(updateTimer, 500);
+setInterval(updateTimer, 200);
 
 function audioPlayPause() {
-    if(audio.paused) {
-        audio.play();
-        document.querySelector(".player__button-play").src = "./assets/pause.png";
-        document.documentElement.style.setProperty('--scaler', 1.3);
-    } else {
-        audio.pause();
-        document.querySelector(".player__button-play").src = "./assets/play.png";
-        document.documentElement.style.setProperty('--scaler', 1);
-    }
+    if(audio.paused) audio.play(); else audio.pause();
+    let scl = audio.paused ? 1 : 1.3;
+    document.documentElement.style.setProperty('--scaler', scl);
+    document.querySelector(".player__button-play").src = audio.paused ? "./assets/play.png" : "./assets/pause.png";
 }
 
 function audioPrev() {
@@ -52,13 +47,11 @@ function audioPrev() {
     audioRestart();
     audioPlayPause();
 }
-
 function audioNext() {
     if(++playPointer > maxCnt) playPointer = 0;
     audioRestart();
     audioPlayPause();
 }
-
 function audioRewind() {
     audio.currentTime = progressBar.value;
     updateTimer();
@@ -80,41 +73,26 @@ function calcTime(val) {
     if (timeSec.length < 2) timeSec = '0' + timeSec;
     return timeMin + ':' + timeSec;
 }
-
 function updateTimer() {
     document.querySelector('.player__text-curr_time').textContent = calcTime(audio.currentTime);
 }
 function updateSlider() {
     progressBar.value = audio.currentTime;
 }
-
-function hideVol() {
-    document.querySelector('.vol').style.visibility = 'hidden';
-    document.querySelector('.vol').style.opacity = 0;
-}
-function showVol() {
-    volBar.value = audio.volume * 100;
-    if(document.querySelector('.vol').style.visibility === 'visible') {
-        hideVol();
-    } else {
-        document.querySelector('.vol').style.visibility = 'visible';
-        document.querySelector('.vol').style.opacity = 1;
-    }
-}
 function changeVol() {
     audio.volume = volBar.value / 100;
 }
 
-function hideHelp() {
-    document.querySelector('.help').style.visibility = 'hidden';
-    document.querySelector('.help').style.opacity = 0;
+function hideModal(className) {
+    document.querySelector(className).style.visibility = 'hidden';
+    document.querySelector(className).style.opacity = 0;
 }
-function showHelp() {
-    if(document.querySelector('.help').style.visibility === 'visible') {
-        hideHelp();
+function showModal(className) {
+    if(document.querySelector(className).style.visibility === 'visible') {
+        hideModal(className);
     } else {
-        document.querySelector('.help').style.visibility = 'visible';
-        document.querySelector('.help').style.opacity = 1;
+        document.querySelector(className).style.visibility = 'visible';
+        document.querySelector(className).style.opacity = 1;
     }
 }
 
@@ -131,13 +109,13 @@ document.addEventListener("keydown", (e) => {
         volBar.value = audio.volume * 100;
     }
     else if(e.keyCode === 66) maxCnt ^= 2;
-    hideHelp();
+    hideModal('.help');
 });
 document.addEventListener("click", (event) => {
-    if (!(event.target.classList.contains("player__help"))) hideHelp();
+    if (!(event.target.classList.contains("player__help"))) hideModal('.help');
     if (!(event.target.classList.contains("player__vol"))
         && !(event.target.classList.contains("player__progress-vert"))
-        && !(event.target.classList.contains("vol"))) hideVol();
+        && !(event.target.classList.contains("vol"))) hideModal('.vol');
 });
 document.addEventListener("mousedown", (event) => {
     if(event.toElement.classList.contains("player__progress")) clearInterval(upd);
