@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <audio src="" id="audio" preload="metadata"></audio>
+    <audio src="./assets/dontstartnow.mp3" id="audio" preload="metadata"></audio>
     <div class="backgnd"></div>
     <div class="empty"></div>
     <div class="container">
@@ -33,13 +33,14 @@
             <img src="./assets/volume.png" alt="volume_button" class="player__button player__vol" onclick="showVol()"
                 draggable="false">
             <div class="vol">
-                <input type="range" value="0" min="0" max="100" class="player__progress-vert"
-                    onchange="changeVol()" oninput="changeVol()">
+                <input type="range" value="0" min="0" max="100" class="player__progress-vert" onchange="changeVol()"
+                    oninput="changeVol()">
             </div>
             <img src="./assets/help.png" alt="help_button" class="player__button player__help" onclick="showHelp()"
                 draggable="false">
             <div class="help">UP - Vol Up,<br>DOWN - Vol Down,<br>RIGHT - Next Song,<br>LEFT - Prev Song,<br>SPACE -
-                Play/Pause<br>'b' - Bonus Tracks</div>
+                Play/Pause<br>'b' - Bonus Tracks
+            </div>
         </div>
     </div>
     <footer>
