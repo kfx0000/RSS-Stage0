@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="./assets/icon.png">
+    <link rel="icon" type="image/svg+xml" href="./assets/icon.svg">
     <script defer src="script.js"></script>
     <title>Image Gallery</title>
 </head>
@@ -21,6 +21,9 @@
                     <img src="./assets/Flickr.png" alt="Flickr Logo" class="header__img">
                     <h1 class="header__title">Flickr API</h1>
                 </div>
+                    <input type="text" class="header__search" id="search" placeholder="Search..." autocomplete="off" autofocus>
+                    <img src="./assets/cross.png" alt="Search" class="header__button"
+                        onclick="document.querySelector('#search').value = '';">
             </div>
         </header>
         <main>

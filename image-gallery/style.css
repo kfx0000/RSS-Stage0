@@ -65,6 +65,36 @@ main {
     align-self: center;
     margin-left: 16px;
 }
+.header__search {
+    min-width: 350px;
+    min-height: 35px;
+    margin-right: 50px;
+    border: 1px solid #DDD;
+    border-radius: 30px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    padding-right: 35px;
+}
+.header__search:focus {
+    box-shadow: 1px 1px 10px 1px #0060d9;
+}
+.header__button {
+    position: absolute;
+    width: 18px;
+    right: 62px;
+    transition: 0.6s ease-in-out;
+    cursor: pointer;
+}
+.header__button:hover {
+    transition: 0.6s ease-in-out;
+    transform: scale(1.2);
+}
+.header__button:active {
+    transition: 0s;
+    filter: invert(0.6);
+}
 
 
 footer {
