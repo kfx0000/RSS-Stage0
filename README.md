@@ -6,3 +6,5 @@ https://rolling-scopes-school.github.io/kfx0000-JSFEPRESCHOOL2023Q2/library/inde
 https://rolling-scopes-school.github.io/kfx0000-JSFEPRESCHOOL2023Q2/audio-player/index.html
 <br>
 https://rolling-scopes-school.github.io/kfx0000-JSFEPRESCHOOL2023Q2/image-gallery/index.html
+<br>
+https://rolling-scopes-school.github.io/kfx0000-JSFEPRESCHOOL2023Q2/random-game/index.html
