@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="./assets/dvd-disk-icon.svg">
+    <script defer src="script.js"></script>
+    <title>Audio Player</title>
+</head>
+
+<body>
+    <audio src="./assets/dontstartnow.mp3" id="audio" preload="metadata"></audio>
+    <div class="backgnd"></div>
+    <div class="empty"></div>
+    <div class="container">
+        <div class="player">
+            <img src="./assets/play.png" alt="play_pause_button" class="player__button player__button-play"
+                onclick="audioPlayPause()" draggable="false">
+            <img src="./assets/backward.png" alt="prev_button" class="player__button player__button-prev"
+                onclick="audioPrev()" draggable="false">
+            <img src="./assets/forward.png" alt="next_button" class="player__button player__button-next"
+                onclick="audioNext()" draggable="false">
+            <div class="player__text player__text-artist"></div>
+            <div class="player__text player__text-title"></div>
+            <div class="player__text player__text-curr_time"></div>
+            <div class="player__text player__text-total_time"></div>
+            <input type="range" value="0" min="0" max="100" class="player__progress" onchange="audioRewind()">
+            <img src="./assets/volume.png" alt="volume_button" class="player__button player__vol" onclick="showModal('.vol')"
+                draggable="false">
+            <div class="vol">
+                <input type="range" value="100" min="0" max="100" class="player__progress-vert" onchange="changeVol()"
+                    oninput="changeVol()">
+            </div>
+            <img src="./assets/help.png" alt="help_button" class="player__button player__help" onclick="showModal('.help')"
+                draggable="false">
+            <div class="help">UP - Vol Up,<br>DOWN - Vol Down,<br>RIGHT - Next Song,<br>LEFT - Prev Song,<br>SPACE -
+                Play/Pause<br>'<span class="bonus" onclick="maxCnt ^= 2;">b</span>' - Bonus Tracks
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer__text">2023</div>
+        <a href="https://rs.school/js-stage0/" target="_blank" draggable="false">
+            <img src="./assets/rs_school_js.svg" alt="RSS Logo" class="footer__rs-logo" draggable="false">
+        </a>
+        <a class="footer__text" href="https://github.com/kfx0000/" target="_blank" draggable="false">
+            Andrei Stupakou
+        </a>
+    </footer>
+</body>
+
+</html>
