@@ -96,6 +96,10 @@ function showModal(className) {
     }
 }
 
+function bonus() {
+    maxCnt ^= 2;
+}
+
 document.addEventListener("keydown", (e) => {
     if(e.keyCode === 32) audioPlayPause();
     else if(e.keyCode === 37) audioPrev();
