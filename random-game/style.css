@@ -1,0 +1,16 @@
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: Ubuntu, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+*:focus-visible {
+    outline: 0;
+}
