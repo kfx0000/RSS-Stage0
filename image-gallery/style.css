@@ -1,0 +1,25 @@
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: Comfortaa, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+*:focus-visible {
+    outline: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background-color: #FFF;
+    color:#000;
+}
