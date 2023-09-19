@@ -62,7 +62,6 @@ function audioRestart() {
     document.querySelector('.player__text-title').textContent = playList[playPointer][1];
     document.documentElement.style.setProperty('--pict', 'url("./assets/'+playList[playPointer][2]+'.jpg")');
     audio.src = './assets/'+playList[playPointer][2]+'.mp3';
-    progressBar.value = 0;
     updateTimer();
     updateSlider();
 }
