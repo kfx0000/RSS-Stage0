@@ -62,7 +62,6 @@ function audioRestart() {
     document.querySelector('.player__text-title').textContent = playList[playPointer][1];
     document.documentElement.style.setProperty('--pict', 'url("./assets/'+playList[playPointer][2]+'.jpg")');
     audio.src = './assets/'+playList[playPointer][2]+'.mp3';
-    progressBar.value = 0;
     updateTimer();
     updateSlider();
 }
@@ -94,10 +93,6 @@ function showModal(className) {
         document.querySelector(className).style.visibility = 'visible';
         document.querySelector(className).style.opacity = 1;
     }
-}
-
-function bonus() {
-    maxCnt ^= 2;
 }
 
 document.addEventListener("keydown", (e) => {
