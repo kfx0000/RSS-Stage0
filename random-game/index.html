@@ -15,6 +15,46 @@
 
 <body>
 
+    <div class="h-m">
+        <header>
+            <img src="./assets/bomb.png" alt="bomb_logo" class="header__img">
+            <h1 class="header__name">miner</h1>
+            <div class="header__butt-container" onclick="javascript:void(0)">
+                <img src="./assets/settings.png" alt=settings"" class="header__button" draggable="false">
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="side_panel">
+                    <div class="counter-wrapper flag_wrapper">
+                        Flags left:
+                        <div class="counter flag"></div>
+                    </div>
+                </div>
+                <div class="game-container">
+                    <div class="game-board" id="board">
+                    </div>
+                </div>
+                <div class="side_panel">
+                    <button class="game_button" onclick="newGame();">New Game</button>
+                    <div class="counter-wrapper timer_wrapper">
+                        Timer
+                        <div class="counter timer"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <div class="footer__text">2023</div>
+        <a href="https://rs.school/js-stage0/" target="_blank" draggable="false">
+            <img src="./assets/rs_school_js.svg" alt="RSS Logo" class="footer__rs-logo" draggable="false">
+        </a>
+        <a class="footer__text" href="https://github.com/kfx0000/" target="_blank" draggable="false">
+            Andrei Stupakou
+        </a>
+    </footer>
+
 </body>
 
 </html>
