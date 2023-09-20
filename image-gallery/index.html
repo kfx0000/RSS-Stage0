@@ -18,14 +18,17 @@
         <header>
             <div class="header__container">
                 <div class="header__name">
-                    <img src="./assets/Flickr.png" alt="Flickr Logo" class="header__img">
-                    <h1 class="header__title">Flickr API</h1>
+                    <img src="./assets/icon.svg" alt="Logo" class="header__img">
+                    <h1 class="header__title">Image Gallery</h1>
                 </div>
-                    <input type="text" class="header__search" id="search" placeholder="Search..." autocomplete="off" autofocus>
+                <div class="header__input">
+                    <input type="text" class="header__search" id="search" placeholder="Search..." autocomplete="off"
+                        autofocus>
                     <img src="./assets/cross.png" alt="Search" class="header__button cross"
                         onclick="document.querySelector('#search').value = '';">
                     <img src="./assets/magnifying-glass.png" alt="Search" class="header__button glass"
                         onclick="doSearch();">
+                </div>
             </div>
         </header>
         <main>
@@ -42,4 +45,5 @@
         </a>
     </footer>
 </body>
+
 </html>
