@@ -29,7 +29,8 @@ function doSearch() {
 }
 
 document.addEventListener("keydown", (e) => {
-    if(e.keyCode === 13) doSearch();
+    if(e.keyCode === 13) doSearch(); else
+    if(e.keyCode === 27) document.querySelector('#search').value = '';
 });
 
 window.onload = () => getData("Autumn");
