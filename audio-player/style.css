@@ -219,6 +219,11 @@ body {
     color: #720;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.6s ease-in-out;
+}
+.bonus:hover {
+    color: #d11;
+    transition: 0.6s ease-in-out;
 }
 .empty {
     width: 100%;
