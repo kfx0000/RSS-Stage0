@@ -9,7 +9,7 @@ const url_trail = "&per_page=30&orientation=landscape&client_id=SouHY7Uul-OxoMl3
 async function getData(tags) {
     const res = await fetch(url_head + tags + url_trail);
     const data = await res.json();
-    for(let i = 0; i < 24; i++) {
+    for(let i = 0; i < (data.results.length < 24 ? data.results.length : 24); i++) {
         placeImg(data.results[i].urls.small, data.results[i].urls.full, tags);
     }
 }
