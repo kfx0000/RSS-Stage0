@@ -63,6 +63,33 @@ function menuChiose() {
     });
 }
 
+function showCongrat(txt, colr) {
+    if(document.querySelector(".modal").classList.contains("modal_visible") ||
+        document.querySelector(".modal_text").classList.contains("modal_text_visible")) {
+        document.querySelector(".modal").classList.add("modal_block");
+        setTimeout(() => {
+            document.querySelector(".modal").classList.remove("modal_visible");
+            document.querySelector(".modal_text").classList.remove("modal_text_visible");
+        }, 201);
+        setTimeout(() => {
+            document.querySelector(".modal").classList.remove("modal_block");
+        }, 1001);
+    } else {
+        document.querySelector(".modal_text").style.color = colr;
+        document.querySelector(".modal_text").textContent = txt;
+        document.querySelector(".modal_text").classList.add("modal_text_visible");
+        document.querySelector(".modal").classList.add("modal_visible");
+    }
+}
+
+function showMenu() {
+    if(document.querySelector(".menu").classList.contains("menu_show")) {
+        document.querySelector(".menu").classList.remove("menu_show");
+    } else {
+        document.querySelector(".menu").classList.add("menu_show");
+    }
+}
+
 function updateTimer() {
     ++currTime;
     document.querySelector(".timer").textContent = getTime(currTime);
