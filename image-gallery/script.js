@@ -7,8 +7,10 @@ const url_trail = "&tag_mode=all&orientation=landscape&extras=url_m&format=json&
 async function getData(tags) {
     const res = await fetch(url_head + tags + url_trail);
     const data = await res.json();
-    for(let i = 0; i < 36; i++)
+    for(let i = 0; i < 36; i++) {
         placeImg(data.photos.photo[i].url_m, tags);
+        console.log(data.photos.photo[i].url_m);
+    }
 }
 
 function placeImg(img_url, tags) {
@@ -19,11 +21,15 @@ function placeImg(img_url, tags) {
     imgContainer.append(img);
 }
 
-document.addEventListener("keydown", (e) => {
-    if(e.keyCode === 13) {
+function doSearch() {
+    if(imgSearch.value.trim()) {
         document.querySelectorAll(".main__img").forEach((x) => x.remove());
-        if(imgSearch.value.trim()) getData(imgSearch.value.trim());
-    };
+        getData(imgSearch.value.trim());
+    }
+}
+
+document.addEventListener("keydown", (e) => {
+    if(e.keyCode === 13) doSearch();
 });
 
 window.onload = () => getData("Autumn");
