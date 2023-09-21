@@ -98,16 +98,36 @@ main {
     transition: 0s;
     filter: invert(0.6);
 }
-.cross {
-    width: 18px;
-    top: 10px;
-    right: 62px;
-}
 .glass {
     display: none;
     width: 18px;
     top: 10px;
     right: 92px;
+}
+.cross {
+    width: 18px;
+    top: 10px;
+    right: 62px;
+}
+.header__hint {
+    position: absolute;
+    left: 100px;
+    top: 30px;
+    padding: 6px;
+    font-size: 10px;
+    border: 2px solid #007;
+    border-radius: 20px;
+    background-color: #30a0f9;
+    color: #FFF;
+    visibility: hidden;
+    box-shadow: 1px 1px 10px 1px #007;
+    opacity: 0;
+    transition: 0.6s ease-in-out;
+}
+.cross:hover ~ .header__hint {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.6s ease-in-out;
 }
 
 .main__container {
@@ -172,7 +192,11 @@ footer {
     .cross {
         right: 12px;
     }
-    .glass {
+    .cross:hover ~ .header__hint {
+        visibility: hidden;
+        opacity: 0;
+    }
+       .glass {
         display: block;
         right: 42px;
     }
