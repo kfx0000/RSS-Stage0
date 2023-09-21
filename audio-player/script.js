@@ -54,7 +54,6 @@ function audioNext() {
     audioPlayPause();
 }
 function audioRewind() {
-    // audio.currentTime = progressBar.value;
     audio.currentTime = progressBar.value * songPercent;
     updateTimer();
 }
@@ -65,7 +64,6 @@ function audioRestart() {
     document.documentElement.style.setProperty('--pict', 'url("./assets/'+playList[playPointer][2]+'.jpg")');
     audio.src = './assets/'+playList[playPointer][2]+'.mp3';
     updateTimer();
-    // updateSlider();
 }
 
 function calcTime(val) {
@@ -78,7 +76,6 @@ function updateTimer() {
     document.querySelector('.player__text-curr_time').textContent = calcTime(audio.currentTime);
 }
 function updateSlider() {
-    // progressBar.value = audio.currentTime;
     progressBar.value = audio.currentTime / songPercent;
 }
 function changeVol() {
@@ -127,7 +124,6 @@ document.addEventListener("mouseup", (event) => {
 });
 
 audio.onloadedmetadata = function() {
-    // progressBar.max = audio.duration;
     songPercent = audio.duration / 100;
     document.querySelector('.player__text-total_time').textContent = calcTime(audio.duration);
 }
