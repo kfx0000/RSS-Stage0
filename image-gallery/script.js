@@ -1,10 +1,8 @@
 const imgContainer = document.querySelector(".main__container");
 const imgSearch = document.querySelector(".header__search");
 
-// const url_head = "https://www.flickr.com/services/rest/?method=flickr.photos.search&per_page=37&api_key=0f15ff623f1198a1f7f52550f8c36057&tags=";
-// const url_trail = "&tag_mode=all&orientation=landscape&extras=url_m&format=json&nojsoncallback=1";
 const url_head = "https://api.unsplash.com/search/photos?query=";
-const url_trail = "&per_page=30&orientation=landscape&client_id=SouHY7Uul-OxoMl3LL3c0NkxUtjIrKwf3tsGk1JaiVo";
+const url_trail = "&per_page=30&orientation=landscape&client_id=hZjJHj01nnqfuSx1eMF0SqX9o6WsMYqtmQKwkLGIQns";
 
 async function getData(tags) {
     const res = await fetch(url_head + tags + url_trail);
@@ -36,9 +34,14 @@ function doSearch() {
     }
 }
 
+function doClear() {
+    document.querySelector('#search').value = '';
+    imgSearch.focus();
+}
+
 document.addEventListener("keydown", (e) => {
     if(e.keyCode === 13) doSearch(); else
-    if(e.keyCode === 27) document.querySelector('#search').value = '';
+    if(e.keyCode === 27) doClear();
 });
 
 window.onload = () => getData("Autumn");
