@@ -5,7 +5,7 @@ const sett = [
 ];
 
 let numCells, numBombs, flags, timeLimit, timer, currTime, brd, lev;
-let inGame = false;
+let inGame = isWin = false;
 let firstClick = true;
 let boardArray = new Array(sett[2].cells + 1);
 
@@ -13,11 +13,6 @@ newGame();
 
 
 function newGame() {
-    // let i=4;
-    // do {
-    //     console.log(i++);
-    //     if(i === 10) i = 0;
-    // } while(i!=4);
     menuChiose();
     if(document.getElementById("let_win").checked) {
         numBombs = flags = 1;
@@ -56,6 +51,7 @@ function newGame() {
     document.querySelector(".flag").textContent = flags;
     inGame = true;
     firstClick = true;
+    isWin = false;
     currTime = 0;
     if(timer) clearInterval(timer);
     document.querySelector(".timer").textContent = "00:00.0";
@@ -78,7 +74,7 @@ function menuChiose() {
     });
 }
 
-function showCongrat(txt, colr, isWin) {
+function showCongrat(txt, colr) {
     if(document.querySelector(".modal").classList.contains("modal_visible") ||
         document.querySelector(".modal__text").classList.contains("modal__text_visible")) {
         document.querySelector(".modal").classList.add("modal_block");
@@ -91,6 +87,7 @@ function showCongrat(txt, colr, isWin) {
         setTimeout(() => {
             document.querySelector(".modal").classList.remove("modal_block");
         }, 1001);
+        if(isWin) writeScore();
     } else {
         document.querySelector(".modal__text").style.color = colr;
         document.querySelector(".modal__text").textContent = txt;
@@ -163,7 +160,7 @@ function openBombs(cell, msg, col) {
     inGame = false;
     clearInterval(timer);
     document.getElementById("sound_lose").play();
-    showCongrat(msg, col, false);
+    showCongrat(msg, col);
 }
 
 function openAll() {
@@ -171,7 +168,28 @@ function openAll() {
     inGame = false;
     clearInterval(timer);
     document.getElementById("sound_win").play();
-    showCongrat("You WIN!!!", "#e11", true);
+    isWin = true;
+    showCongrat("You WIN!!!", "#e11");
+}
+
+function writeScore() {
+    let arr = JSON.parse(localStorage.getItem("RSS_Miner"));
+    let idx =+brd*3 + +lev;
+    let name = document.getElementById("modal__input").value.trim();
+    if(name.length === 0) name = "noname";
+    if(arr[idx][9].name.length !== 0) {
+        arr[idx][9].name = name;
+        arr[idx][9].time = currTime;
+    } else {
+        for(let i = 0; i < 10; i++)
+            if(arr[idx][i].name.length === 0) {
+                arr[idx][i].name = name;
+                arr[idx][i].time = currTime;
+                break;
+            }
+    }
+    //sort
+    localStorage.setItem("RSS_Miner", JSON.stringify(arr));
 }
 
 function countTile(cell) {
