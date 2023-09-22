@@ -174,6 +174,7 @@ function openAll() {
 
 function writeScore() {
     let arr = JSON.parse(localStorage.getItem("RSS_Miner"));
+    let max = 10;
     let idx =+brd*3 + +lev;
     let name = document.getElementById("modal__input").value.trim();
     if(name.length === 0) name = "noname";
@@ -185,10 +186,25 @@ function writeScore() {
             if(arr[idx][i].name.length === 0) {
                 arr[idx][i].name = name;
                 arr[idx][i].time = currTime;
+                max = i + 1;
                 break;
             }
     }
-    //sort
+    for(let i = 1; i < max; i++) {
+        let ex = true;
+        for(let j = 0; j < max - i; j++) {
+            if(arr[idx][j].time > arr[idx][j+1].time) {
+                let tmpTime = arr[idx][j].time;
+                let tmpName = arr[idx][j].name;
+                arr[idx][j].time = arr[idx][j+1].time;
+                arr[idx][j].name = arr[idx][j+1].name;
+                arr[idx][j+1].time = tmpTime;
+                arr[idx][j+1].name = tmpName;
+                ex = false;
+            }
+        }
+        if(ex) break;
+    }
     localStorage.setItem("RSS_Miner", JSON.stringify(arr));
 }
 
