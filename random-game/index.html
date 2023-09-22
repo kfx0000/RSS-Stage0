@@ -14,8 +14,19 @@
 </head>
 
 <body>
+    <audio src="./assets/lose.mp3" id="sound_lose"></audio>
+    <audio src="./assets/win.mp3" id="sound_win"></audio>
+
     <div class="modal" onclick="showCongrat('');">
-        <div class="modal_text"></div>
+        <div class="modal__text"></div>
+        <div class="modal__msg">Your Time: <span class="modal__msg-time"></span></div>
+        <form action="javascript:void(0)" class="modal__form">
+            <label for="modal__input" class="modal__label">
+                Enter your name:
+                <input type="text" id="modal__input" maxlength="20">
+            </label>
+            <button type="submit" class="modal__button" onclick="javascript:void(0)">OK</button>
+        </form>
     </div>
     <div class="menu">
         <div class="menu__caption">Settings</div>
@@ -39,19 +50,22 @@
         <div class="menu__selector">
             <div class="menu__selector-capt">Choose level</div>
             <div class="menu__radio-wrapper">
-                <label for="level_easy" class="menu__label rl-0">
+                <label for="level_easy" class="menu__label rl-0 level_rb">
                     <input type="radio" class="menu__radio rl-0" name="level_rb" id="level_easy">
                     Easy
                 </label>
-                <label for="level_normal" class="menu__label rl-1">
+                <label for="level_normal" class="menu__label rl-1 level_rb">
                     <input type="radio" class="menu__radio rl-1" name="level_rb" id="level_normal" checked>
                     Normal
                 </label>
-                <label for="level_hard" class="menu__label rl-2">
+                <label for="level_hard" class="menu__label rl-2 level_rb">
                     <input type="radio" class="menu__radio rl-2" name="level_rb" id="level_hard">
                     Hard
                 </label>
             </div>
+            <label for="let_win" class="menu__selector-capt menu__label menu__checkbox">
+                <input type="checkbox" class="menu__checkbox" id="let_win">Let me win!!!
+            </label>
         </div>
         <div class="menu__score">Score Table</div>
     </div>

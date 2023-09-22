@@ -11,8 +11,23 @@ let boardArray = new Array(sett[2].cells + 1);
 
 newGame();
 
+
 function newGame() {
+    // let i=4;
+    // do {
+    //     console.log(i++);
+    //     if(i === 10) i = 0;
+    // } while(i!=4);
     menuChiose();
+    if(document.getElementById("let_win").checked) {
+        numBombs = flags = 1;
+        timeLimit = 1000000;
+        document.getElementsByName('level_rb').forEach((x) => x.setAttribute("disabled","disabled"));
+        document.querySelectorAll(".level_rb").forEach((x) => x.style.setProperty("color", "#666"));
+    } else {
+        document.getElementsByName('level_rb').forEach((x) => x.removeAttribute("disabled"));
+        document.querySelectorAll(".level_rb").forEach((x) => x.style.removeProperty("color"));
+    }
     if(!localStorage.getItem("RSS_Miner")) {
         let arr = new Array(9);
         for(let i = 0; i < 9; i++) arr[i] = new Array(10).fill({name:'', time:0});
@@ -63,21 +78,30 @@ function menuChiose() {
     });
 }
 
-function showCongrat(txt, colr) {
+function showCongrat(txt, colr, isWin) {
     if(document.querySelector(".modal").classList.contains("modal_visible") ||
-        document.querySelector(".modal_text").classList.contains("modal_text_visible")) {
+        document.querySelector(".modal__text").classList.contains("modal__text_visible")) {
         document.querySelector(".modal").classList.add("modal_block");
         setTimeout(() => {
             document.querySelector(".modal").classList.remove("modal_visible");
-            document.querySelector(".modal_text").classList.remove("modal_text_visible");
+            document.querySelector(".modal__text").classList.remove("modal__text_visible");
+            document.querySelector(".modal__msg").classList.remove("modal__msg_visible");
+            document.querySelector(".modal__form").classList.remove("modal__form_visible");
         }, 201);
         setTimeout(() => {
             document.querySelector(".modal").classList.remove("modal_block");
         }, 1001);
     } else {
-        document.querySelector(".modal_text").style.color = colr;
-        document.querySelector(".modal_text").textContent = txt;
-        document.querySelector(".modal_text").classList.add("modal_text_visible");
+        document.querySelector(".modal__text").style.color = colr;
+        document.querySelector(".modal__text").textContent = txt;
+        document.querySelector(".modal__text").classList.add("modal__text_visible");
+        if(isWin) {
+            document.getElementById("modal__input").value = "";
+            document.querySelector('.modal__msg-time').textContent = getTime(currTime);
+            document.querySelector(".modal__msg").classList.add("modal__msg_visible");
+            document.querySelector(".modal__form").classList.add("modal__form_visible");
+            document.getElementById("modal__input").focus();
+        }
         document.querySelector(".modal").classList.add("modal_visible");
     }
 }
@@ -138,14 +162,16 @@ function openBombs(cell, msg, col) {
     }
     inGame = false;
     clearInterval(timer);
-    showCongrat(msg, col);
+    document.getElementById("sound_lose").play();
+    showCongrat(msg, col, false);
 }
 
 function openAll() {
     for(let i = 1; i <= numCells; i++) openTile(`tile-${i}`);
     inGame = false;
     clearInterval(timer);
-    showCongrat("You WIN!!!", "#e11");
+    document.getElementById("sound_win").play();
+    showCongrat("You WIN!!!", "#e11", true);
 }
 
 function countTile(cell) {
@@ -212,7 +238,7 @@ document.addEventListener("click", (event) => {
         !event.target.classList.contains("menu__selector") &&
         !event.target.classList.contains("menu__selector-capt"))
             document.querySelector(".menu").classList.remove("menu_show");
-    if(event.target.classList.contains("menu__radio")) newGame();
+    if(event.target.classList.contains("menu__radio") || event.target.classList.contains("menu__checkbox")) newGame();
     if(inGame) if(event.target.classList.contains("tile")) openTile(event.target.classList[1]);
     // console.log(event.target.classList);
 });
