@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Victor+Mono&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="./assets/icon.png">
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
@@ -14,7 +15,137 @@
 </head>
 
 <body>
+    <audio src="./assets/lose.mp3" id="sound_lose"></audio>
+    <audio src="./assets/win.mp3" id="sound_win"></audio>
 
+    <div class="modal" onclick="showCongrat('');">
+        <div class="modal__text"></div>
+        <div class="modal__msg">Your Time: <span class="modal__msg-time"></span></div>
+        <form action="javascript:void(0)" class="modal__form">
+            <label for="modal__input" class="modal__label">
+                Enter your name:
+                <input type="text" id="modal__input" class="modal__input" maxlength="20" autocomplete="off">
+            </label>
+            <button type="submit" class="modal__button" onclick="javascript:void(0)">OK</button>
+        </form>
+    </div>
+    <div class="modal score" onclick="hideScore();">
+        <div class="score__table">
+            <div class="score__header">
+                <div class="score__head">BEST PLAYERS</div>
+                <div class="score__subhead">
+                    Board Size - <span class="score__bs"></span><br>Level - <span class="score__lv"></span>
+                </div>
+            </div>
+            <div class="score__thead">
+                <span class="score__h-rank">RANK</span><span class="score__h-name">NAME</span><span
+                    class="score__h-res">RESULT</span><span class="score__h-date">DATE</span>
+            </div>
+            <ul class="score__body">
+                <li class="score__li">
+                    <span class="score__t-rank">1</span><span class="score__t-name">Olololo Abudnfrominy</span><span
+                        class="score__t-res">3:04.12</span><span class="score__t-date">23/10/2023 09:12</span>
+                </li>
+                <li class="score__li">
+                    <span class="score__t-rank">2</span><span class="score__t-name">Olololo Abudnfrominy</span><span
+                        class="score__t-res">3:04.12</span><span class="score__t-date">23/10/2023 09:12</span>
+                </li>
+                <li class="score__li">
+                    <span class="score__t-rank">3</span><span class="score__t-name">Olololo Abudnfrominy</span><span
+                        class="score__t-res">3:04.12</span><span class="score__t-date">23/10/2023 09:12</span>
+                </li>
+                <li class="score__li">
+                    <span class="score__t-rank">4</span><span class="score__t-name">Olololo Abudnfrominy</span><span
+                        class="score__t-res">3:04.12</span><span class="score__t-date">23/10/2023 09:12</span>
+                </li>
+                <li class="score__li">
+                    <span class="score__t-rank">5</span><span class="score__t-name">Olololo Abudnfrominy</span><span
+                        class="score__t-res">3:04.12</span><span class="score__t-date">23/10/2023 09:12</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="menu__caption">Settings</div>
+        <div class="menu__selector">
+            <div class="menu__selector-capt">Choose board size</div>
+            <div class="menu__radio-wrapper">
+                <label for="board_small" class="menu__label rb-0">
+                    <input type="radio" class="menu__radio rb-0" name="board_rb" id="board_small" checked>
+                    Small
+                </label>
+                <label for="board_medium" class="menu__label rb-1">
+                    <input type="radio" class="menu__radio rb-1" name="board_rb" id="board_medium">
+                    Medium
+                </label>
+                <label for="board_large" class="menu__label rb-2">
+                    <input type="radio" class="menu__radio rb-2" name="board_rb" id="board_large">
+                    Large
+                </label>
+            </div>
+        </div>
+        <div class="menu__selector">
+            <div class="menu__selector-capt">Choose level</div>
+            <div class="menu__radio-wrapper">
+                <label for="level_easy" class="menu__label rl-0 level_rb">
+                    <input type="radio" class="menu__radio rl-0" name="level_rb" id="level_easy">
+                    Easy
+                </label>
+                <label for="level_normal" class="menu__label rl-1 level_rb">
+                    <input type="radio" class="menu__radio rl-1" name="level_rb" id="level_normal" checked>
+                    Normal
+                </label>
+                <label for="level_hard" class="menu__label rl-2 level_rb">
+                    <input type="radio" class="menu__radio rl-2" name="level_rb" id="level_hard">
+                    Hard
+                </label>
+            </div>
+            <label for="let_win" class="menu__selector-capt menu__label menu__checkbox">
+                <input type="checkbox" class="menu__checkbox" id="let_win">Let me win!!!
+            </label>
+        </div>
+        <div class="menu__score" onclick="showScore();">Score Table</div>
+    </div>
+
+    <div class="h-m">
+        <header>
+            <img src="./assets/bomb.png" alt="bomb_logo" class="header__img">
+            <h1 class="header__name">miner</h1>
+            <div class="header__butt-container" onclick="showMenu();">
+                <img src="./assets/settings.png" alt="settings" class="header__button" draggable="false">
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="side_panel">
+                    <div class="counter-wrapper flag_wrapper">
+                        Flags left:
+                        <div class="counter flag"></div>
+                    </div>
+                </div>
+                <div class="game-container">
+                    <div class="game-board" id="board">
+                    </div>
+                </div>
+                <div class="side_panel">
+                    <button class="game_button" onclick="newGame();">New Game</button>
+                    <div class="counter-wrapper timer_wrapper">
+                        Timer
+                        <div class="counter timer"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <div class="footer__text">2023</div>
+        <a href="https://rs.school/js-stage0/" target="_blank" draggable="false">
+            <img src="./assets/rs_school_js.svg" alt="RSS Logo" class="footer__rs-logo" draggable="false">
+        </a>
+        <a class="footer__text" href="https://github.com/kfx0000/" target="_blank" draggable="false">
+            Andrei Stupakou
+        </a>
+    </footer>
 </body>
 
 </html>
