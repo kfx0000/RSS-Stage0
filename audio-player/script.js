@@ -129,5 +129,4 @@ audio.onloadedmetadata = function() {
 }
 
 audio.onended = audioNext;
-
 window.onload = audioRestart();
