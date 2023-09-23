@@ -324,6 +324,7 @@ document.addEventListener("click", (event) => {
             document.querySelector(".menu").classList.remove("menu_show");
     if(event.target.classList.contains("menu__radio") || event.target.classList.contains("menu__checkbox")) newGame();
     if(inGame) if(event.target.classList.contains("tile")) openTile(event.target.classList[1]);
+    // console.log(event.target.classList);
 });
 window.addEventListener("contextmenu", (event) => {
     event.preventDefault();
