@@ -25,7 +25,7 @@ function newGame() {
     }
     if(!localStorage.getItem("RSS_Miner")) {
         let arr = new Array(9);
-        for(let i = 0; i < 9; i++) arr[i] = new Array(10).fill({name:'', time:0});
+        for(let i = 0; i < 9; i++) arr[i] = new Array(10).fill({name:'', time:0, date: ''});
         localStorage.setItem("RSS_Miner", JSON.stringify(arr));
     }
     const elements = document.getElementsByClassName("tile");
@@ -72,6 +72,44 @@ function menuChiose() {
             timeLimit = sett[brd].time[lev];
         }
     });
+}
+
+function showScore() {
+    let arr = JSON.parse(localStorage.getItem("RSS_Miner"));
+    document.querySelector(".score__bs").textContent = document.querySelector(`label.rb-${brd}`).textContent;
+    document.querySelector(".score__lv").textContent = document.querySelector(`label.rl-${lev}`).textContent;
+    document.querySelectorAll(".score__li").forEach((x) => x.remove());
+    let ul = document.querySelector(".score__body");
+    let idx =+brd*3 + +lev;
+    for(let i = 0; i < 10; i++) {
+        if(arr[idx][i].name.length === 0) break;
+        else {
+            let rank = document.createElement("span");
+            rank.classList.add("score__t-rank");
+            rank.textContent = i + 1;
+            let name = document.createElement("span");
+            name.classList.add("score__t-name");
+            name.textContent = arr[idx][i].name;
+            let res = document.createElement("span");
+            res.classList.add("score__t-res");
+            res.textContent = getTime(arr[idx][i].time);
+            let date = document.createElement("span");
+            date.classList.add("score__t-date");
+            date.textContent = arr[idx][i].date;
+            let li = document.createElement("li");
+            li.classList.add("score__li");
+            li.append(rank);
+            li.append(name);
+            li.append(res);
+            li.append(date);
+            ul.append(li);
+        }
+    }
+    document.querySelector(".score").classList.add("score-visible");
+}
+
+function hideScore() {
+    document.querySelector(".score").classList.remove("score-visible");
 }
 
 function showCongrat(txt, colr) {
@@ -178,15 +216,24 @@ function writeScore() {
     let idx =+brd*3 + +lev;
     let name = document.getElementById("modal__input").value.trim();
     if(name.length === 0) name = "noname";
+    let now = new Date();
     if(arr[idx][9].name.length !== 0) {
         arr[idx][9].name = name;
         arr[idx][9].time = currTime;
-    } else {
+        arr[idx][9].date = now.getDate().toString().padStart(2, "0") + "/"
+        + (now.getMonth()+1).toString().padStart(2, "0") + "/" + now.getFullYear() + " "
+        + now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0") + ":"
+        + now.getSeconds().toString().padStart(2, "0");
+} else {
         for(let i = 0; i < 10; i++)
             if(arr[idx][i].name.length === 0) {
                 arr[idx][i].name = name;
                 arr[idx][i].time = currTime;
-                max = i + 1;
+                arr[idx][i].date = now.getDate().toString().padStart(2, "0") + "/"
+                + (now.getMonth()+1).toString().padStart(2, "0") + "/" + now.getFullYear() + " "
+                + now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0") + ":"
+                + now.getSeconds().toString().padStart(2, "0");
+                    max = i + 1;
                 break;
             }
     }
@@ -196,10 +243,13 @@ function writeScore() {
             if(arr[idx][j].time > arr[idx][j+1].time) {
                 let tmpTime = arr[idx][j].time;
                 let tmpName = arr[idx][j].name;
+                let tmpDate = arr[idx][j].date;
                 arr[idx][j].time = arr[idx][j+1].time;
                 arr[idx][j].name = arr[idx][j+1].name;
+                arr[idx][j].date = arr[idx][j+1].date;
                 arr[idx][j+1].time = tmpTime;
                 arr[idx][j+1].name = tmpName;
+                arr[idx][j+1].date = tmpDate;
                 ex = false;
             }
         }

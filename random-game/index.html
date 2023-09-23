@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Victor+Mono&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="./assets/icon.png">
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
@@ -23,10 +24,46 @@
         <form action="javascript:void(0)" class="modal__form">
             <label for="modal__input" class="modal__label">
                 Enter your name:
-                <input type="text" id="modal__input" maxlength="20" autocomplete="off">
+                <input type="text" id="modal__input" class="modal__input" maxlength="20" autocomplete="off">
             </label>
             <button type="submit" class="modal__button" onclick="javascript:void(0)">OK</button>
         </form>
+    </div>
+    <div class="modal score" onclick="hideScore();">
+        <div class="score__table">
+            <div class="score__header">
+                <div class="score__head">BEST PLAYERS</div>
+                <div class="score__subhead">
+                    Board Size - <span class="score__bs"></span><br>Level - <span class="score__lv"></span>
+                </div>
+            </div>
+            <div class="score__thead">
+                <span class="score__h-rank">RANK</span><span class="score__h-name">NAME</span><span
+                    class="score__h-res">RESULT</span><span class="score__h-date">DATE</span>
+            </div>
+            <ul class="score__body">
+                <li class="score__li">
+                    <span class="score__t-rank">1</span><span class="score__t-name">Olololo Abudnfrominy</span><span
+                        class="score__t-res">3:04.12</span><span class="score__t-date">23/10/2023 09:12</span>
+                </li>
+                <li class="score__li">
+                    <span class="score__t-rank">2</span><span class="score__t-name">Olololo Abudnfrominy</span><span
+                        class="score__t-res">3:04.12</span><span class="score__t-date">23/10/2023 09:12</span>
+                </li>
+                <li class="score__li">
+                    <span class="score__t-rank">3</span><span class="score__t-name">Olololo Abudnfrominy</span><span
+                        class="score__t-res">3:04.12</span><span class="score__t-date">23/10/2023 09:12</span>
+                </li>
+                <li class="score__li">
+                    <span class="score__t-rank">4</span><span class="score__t-name">Olololo Abudnfrominy</span><span
+                        class="score__t-res">3:04.12</span><span class="score__t-date">23/10/2023 09:12</span>
+                </li>
+                <li class="score__li">
+                    <span class="score__t-rank">5</span><span class="score__t-name">Olololo Abudnfrominy</span><span
+                        class="score__t-res">3:04.12</span><span class="score__t-date">23/10/2023 09:12</span>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="menu">
         <div class="menu__caption">Settings</div>
@@ -67,7 +104,7 @@
                 <input type="checkbox" class="menu__checkbox" id="let_win">Let me win!!!
             </label>
         </div>
-        <div class="menu__score">Score Table</div>
+        <div class="menu__score" onclick="showScore();">Score Table</div>
     </div>
 
     <div class="h-m">
@@ -75,7 +112,7 @@
             <img src="./assets/bomb.png" alt="bomb_logo" class="header__img">
             <h1 class="header__name">miner</h1>
             <div class="header__butt-container" onclick="showMenu();">
-                <img src="./assets/settings.png" alt=settings"" class="header__button" draggable="false">
+                <img src="./assets/settings.png" alt="settings" class="header__button" draggable="false">
             </div>
         </header>
         <main>
