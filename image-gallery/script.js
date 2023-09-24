@@ -41,7 +41,10 @@ function doClear() {
 
 document.addEventListener("keydown", (e) => {
     if(e.keyCode === 13) doSearch(); else
-    if(e.keyCode === 27) doClear();
+    if(e.keyCode === 27) {
+        window.scrollTo(0, 0);
+        doClear();
+    }
 });
 
 window.onload = () => getData("Autumn");
