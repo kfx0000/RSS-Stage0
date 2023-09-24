@@ -33,7 +33,7 @@ const playList = [
 let maxCnt = playList.length - 3;
 let playPointer = 0;
 let songPercent = 0;
-let upd = setInterval(updateSlider, 1000);
+let upd = setInterval(updateSlider, 500);
 setInterval(updateTimer, 200);
 
 function audioPlayPause() {
@@ -63,6 +63,7 @@ function audioRestart() {
     document.querySelector('.player__text-title').textContent = playList[playPointer][1];
     document.documentElement.style.setProperty('--pict', 'url("./assets/'+playList[playPointer][2]+'.jpg")');
     audio.src = './assets/'+playList[playPointer][2]+'.mp3';
+    progressBar.max = 100;
     updateTimer();
 }
 
@@ -120,7 +121,7 @@ document.addEventListener("mousedown", (event) => {
     if(event.toElement.classList.contains("player__progress")) clearInterval(upd);
 });
 document.addEventListener("mouseup", (event) => {
-    if(event.toElement.classList.contains("player__progress")) upd = setInterval(updateSlider, 1000);
+    if(event.toElement.classList.contains("player__progress")) upd = setInterval(updateSlider, 500);
 });
 
 audio.onloadedmetadata = function() {
