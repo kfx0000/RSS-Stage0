@@ -243,6 +243,79 @@ h1 {
     filter:
     drop-shadow(8px 8px 8px #444);
 }
+.tile {
+    width: calc(var(--size) * 10px);
+    height: calc(var(--size) * 10px);
+    background-color: #bbb;
+    border: 1px solid #888;
+    box-shadow:
+        inset calc(var(--size) * 1px) 0 0 0 #eee,
+        inset 0 calc(var(--size) * 1px) 0 0 #eee,
+        inset calc(var(--size) * -1px) 0 0 0 #999,
+        inset 0 calc(var(--size) * -1px) 0 0 #999;
+    cursor: pointer;
+}
+.tile:hover {
+    background-color: #ccc;
+}
+.tile_open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: auto;
+    background-color: #ccc;
+    box-shadow: none;
+    font-weight: 700;
+    font-size: calc(var(--size) * 6px);
+}
+.tile_flag {
+    background-image: url("./assets/flag.png");
+    background-position: center;
+    background-size: 15px;
+    background-repeat: no-repeat;
+}
+.tile_cross {
+    background-image: url("./assets/cross.png");
+    background-position: center;
+    background-size: 40px;
+    background-repeat: no-repeat;
+}
+.number_1 {
+    color: #22f;
+}
+.number_2 {
+    color: #1a2;
+}
+.number_3 {
+    color: #e21;
+}
+.number_4 {
+    color: #919;
+}
+.number_5 {
+    color: #744;
+}
+.number_6 {
+    color: #0aa;
+}
+.number_7 {
+    color: #222;
+}
+.number_8 {
+    color: #fd0;
+}
+.bomb-black {
+    width: calc(var(--size) * 10px);
+    height: calc(var(--size) * 10px);
+    background-color: #ccc;
+    background: url('./assets/mine_black.svg') center/cover no-repeat;
+}
+.bomb-red {
+    width: calc(var(--size) * 10px);
+    height: calc(var(--size) * 10px);
+    background-color: #ccc;
+    background: url('./assets/mine_red.svg') center/cover no-repeat;
+}
 
 .side_panel {
     display: flex;
