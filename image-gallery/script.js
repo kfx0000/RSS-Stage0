@@ -35,15 +35,19 @@ async function getData(tags) {
     }
 }
 
-function placeImg(img_url, img_link) {
+function placeImg(img_url, img_link, tags) {
     let href = document.createElement("a");
     href.href = img_link;
     href.classList.add("main__a");
     href.target = "_blank";
     imgContainer.append(href);
-    let img = document.createElement("span");
-    img.classList.add("main__image");
-    img.style.background = `url('${img_url}') center/cover no-repeat`;
+    let img = document.createElement("img");
+    img.classList.add("main__img");
+    img.src = img_url;
+    img.alt = tags;
+    // let img = document.createElement("span");
+    // img.classList.add("main__image");
+    // img.style.background = `url('${img_url}') center/cover no-repeat`;
     img.addEventListener("click", () => imgSearch.focus());
     href.append(img);
 }
