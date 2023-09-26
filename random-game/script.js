@@ -71,6 +71,34 @@ function menuChiose() {
     });
 }
 
+function showCongrat(txt, colr) {
+    if(document.querySelector(".modal").classList.contains("modal_visible") ||
+        document.querySelector(".modal__text").classList.contains("modal__text_visible")) {
+        document.querySelector(".modal").classList.add("modal_block");
+        setTimeout(() => {
+            document.querySelector(".modal").classList.remove("modal_visible");
+            document.querySelector(".modal__text").classList.remove("modal__text_visible");
+            document.querySelector(".modal__msg").classList.remove("modal__msg_visible");
+            document.querySelector(".modal__form").classList.remove("modal__form_visible");
+        }, 201);
+        setTimeout(() => {
+            document.querySelector(".modal").classList.remove("modal_block");
+        }, 1001);
+        if(isWin) writeScore();
+    } else {
+        document.querySelector(".modal__text").style.color = colr;
+        document.querySelector(".modal__text").textContent = txt;
+        document.querySelector(".modal__text").classList.add("modal__text_visible");
+        if(isWin) {
+            document.getElementById("modal__input").value = "";
+            document.querySelector('.modal__msg-time').textContent = getTime(currTime);
+            document.querySelector(".modal__msg").classList.add("modal__msg_visible");
+            document.querySelector(".modal__form").classList.add("modal__form_visible");
+            document.getElementById("modal__input").focus();
+        }
+        document.querySelector(".modal").classList.add("modal_visible");
+    }
+}
 
 function showMenu() {
     if(document.querySelector(".menu").classList.contains("menu_show")) {
@@ -106,7 +134,7 @@ function openTile(num) {
         let cell = +num.split('-')[1];
         if(boardArray[cell]) {
             openBomb(num, "red");
-            openBombs(cell);
+            openBombs(cell,"You LOSE!!!", "#666");
         } else {
             document.querySelector(`.${num}`).classList.add("tile_open");
             countTile(cell);
@@ -121,7 +149,7 @@ function openBomb(num, color) {
     document.getElementById(num).appendChild(bombTile);
 }
 
-function openBombs(cell) {
+function openBombs(cell, msg, col) {
     for(let i = 1; i <= numCells; i++) {
         let tile = document.getElementById(`tile-${i}`).classList;
         if((i !== cell) && boardArray[i] && (!tile.contains("tile_flag")))
@@ -130,6 +158,7 @@ function openBombs(cell) {
     }
     inGame = false;
     clearInterval(timer);
+    showCongrat(msg, col);
 }
 
 function openAll() {
@@ -137,6 +166,7 @@ function openAll() {
     inGame = false;
     clearInterval(timer);
     isWin = true;
+    showCongrat("You WIN!!!", "#e11");
 }
 
 
@@ -191,7 +221,7 @@ function flagTile(num) {
             document.querySelectorAll(".tile_flag").forEach((x) => {
                 if(!boardArray[x.classList[1].split('-')[1]]) win = false;
             });
-            if(win) openAll(); else openBombs(0);
+            if(win) openAll(); else openBombs(0, "You LOSE!!!", "#666");
         }
     }
 }
