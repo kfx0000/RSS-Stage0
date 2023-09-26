@@ -42,28 +42,30 @@ function audioPlayPause() {
     document.documentElement.style.setProperty('--scaler', scl);
     document.querySelector(".player__button-play").src = audio.paused ? "./assets/play.png" : "./assets/pause.png";
 }
-
-function audioPrev() {
-    if(--playPointer < 0) playPointer = maxCnt;
-    audioRestart();
-    audioPlayPause();
-}
-function audioNext() {
-    if(++playPointer > maxCnt) playPointer = 0;
-    audioRestart();
-    audioPlayPause();
-}
-function audioRewind() {
-    audio.currentTime = progressBar.value * songPercent;
-    updateTimer();
-}
-
 function audioRestart() {
     document.querySelector('.player__text-artist').textContent = playList[playPointer][0];
     document.querySelector('.player__text-title').textContent = playList[playPointer][1];
     document.documentElement.style.setProperty('--pict', 'url("./assets/'+playList[playPointer][2]+'.jpg")');
     audio.src = './assets/'+playList[playPointer][2]+'.mp3';
     progressBar.max = 100;
+    updateTimer();
+}
+
+function audioPrev() {
+    if(--playPointer < 0) playPointer = maxCnt;
+    audioChange();
+}
+function audioNext() {
+    if(++playPointer > maxCnt) playPointer = 0;
+    audioChange();
+}
+function audioChange() {
+    progressBar.value = 0;
+    audioRestart();
+    audioPlayPause();
+}
+function audioRewind() {
+    audio.currentTime = progressBar.value * songPercent;
     updateTimer();
 }
 
@@ -97,6 +99,7 @@ function showModal(className) {
 }
 
 document.addEventListener("keydown", (e) => {
+    e.preventDefault();
     if(e.keyCode === 32) audioPlayPause();
     else if(e.keyCode === 37) audioPrev();
     else if(e.keyCode === 39) audioNext();
