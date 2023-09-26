@@ -14,9 +14,19 @@
 </head>
 
 <body>
+    <audio src="./assets/lose.mp3" id="sound_lose"></audio>
+    <audio src="./assets/win.mp3" id="sound_win"></audio>
+
     <div class="modal" onclick="showCongrat('');">
         <div class="modal__text"></div>
         <div class="modal__msg">Your Time: <span class="modal__msg-time"></span></div>
+        <form action="javascript:void(0)" class="modal__form">
+            <label for="modal__input" class="modal__label">
+                Enter your name:
+                <input type="text" id="modal__input" class="modal__input" maxlength="20" autocomplete="off">
+            </label>
+            <button type="submit" class="modal__button" onclick="javascript:void(0)">OK</button>
+        </form>
     </div>
     <div class="menu">
         <div class="menu__caption">Settings</div>

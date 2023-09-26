@@ -108,8 +108,6 @@ function showMenu() {
     }
 }
 
-
-
 function updateTimer() {
     ++currTime;
     document.querySelector(".timer").textContent = getTime(currTime);
@@ -158,6 +156,7 @@ function openBombs(cell, msg, col) {
     }
     inGame = false;
     clearInterval(timer);
+    document.getElementById("sound_lose").play();
     showCongrat(msg, col);
 }
 
@@ -165,6 +164,7 @@ function openAll() {
     for(let i = 1; i <= numCells; i++) openTile(`tile-${i}`);
     inGame = false;
     clearInterval(timer);
+    document.getElementById("sound_win").play();
     isWin = true;
     showCongrat("You WIN!!!", "#e11");
 }
