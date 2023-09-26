@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Victor+Mono&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="./assets/icon.png">
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
@@ -27,6 +28,22 @@
             </label>
             <button type="submit" class="modal__button" onclick="javascript:void(0)">OK</button>
         </form>
+    </div>
+    <div class="modal score" onclick="hideScore();">
+        <div class="score__table">
+            <div class="score__header">
+                <div class="score__head">BEST PLAYERS</div>
+                <div class="score__subhead">
+                    Board Size - <span class="score__bs"></span><br>Level - <span class="score__lv"></span>
+                </div>
+            </div>
+            <div class="score__thead">
+                <span class="score__h-rank">RANK</span><span class="score__h-name">NAME</span><span
+                    class="score__h-res">RESULT</span><span class="score__h-date">DATE</span>
+            </div>
+            <ul class="score__body">
+            </ul>
+        </div>
     </div>
     <div class="menu">
         <div class="menu__caption">Settings</div>
