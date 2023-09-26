@@ -28,10 +28,7 @@ function newGame() {
         for(let i = 0; i < 9; i++) arr[i] = new Array(10).fill({name:'', time:0, date: ''});
         localStorage.setItem("RSS_Miner", JSON.stringify(arr));
     }
-    const elements = document.getElementsByClassName("tile");
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]);
-    }
+    document.querySelectorAll(".tile").forEach((x) => x.remove());
     const board = document.getElementById("board");
     for(let i = 1; i <= numCells; i++) {
         let tile = document.createElement("div");
