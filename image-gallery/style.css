@@ -80,7 +80,7 @@ main {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 400;
     font-size: 16px;
-    padding-right: 35px;
+    padding-right: 65px;
 }
 .header__search:focus {
     box-shadow: 2px 2px 10px 2px #007;
@@ -99,7 +99,6 @@ main {
     filter: invert(0.6);
 }
 .glass {
-    display: none;
     width: 18px;
     top: 10px;
     right: 92px;
@@ -195,7 +194,6 @@ footer {
         margin-left: 0;
     }
     .header__search {
-        padding-right: 65px;
         margin: 0;
     }
     .cross {
@@ -205,8 +203,7 @@ footer {
         visibility: hidden;
         opacity: 0;
     }
-       .glass {
-        display: block;
+    .glass {
         right: 42px;
     }
 }

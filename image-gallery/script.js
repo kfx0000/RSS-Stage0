@@ -58,6 +58,7 @@ function doSearch() {
         document.querySelectorAll(".main__a").forEach((x) => x.remove());
         getData(imgSearch.value.trim());
     }
+    imgSearch.focus();
 }
 
 function doClear() {
