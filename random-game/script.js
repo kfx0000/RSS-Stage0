@@ -16,7 +16,7 @@ function newGame() {
     menuChiose();
     if(document.getElementById("let_win").checked) {
         numBombs = flags = 1;
-        timeLimit = 1000000;
+        timeLimit = 6000;
         document.getElementsByName('level_rb').forEach((x) => x.setAttribute("disabled","disabled"));
         document.querySelectorAll(".level_rb").forEach((x) => x.style.setProperty("color", "#666"));
     } else {
@@ -51,7 +51,7 @@ function newGame() {
     isWin = false;
     currTime = 0;
     if(timer) clearInterval(timer);
-    document.querySelector(".timer").textContent = "00:00.0";
+    document.querySelector(".timer").textContent = getTime(timeLimit);
 }
 
 function menuChiose() {
@@ -109,6 +109,62 @@ function hideScore() {
     document.querySelector(".score").classList.remove("score-visible");
 }
 
+function writeScore() {
+    let arr = JSON.parse(localStorage.getItem("RSS_Miner"));
+    let max = 10;
+    let idx =+brd*3 + +lev;
+    let name = document.getElementById("modal__input").value.trim();
+    if(name.length === 0) name = "noname";
+    let now = new Date();
+    if(arr[idx][9].name.length !== 0) {
+        arr[idx][9].name = name;
+        arr[idx][9].time = currTime;
+        arr[idx][9].date = now.getDate().toString().padStart(2, "0") + "/"
+        + (now.getMonth()+1).toString().padStart(2, "0") + "/" + now.getFullYear() + " "
+        + now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0") + ":"
+        + now.getSeconds().toString().padStart(2, "0");
+} else {
+        for(let i = 0; i < 10; i++)
+            if(arr[idx][i].name.length === 0) {
+                arr[idx][i].name = name;
+                arr[idx][i].time = currTime;
+                arr[idx][i].date = now.getDate().toString().padStart(2, "0") + "/"
+                + (now.getMonth()+1).toString().padStart(2, "0") + "/" + now.getFullYear() + " "
+                + now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0") + ":"
+                + now.getSeconds().toString().padStart(2, "0");
+                    max = i + 1;
+                break;
+            }
+    }
+    for(let i = 1; i < max; i++) {
+        let ex = true;
+        for(let j = 0; j < max - i; j++) {
+            if(arr[idx][j].time > arr[idx][j+1].time) {
+                let tmpTime = arr[idx][j].time;
+                let tmpName = arr[idx][j].name;
+                let tmpDate = arr[idx][j].date;
+                arr[idx][j].time = arr[idx][j+1].time;
+                arr[idx][j].name = arr[idx][j+1].name;
+                arr[idx][j].date = arr[idx][j+1].date;
+                arr[idx][j+1].time = tmpTime;
+                arr[idx][j+1].name = tmpName;
+                arr[idx][j+1].date = tmpDate;
+                ex = false;
+            }
+        }
+        if(ex) break;
+    }
+    localStorage.setItem("RSS_Miner", JSON.stringify(arr));
+}
+
+function showHelp() {
+    document.querySelector(".help").classList.add("help-visible");
+}
+
+function hideHelp() {
+    document.querySelector(".help").classList.remove("help-visible");
+}
+
 function showCongrat(txt, colr) {
     if(document.querySelector(".modal").classList.contains("modal_visible") ||
         document.querySelector(".modal__text").classList.contains("modal__text_visible")) {
@@ -148,7 +204,7 @@ function showMenu() {
 
 function updateTimer() {
     ++currTime;
-    document.querySelector(".timer").textContent = getTime(currTime);
+    document.querySelector(".timer").textContent = getTime(timeLimit - currTime);
     if(currTime >= timeLimit) openBombs(0,"Time is up!!!", "#44e");
 }
 
@@ -205,54 +261,6 @@ function openAll() {
     document.getElementById("sound_win").play();
     isWin = true;
     showCongrat("You WIN!!!", "#e11");
-}
-
-function writeScore() {
-    let arr = JSON.parse(localStorage.getItem("RSS_Miner"));
-    let max = 10;
-    let idx =+brd*3 + +lev;
-    let name = document.getElementById("modal__input").value.trim();
-    if(name.length === 0) name = "noname";
-    let now = new Date();
-    if(arr[idx][9].name.length !== 0) {
-        arr[idx][9].name = name;
-        arr[idx][9].time = currTime;
-        arr[idx][9].date = now.getDate().toString().padStart(2, "0") + "/"
-        + (now.getMonth()+1).toString().padStart(2, "0") + "/" + now.getFullYear() + " "
-        + now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0") + ":"
-        + now.getSeconds().toString().padStart(2, "0");
-} else {
-        for(let i = 0; i < 10; i++)
-            if(arr[idx][i].name.length === 0) {
-                arr[idx][i].name = name;
-                arr[idx][i].time = currTime;
-                arr[idx][i].date = now.getDate().toString().padStart(2, "0") + "/"
-                + (now.getMonth()+1).toString().padStart(2, "0") + "/" + now.getFullYear() + " "
-                + now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0") + ":"
-                + now.getSeconds().toString().padStart(2, "0");
-                    max = i + 1;
-                break;
-            }
-    }
-    for(let i = 1; i < max; i++) {
-        let ex = true;
-        for(let j = 0; j < max - i; j++) {
-            if(arr[idx][j].time > arr[idx][j+1].time) {
-                let tmpTime = arr[idx][j].time;
-                let tmpName = arr[idx][j].name;
-                let tmpDate = arr[idx][j].date;
-                arr[idx][j].time = arr[idx][j+1].time;
-                arr[idx][j].name = arr[idx][j+1].name;
-                arr[idx][j].date = arr[idx][j+1].date;
-                arr[idx][j+1].time = tmpTime;
-                arr[idx][j+1].name = tmpName;
-                arr[idx][j+1].date = tmpDate;
-                ex = false;
-            }
-        }
-        if(ex) break;
-    }
-    localStorage.setItem("RSS_Miner", JSON.stringify(arr));
 }
 
 function countTile(cell) {

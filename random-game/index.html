@@ -45,7 +45,21 @@
             </ul>
         </div>
     </div>
+    <div class="modal help" onclick="hideHelp();">
+        <div class="help__containter">
+            <div class="help__head">About game</div>
+            <div class="help__text">This is not a classic Miner game. To win, you have to place all the flags on the
+                mined tiles. When you set the last flag, if any of the flags are set wrong, you'll lose.<br>
+                Also, you have a time limit. It's different on every level and board size.<br>
+                Score tables are different for every level and board size too.<br>
+                If you wish to win quickly, just click the "Let me win" checkbox in the menu<br>
+                Good Luck!
+            </div>
+            <button type="submit" class="modal__button help__button" onclick="javascript:void(0)">I've got it!</button>
+        </div>
+    </div>
     <div class="menu">
+        <div class="menu__help" onclick="showHelp();"></div>
         <div class="menu__caption">Settings</div>
         <div class="menu__selector">
             <div class="menu__selector-capt">Choose board size</div>
@@ -110,7 +124,7 @@
                 <div class="side_panel">
                     <button class="game_button" onclick="newGame();">New Game</button>
                     <div class="counter-wrapper timer_wrapper">
-                        Timer
+                        Time left:
                         <div class="counter timer"></div>
                     </div>
                 </div>
