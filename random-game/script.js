@@ -63,7 +63,7 @@ function newGame() {
     isWin = false;
     currTime = 0;
     if(timer) clearInterval(timer);
-    document.querySelector(".timer").textContent = getTime(timeLimit);
+    document.querySelector(".timer").textContent = convertTime(timeLimit);
 }
 
 function menuChiose() {
@@ -101,7 +101,7 @@ function showScore() {
             name.textContent = arr[idx][i].name;
             let res = document.createElement("span");
             res.classList.add("score__t-res");
-            res.textContent = getTime(arr[idx][i].time);
+            res.textContent = convertTime(arr[idx][i].time);
             let date = document.createElement("span");
             date.classList.add("score__t-date");
             date.textContent = arr[idx][i].date;
@@ -121,51 +121,63 @@ function hideScore() {
     document.querySelector(".score").classList.remove("score-visible");
 }
 
+function getDateStr() {
+    let now = new Date();
+    return now.getDate().toString().padStart(2, "0") + "/"
+    + (now.getMonth()+1).toString().padStart(2, "0") + "/" + now.getFullYear() + " "
+    + now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0") + ":"
+    + now.getSeconds().toString().padStart(2, "0");
+}
+
 function writeScore() {
     let arr = JSON.parse(localStorage.getItem("RSS_Miner"));
-    let max = 10;
-    let idx =+brd*3 + +lev;
-    let name = document.getElementById("modal__input").value.trim();
-    if(name.length === 0) name = "noname";
-    let now = new Date();
-    if(arr[idx][9].name.length !== 0) {
-        arr[idx][9].name = name;
-        arr[idx][9].time = currTime;
-        arr[idx][9].date = now.getDate().toString().padStart(2, "0") + "/"
-        + (now.getMonth()+1).toString().padStart(2, "0") + "/" + now.getFullYear() + " "
-        + now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0") + ":"
-        + now.getSeconds().toString().padStart(2, "0");
-} else {
-        for(let i = 0; i < 10; i++)
-            if(arr[idx][i].name.length === 0) {
-                arr[idx][i].name = name;
-                arr[idx][i].time = currTime;
-                arr[idx][i].date = now.getDate().toString().padStart(2, "0") + "/"
-                + (now.getMonth()+1).toString().padStart(2, "0") + "/" + now.getFullYear() + " "
-                + now.getHours().toString().padStart(2, "0") + ":" + now.getMinutes().toString().padStart(2, "0") + ":"
-                + now.getSeconds().toString().padStart(2, "0");
-                    max = i + 1;
-                break;
-            }
+    let idx = +brd*3 + +lev;
+    let name = document.getElementById("modal__input").value.trim().length ? document.getElementById("modal__input").value.trim() : "noname";
+
+    for(let i = 9; i > 0; i--) {
+        arr[idx][i].name = arr[idx][i-1].name;
+        arr[idx][i].time = arr[idx][i-1].time;
+        arr[idx][i].date = arr[idx][i-1].date;
     }
-    for(let i = 1; i < max; i++) {
-        let ex = true;
-        for(let j = 0; j < max - i; j++) {
-            if(arr[idx][j].time > arr[idx][j+1].time) {
-                let tmpTime = arr[idx][j].time;
-                let tmpName = arr[idx][j].name;
-                let tmpDate = arr[idx][j].date;
-                arr[idx][j].time = arr[idx][j+1].time;
-                arr[idx][j].name = arr[idx][j+1].name;
-                arr[idx][j].date = arr[idx][j+1].date;
-                arr[idx][j+1].time = tmpTime;
-                arr[idx][j+1].name = tmpName;
-                arr[idx][j+1].date = tmpDate;
-                ex = false;
-            }
-        }
-        if(ex) break;
-    }
+    arr[idx][0].name = name;
+    arr[idx][0].time = currTime;
+    arr[idx][0].date = getDateStr();
+
+    // ******************** Top-10 Score **************************//
+    // let max = 10;
+    // if((arr[idx][9].name.length !== 0) && (arr[idx][9].time > currTime)) {
+    //     arr[idx][9].name = name;
+    //     arr[idx][9].time = currTime;
+    //     arr[idx][9].date = getDateStr();
+    // } else {
+    //     for(let i = 0; i < 10; i++)
+    //         if(arr[idx][i].name.length === 0) {
+    //             arr[idx][i].name = name;
+    //             arr[idx][i].time = currTime;
+    //             arr[idx][i].date = getDateStr();
+    //             max = i + 1;
+    //             break;
+    //         }
+    // }
+    // for(let i = 1; i < max; i++) {
+    //     let ex = true;
+    //     for(let j = 0; j < max - i; j++) {
+    //         if(arr[idx][j].time > arr[idx][j+1].time) {
+    //             let tmpTime = arr[idx][j].time;
+    //             let tmpName = arr[idx][j].name;
+    //             let tmpDate = arr[idx][j].date;
+    //             arr[idx][j].time = arr[idx][j+1].time;
+    //             arr[idx][j].name = arr[idx][j+1].name;
+    //             arr[idx][j].date = arr[idx][j+1].date;
+    //             arr[idx][j+1].time = tmpTime;
+    //             arr[idx][j+1].name = tmpName;
+    //             arr[idx][j+1].date = tmpDate;
+    //             ex = false;
+    //         }
+    //     }
+    //     if(ex) break;
+    // }
+
     localStorage.setItem("RSS_Miner", JSON.stringify(arr));
 }
 
@@ -197,7 +209,7 @@ function showCongrat(txt, colr) {
         document.querySelector(".modal__text").classList.add("modal__text_visible");
         if(isWin) {
             document.getElementById("modal__input").value = "";
-            document.querySelector('.modal__msg-time').textContent = getTime(currTime);
+            document.querySelector('.modal__msg-time').textContent = convertTime(currTime);
             document.querySelector(".modal__msg").classList.add("modal__msg_visible");
             document.querySelector(".modal__form").classList.add("modal__form_visible");
             document.getElementById("modal__input").focus();
@@ -216,11 +228,11 @@ function showMenu() {
 
 function updateTimer() {
     ++currTime;
-    document.querySelector(".timer").textContent = getTime(timeLimit - currTime);
+    document.querySelector(".timer").textContent = convertTime(timeLimit - currTime);
     if(currTime >= timeLimit) openBombs(0,"Time is up!!!", "#44e");
 }
 
-function getTime(t) {
+function convertTime(t) {
     let ms = t%10;
     let sec = ((t-t%10)/10)%60;
     sec = sec < 10 ? '0'+sec : ''+sec;
