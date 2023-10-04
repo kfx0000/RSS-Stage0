@@ -9,6 +9,8 @@ console.log(`
 6. Анимации или звуки, или настройки игры. Баллы начисляются за любой из перечисленных пунктов +10
 7. Очень высокое качество оформления приложения и/или дополнительный не предусмотренный в задании функционал, улучшающий качество приложения +10
     - высокое качество оформления приложения предполагает собственное оригинальное оформление равное или отличающееся в лучшую сторону по сравнению с демо
+
+Score: 70/60.
 `);
 const sett = [
     {cells: 100, bombs: [10, 15, 20], size: 4, time: [300, 600, 1200]},
@@ -132,51 +134,51 @@ function getDateStr() {
 function writeScore() {
     let arr = JSON.parse(localStorage.getItem("RSS_Miner"));
     let idx = +brd*3 + +lev;
-    let name = document.getElementById("modal__input").value.trim().length ? document.getElementById("modal__input").value.trim() : "noname";
+    let name = document.getElementById("modal__input").value.trim().length ? document.getElementById("modal__input").value.trim() : "Player";
 
-    for(let i = 9; i > 0; i--) {
-        arr[idx][i].name = arr[idx][i-1].name;
-        arr[idx][i].time = arr[idx][i-1].time;
-        arr[idx][i].date = arr[idx][i-1].date;
-    }
-    arr[idx][0].name = name;
-    arr[idx][0].time = currTime;
-    arr[idx][0].date = getDateStr();
+    // for(let i = 9; i > 0; i--) {
+    //     arr[idx][i].name = arr[idx][i-1].name;
+    //     arr[idx][i].time = arr[idx][i-1].time;
+    //     arr[idx][i].date = arr[idx][i-1].date;
+    // }
+    // arr[idx][0].name = name;
+    // arr[idx][0].time = currTime;
+    // arr[idx][0].date = getDateStr();
 
     // ******************** Top-10 Score **************************//
-    // let max = 10;
-    // if((arr[idx][9].name.length !== 0) && (arr[idx][9].time > currTime)) {
-    //     arr[idx][9].name = name;
-    //     arr[idx][9].time = currTime;
-    //     arr[idx][9].date = getDateStr();
-    // } else {
-    //     for(let i = 0; i < 10; i++)
-    //         if(arr[idx][i].name.length === 0) {
-    //             arr[idx][i].name = name;
-    //             arr[idx][i].time = currTime;
-    //             arr[idx][i].date = getDateStr();
-    //             max = i + 1;
-    //             break;
-    //         }
-    // }
-    // for(let i = 1; i < max; i++) {
-    //     let ex = true;
-    //     for(let j = 0; j < max - i; j++) {
-    //         if(arr[idx][j].time > arr[idx][j+1].time) {
-    //             let tmpTime = arr[idx][j].time;
-    //             let tmpName = arr[idx][j].name;
-    //             let tmpDate = arr[idx][j].date;
-    //             arr[idx][j].time = arr[idx][j+1].time;
-    //             arr[idx][j].name = arr[idx][j+1].name;
-    //             arr[idx][j].date = arr[idx][j+1].date;
-    //             arr[idx][j+1].time = tmpTime;
-    //             arr[idx][j+1].name = tmpName;
-    //             arr[idx][j+1].date = tmpDate;
-    //             ex = false;
-    //         }
-    //     }
-    //     if(ex) break;
-    // }
+    let max = 10;
+    if((arr[idx][9].name.length !== 0) && (arr[idx][9].time > currTime)) {
+        arr[idx][9].name = name;
+        arr[idx][9].time = currTime;
+        arr[idx][9].date = getDateStr();
+    } else {
+        for(let i = 0; i < 10; i++)
+            if(arr[idx][i].name.length === 0) {
+                arr[idx][i].name = name;
+                arr[idx][i].time = currTime;
+                arr[idx][i].date = getDateStr();
+                max = i + 1;
+                break;
+            }
+    }
+    for(let i = 1; i < max; i++) {
+        let ex = true;
+        for(let j = 0; j < max - i; j++) {
+            if(arr[idx][j].time > arr[idx][j+1].time) {
+                let tmpTime = arr[idx][j].time;
+                let tmpName = arr[idx][j].name;
+                let tmpDate = arr[idx][j].date;
+                arr[idx][j].time = arr[idx][j+1].time;
+                arr[idx][j].name = arr[idx][j+1].name;
+                arr[idx][j].date = arr[idx][j+1].date;
+                arr[idx][j+1].time = tmpTime;
+                arr[idx][j+1].name = tmpName;
+                arr[idx][j+1].date = tmpDate;
+                ex = false;
+            }
+        }
+        if(ex) break;
+    }
 
     localStorage.setItem("RSS_Miner", JSON.stringify(arr));
 }
