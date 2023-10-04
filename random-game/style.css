@@ -26,8 +26,6 @@
 body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
     height: 100vh;
     background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
     color:#000;
@@ -46,7 +44,6 @@ a:hover {
 header {
     display: flex;
     justify-content: space-between;
-    width: 100%;
     align-items: center;
     padding: 5px 100px 0 65px;
 }
@@ -65,10 +62,6 @@ h1 {
                 -1px -1px 10px #fff,
                 1px -1px 10px #fff,
                 -1px 1px 10px #fff;
-}
-.h-m {
-    position: relative;
-    width: 100%;
 }
 .modal {
     display: flex;
@@ -661,7 +654,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    margin-top: auto;
     background-color: #071287;
     color: #FFF;
     opacity: 0.75;
