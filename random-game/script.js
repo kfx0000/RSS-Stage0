@@ -13,9 +13,9 @@ console.log(`
 Score: 70/60.
 `);
 const sett = [
-    {cells: 100, bombs: [10, 15, 20], size: 4, time: [300, 600, 1200]},
-    {cells: 225, bombs: [23, 34, 45], size: 3.2, time: [600, 1200, 2400]},
-    {cells: 400, bombs: [40, 60, 80], size: 2.8, time: [1200, 2400, 4800]}
+    {cells: 100, bombs: [10, 15, 20], size: 4, time: [600, 1200, 1800]},
+    {cells: 225, bombs: [23, 34, 45], size: 3.2, time: [2400, 3000, 3600]},
+    {cells: 400, bombs: [40, 60, 80], size: 2.8, time: [4200, 4800, 5400]}
 ];
 
 let numCells, numBombs, flags, timeLimit, timer, currTime, brd, lev;
